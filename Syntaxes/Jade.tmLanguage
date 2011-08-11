@@ -142,7 +142,7 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>[^\}]+</string>
+					<string>[a-zA-Z_$][0-9a-zA-Z_$]*</string>
 					<key>name</key>
 					<string>variable.parameter</string>
 				</dict>
