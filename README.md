@@ -1,6 +1,8 @@
 Jade.tmbundle
 ---------------------
 
+## This version of Jade.tmbundle is modified specifically for Sublime Text 2. It might also work in Textmate but it's untested ##
+
 A **TextMate Bundle** for the **Jade** templating language.
 
 Installation:
