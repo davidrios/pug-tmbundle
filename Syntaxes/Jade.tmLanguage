@@ -46,7 +46,7 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>(include|block)\s+([a-zA-Z09_-]+)$</string>
+					<string>(include|block)\s+(.+)$</string>
 				</dict>
 				<dict>
 					<key>begin</key>
