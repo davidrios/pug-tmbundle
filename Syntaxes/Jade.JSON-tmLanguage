@@ -152,7 +152,7 @@
       ]
     },
     { "name": "text.block.dot.tag.jade",
-      "begin": "^(\\s*)(?=.*[a-z0-9)]\\.$)",
+      "begin": "^(\\s*)(?=[a-z.#].*?[a-z0-9)]\\.$)",
       "end": "^(?!(\\1\\s)|\\s*$)",
       "patterns": [
         { "include": "#complete_tag" },
@@ -160,6 +160,7 @@
           "begin": "^(?=.)",
           "end": "$",
           "patterns": [
+            { "include": "#html_entity" },
             { "include": "#interpolated_value" }
           ]
         }
@@ -173,6 +174,7 @@
           "begin": "\\|\\s",
           "end": "$",
           "patterns": [
+            { "include": "#html_entity" },
             { "include": "#interpolated_value" }
           ]
         },
@@ -221,7 +223,7 @@
     },
     "tag_classes": {
       "name": "classes.tag.jade",
-      "match": "\\.([a-z]\\w*)",
+      "match": "\\.([\\w-]+)",
       "captures": {
         "1": { "name": "string.name.classes.tag.jade" }
       }
@@ -250,9 +252,10 @@
     },
     "tag_text": {
       "name": "text.jade",
-      "begin": ".",
+      "begin": "(?=.)",
       "end": "$",
       "patterns": [
+        { "include": "#html_entity" },
         { "include": "#interpolated_value" }
       ]
     },
@@ -277,6 +280,16 @@
         },
         { "include": "#printed_expression" },
         { "include": "#tag_text" }
+      ]
+    },
+    "html_entity": {
+      "patterns": [
+        { "name": "invalid.illegal.html_entity.text.jade",
+          "match": "&(?!((#\\d+)|([a-z]\\w+));)"
+        },
+        { "name": "constant.html_entity.text.jade",
+          "match": "&((#\\d+)|([a-z]\\w+));"
+        }
       ]
     }
   },

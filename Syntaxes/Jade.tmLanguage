@@ -348,7 +348,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^(\s*)(?=.*[a-z0-9)]\.$)</string>
+			<string>^(\s*)(?=[a-z.#].*?[a-z0-9)]\.$)</string>
 			<key>end</key>
 			<string>^(?!(\1\s)|\s*$)</string>
 			<key>name</key>
@@ -368,6 +368,10 @@
 					<string>text.block.jade</string>
 					<key>patterns</key>
 					<array>
+						<dict>
+							<key>include</key>
+							<string>#html_entity</string>
+						</dict>
 						<dict>
 							<key>include</key>
 							<string>#interpolated_value</string>
@@ -394,6 +398,10 @@
 					<string>text.block.pipe.jade</string>
 					<key>patterns</key>
 					<array>
+						<dict>
+							<key>include</key>
+							<string>#html_entity</string>
+						</dict>
 						<dict>
 							<key>include</key>
 							<string>#interpolated_value</string>
@@ -473,6 +481,24 @@
 				<dict>
 					<key>include</key>
 					<string>#tag_text</string>
+				</dict>
+			</array>
+		</dict>
+		<key>html_entity</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>&amp;(?!((#\d+)|([a-z]\w+));)</string>
+					<key>name</key>
+					<string>invalid.illegal.html_entity.text.jade</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>&amp;((#\d+)|([a-z]\w+));</string>
+					<key>name</key>
+					<string>constant.html_entity.text.jade</string>
 				</dict>
 			</array>
 		</dict>
@@ -593,7 +619,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>\.([a-z]\w*)</string>
+			<string>\.([\w-]+)</string>
 			<key>name</key>
 			<string>classes.tag.jade</string>
 		</dict>
@@ -614,13 +640,17 @@
 		<key>tag_text</key>
 		<dict>
 			<key>begin</key>
-			<string>.</string>
+			<string>(?=.)</string>
 			<key>end</key>
 			<string>$</string>
 			<key>name</key>
 			<string>text.jade</string>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>include</key>
+					<string>#html_entity</string>
+				</dict>
 				<dict>
 					<key>include</key>
 					<string>#interpolated_value</string>
