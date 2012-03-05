@@ -348,9 +348,51 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^(\s*)(?=[a-z.#].*?[a-z0-9)]\.$)</string>
+			<string>^(\s+)(?=[a-z.#].*?\.$)</string>
 			<key>end</key>
 			<string>^(?!(\1\s)|\s*$)</string>
+			<key>name</key>
+			<string>text.block.dot.tag.jade</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#complete_tag</string>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>^(?=.)</string>
+					<key>end</key>
+					<string>$</string>
+					<key>name</key>
+					<string>text.block.jade</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#html_entity</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#interpolated_value</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^([a-z.#])(?=.*?\.$)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>entity.tag.name</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>^(?!\s|$)</string>
 			<key>name</key>
 			<string>text.block.dot.tag.jade</string>
 			<key>patterns</key>

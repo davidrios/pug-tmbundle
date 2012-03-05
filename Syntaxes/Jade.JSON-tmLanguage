@@ -152,8 +152,26 @@
       ]
     },
     { "name": "text.block.dot.tag.jade",
-      "begin": "^(\\s*)(?=[a-z.#].*?[a-z0-9)]\\.$)",
+      "begin": "^(\\s+)(?=[a-z.#].*?\\.$)",
       "end": "^(?!(\\1\\s)|\\s*$)",
+      "patterns": [
+        { "include": "#complete_tag" },
+        { "name": "text.block.jade",
+          "begin": "^(?=.)",
+          "end": "$",
+          "patterns": [
+            { "include": "#html_entity" },
+            { "include": "#interpolated_value" }
+          ]
+        }
+      ]
+    },
+    { "name": "text.block.dot.tag.jade",
+      "begin": "^([a-z.#])(?=.*?\\.$)",
+      "beginCaptures": {
+        "1": { "name": "entity.tag.name" }
+      },
+      "end": "^(?!\\s|$)",
       "patterns": [
         { "include": "#complete_tag" },
         { "name": "text.block.jade",
