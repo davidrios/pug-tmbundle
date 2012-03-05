@@ -27,7 +27,7 @@
 			<key>match</key>
 			<string>^\s*(include|yield|append|prepend|block( (append|prepend))?)\s+(.*)</string>
 			<key>name</key>
-			<string></string>
+			<string>meta.first-class.jade</string>
 		</dict>
 		<dict>
 			<key>match</key>
