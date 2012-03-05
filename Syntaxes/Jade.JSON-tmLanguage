@@ -65,7 +65,7 @@
     { "name": "text.markdown.filter.jade",
       "begin": "^(\\s*):(markdown)$",
       "beginCaptures": {
-        "2": { "name": "support.name.markdown.filter.jade" }
+        "2": { "name": "constant.language.name.markdown.filter.jade" }
       },
       "end": "^(?!(\\1\\s)|\\s*$)",
       "patterns": [
@@ -75,7 +75,7 @@
     { "name": "text.sass.filter.jade",
       "begin": "^(\\s*):(sass)$",
       "beginCaptures": {
-        "2": { "name": "support.name.sass.filter.jade" }
+        "2": { "name": "constant.language.name.sass.filter.jade" }
       },
       "end": "^(?!(\\1\\s)|\\s*$)",
       "patterns": [
@@ -85,7 +85,7 @@
     { "name": "text.less.filter.jade",
       "begin": "^(\\s*):(less)$",
       "beginCaptures": {
-        "2": { "name": "support.name.less.filter.jade" }
+        "2": { "name": "constant.language.name.less.filter.jade" }
       },
       "end": "^(?!(\\1\\s)|\\s*$)",
       "patterns": [
@@ -95,7 +95,7 @@
     { "name": "text.coffeescript.filter.jade",
       "begin": "^(\\s*):(coffeescript)$",
       "beginCaptures": {
-        "2": { "name": "support.name.coffeescript.filter.jade" }
+        "2": { "name": "constant.language.name.coffeescript.filter.jade" }
       },
       "end": "^(?!(\\1\\s)|\\s*$)",
       "patterns": [
@@ -105,7 +105,7 @@
     { "name": "text.generic.filter.jade",
       "begin": "^(\\s*):(\\w+)$",
       "beginCaptures": {
-        "2": { "name": "support.name.generic.filter.jade" }
+        "2": { "name": "constant.language.name.generic.filter.jade" }
       },
       "end": "^(?!(\\1\\s)|\\s*$)"
     },
@@ -238,7 +238,7 @@
     },
     "tag_id": {
       "name": "constant.id.tag.jade",
-      "match": "#([a-z]\\w*)"
+      "match": "#([a-z][\\w-]*)"
     },
     "tag_classes": {
       "name": "classes.tag.jade",
@@ -258,7 +258,7 @@
         { "name": "attributes.tag.jade",
           "begin": "([a-z]\\w+)(=)",
           "beginCaptures": {
-            "1": { "name": "variable.name.attribute.tag.jade" },
+            "1": { "name": "entity.other.attribute-name.tag.jade" },
             "2": { "name": "punctuation.separator.key-value.jade" }
           },
           "end": ",|(?=\\))",

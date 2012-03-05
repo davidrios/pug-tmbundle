@@ -152,7 +152,7 @@
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>support.name.markdown.filter.jade</string>
+					<string>constant.language.name.markdown.filter.jade</string>
 				</dict>
 			</dict>
 			<key>end</key>
@@ -175,7 +175,7 @@
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>support.name.sass.filter.jade</string>
+					<string>constant.language.name.sass.filter.jade</string>
 				</dict>
 			</dict>
 			<key>end</key>
@@ -198,7 +198,7 @@
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>support.name.less.filter.jade</string>
+					<string>constant.language.name.less.filter.jade</string>
 				</dict>
 			</dict>
 			<key>end</key>
@@ -221,7 +221,7 @@
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>support.name.coffeescript.filter.jade</string>
+					<string>constant.language.name.coffeescript.filter.jade</string>
 				</dict>
 			</dict>
 			<key>end</key>
@@ -244,7 +244,7 @@
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>support.name.generic.filter.jade</string>
+					<string>constant.language.name.generic.filter.jade</string>
 				</dict>
 			</dict>
 			<key>end</key>
@@ -626,7 +626,7 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>variable.name.attribute.tag.jade</string>
+							<string>entity.other.attribute-name.tag.jade</string>
 						</dict>
 						<key>2</key>
 						<dict>
@@ -670,7 +670,7 @@
 		<key>tag_id</key>
 		<dict>
 			<key>match</key>
-			<string>#([a-z]\w*)</string>
+			<string>#([a-z][\w-]*)</string>
 			<key>name</key>
 			<string>constant.id.tag.jade</string>
 		</dict>
