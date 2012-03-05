@@ -7,6 +7,9 @@ JSON-tmLanguage, a compiled tmLanguage version is included. All language
 features that I know of and some indent increase/decrease patterns are
 implemented.
 
+A test.jade file is included with all features I know, it is a valid file, so
+you can compile it with jade to check its output.
+
 ## Installation:
 
     mkdir -p ~/Library/Application\ Support/TextMate/Bundles
