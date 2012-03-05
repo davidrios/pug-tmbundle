@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Miscellaneous</string>
+	<key>scope</key>
+	<string>source.jade</string>
+	<key>settings</key>
+	<dict>
+		<key>decreaseIndentPattern</key>
+		<string>^\s*(- )?(else)\b.*$</string>
+		<key>increaseIndentPattern</key>
+		<string>(?x)
+			^\s*(  # start with any whitespace
+				(  # start tags
+					(  # first tag
+						([a-z][a-z0-9_-]*)?  # tag name
+						(\#([a-z]\w*))?  # tag id
+						([\W-]\.[a-z]\w*)  # mandatory class
+					 	(\.[a-z]\w*)*  # additional classes
+					 	(\(.*?\))?  # tag attributes
+				 	)  # end first tag
+					(:\s*  # additional tags separated by ": "
+						([a-z][a-z0-9_-]*)?  # tag name
+						(\#([a-z]\w*))?  # tag id
+						([\W-]\.[a-z]\w*)  # mandatory class
+					 	(\.[a-z]\w*)*  # additional classes
+						(\(.*?\))?  # tag attributes
+					)*  # end additional tags
+				\.?$)  # end tags
+				|(:[a-z]\w*$)  # filters
+				|(//-?(\S|$))  # multiline comments
+				|(-\s+(if|else|while))  # embedded js control flow
+				|(if|else|while|for|unless|until)  # jade block first-class
+			)</string>
+		<key>disableIndentNextLinePattern</key>
+		<string></string>
+	</dict>
+	<key>uuid</key>
+	<string>5F6B517C-2610-4B1B-B6FD-2153AB8C9925</string>
+</dict>
+</plist>

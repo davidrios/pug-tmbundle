@@ -11,24 +11,37 @@
 	<key>patterns</key>
 	<array>
 		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.control.import.include.jade</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>variable.control.import.include.jade</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>^\s*(include|yield|append|prepend|block( (append|prepend))?)\s+(.*)</string>
+			<key>name</key>
+			<string></string>
+		</dict>
+		<dict>
 			<key>match</key>
 			<string>^(!!!)(\s*[a-zA-Z0-9-_]+)?</string>
 			<key>name</key>
-			<string>keyword.other.doctype.jade</string>
+			<string>comment.other.doctype.jade</string>
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>\s*//</string>
+			<string>^(\s*)//-?(\S|$)</string>
 			<key>end</key>
-			<string>$\n?</string>
+			<string>^(?!(\1\s)|\s*$)</string>
 			<key>name</key>
-			<string>comment.line.double-slash.jade</string>
-		</dict>
-		<dict>
-			<key>begin</key>
-			<string>^\s*</string>
-			<key>end</key>
-			<string>(\s+|$)</string>
+			<string>comment.block.jade</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -37,76 +50,258 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>keyword.other.include.jade</string>
-						</dict>
-						<key>2</key>
-						<dict>
-							<key>name</key>
-							<string>string.quoted.single.jade</string>
+							<string>invalid.illegal.comment.comment.block.jade</string>
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>(include|block)\s+(.+)$</string>
+					<string>^\s*(//)</string>
+					<key>name</key>
+					<string>comment.comment.block.jade</string>
 				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>^\s*//.*$</string>
+			<key>name</key>
+			<string>support.comment.line.double-dash.jade</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^(\s*)(script)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.script.jade</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>^(?!(\1\s)|\s*$)</string>
+			<key>name</key>
+			<string>script.jade</string>
+			<key>patterns</key>
+			<array>
 				<dict>
 					<key>begin</key>
-					<string>(mixin)\s+([a-zA-Z0-9_-]+)</string>
+					<string>(?=[(])</string>
 					<key>end</key>
 					<string>$</string>
-					<key>beginCaptures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>keyword.other.mixin.jade</string>
-						</dict>
-						<key>2</key>
-						<dict>
-							<key>name</key>
-							<string>support.function.jade</string>
-						</dict>
-					</dict>
+					<key>name</key>
+					<string>stuff.tag.script.jade</string>
 					<key>patterns</key>
 					<array>
 						<dict>
 							<key>include</key>
-							<string>#parentheses</string>
+							<string>#tag_attributes</string>
 						</dict>
 					</array>
 				</dict>
 				<dict>
-					<key>match</key>
-					<string>\.[a-zA-Z0-9_-]+</string>
-					<key>name</key>
-					<string>entity.other.attribute-name.class.jade</string>
+					<key>include</key>
+					<string>source.js</string>
 				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^(\s*)(style)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>2</key>
 				<dict>
-					<key>match</key>
-					<string>#[a-zA-Z0-9_-]+</string>
 					<key>name</key>
-					<string>entity.other.attribute-name.id.jade</string>
+					<string>entity.name.tag.script.jade</string>
 				</dict>
+			</dict>
+			<key>end</key>
+			<string>^(?!(\1\s)|\s*$)</string>
+			<key>name</key>
+			<string>style.jade</string>
+			<key>patterns</key>
+			<array>
 				<dict>
-					<key>match</key>
-					<string>[a-zA-Z0-9]</string>
+					<key>begin</key>
+					<string>(?=[(])</string>
+					<key>end</key>
+					<string>$</string>
 					<key>name</key>
-					<string>entity.name.tag.jade</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>\:.+$</string>
-					<key>name</key>
-					<string>support.class.jade</string>
+					<string>stuff.tag.script.jade</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#tag_attributes</string>
+						</dict>
+					</array>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#parentheses</string>
+					<string>source.css</string>
 				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^(\s*):(markdown)$</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>support.name.markdown.filter.jade</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>^(?!(\1\s)|\s*$)</string>
+			<key>name</key>
+			<string>text.markdown.filter.jade</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>text.html.markdown</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^(\s*):(sass)$</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>support.name.sass.filter.jade</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>^(?!(\1\s)|\s*$)</string>
+			<key>name</key>
+			<string>text.sass.filter.jade</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>source.sass</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^(\s*):(less)$</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>support.name.less.filter.jade</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>^(?!(\1\s)|\s*$)</string>
+			<key>name</key>
+			<string>text.less.filter.jade</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>source.less</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^(\s*):(coffeescript)$</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>support.name.coffeescript.filter.jade</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>^(?!(\1\s)|\s*$)</string>
+			<key>name</key>
+			<string>text.coffeescript.filter.jade</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>source.coffee</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^(\s*):(\w+)$</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>support.name.generic.filter.jade</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>^(?!(\1\s)|\s*$)</string>
+			<key>name</key>
+			<string>text.generic.filter.jade</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^(\s*)((-\s)|(?i:[a-z0-9_]*\s+=))</string>
+			<key>end</key>
+			<string>$</string>
+			<key>name</key>
+			<string>javascript.embedded.jade</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>source.js</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^\s*(mixin)\s+([\w-]+)\s*</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.function.jade</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.function.jade</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>$</string>
+			<key>name</key>
+			<string>meta.mixin.jade</string>
+			<key>patterns</key>
+			<array>
 				<dict>
 					<key>begin</key>
-					<string>(=|-)\s+</string>
+					<string>(\()</string>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>constant.args.mixin.jade</string>
+						</dict>
+					</dict>
 					<key>end</key>
-					<string>$</string>
+					<string>(\))</string>
+					<key>name</key>
+					<string>meta.args.mixin.jade</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -119,7 +314,172 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>#\{</string>
+			<string>^\s*(for|if|else if|else|each|until|while|unless)</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.function.jade</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>$</string>
+			<key>name</key>
+			<string>meta.control.flow.jade</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>.</string>
+					<key>end</key>
+					<string>$</string>
+					<key>name</key>
+					<string>js.embedded.control.flow.jade</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>source.js</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^(\s*)(?=.*[a-z0-9)]\.$)</string>
+			<key>end</key>
+			<string>^(?!(\1\s)|\s*$)</string>
+			<key>name</key>
+			<string>text.block.dot.tag.jade</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#complete_tag</string>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>^(?=.)</string>
+					<key>end</key>
+					<string>$</string>
+					<key>name</key>
+					<string>text.block.jade</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#interpolated_value</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^\s*</string>
+			<key>end</key>
+			<string>$</string>
+			<key>name</key>
+			<string>tag.jade</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>\|\s</string>
+					<key>end</key>
+					<string>$</string>
+					<key>name</key>
+					<string>text.block.pipe.jade</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#interpolated_value</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#printed_expression</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#complete_tag</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>.</string>
+					<key>name</key>
+					<string>invalid.illegal.tag.jade</string>
+				</dict>
+			</array>
+		</dict>
+	</array>
+	<key>repository</key>
+	<dict>
+		<key>complete_tag</key>
+		<dict>
+			<key>begin</key>
+			<string>(?=[a-z.#])</string>
+			<key>end</key>
+			<string>(?!:\s+)$</string>
+			<key>name</key>
+			<string>complete_tag.jade</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#tag_name</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#tag_id</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#tag_classes</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#tag_attributes</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(\.(?!$))|(:\s*([^\sa-z.#]|$))</string>
+					<key>name</key>
+					<string>invalid.illegal.end.tag.jade</string>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>:\s*</string>
+					<key>end</key>
+					<string>(?!:)$</string>
+					<key>name</key>
+					<string>subtag.complete_tag.jade</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#complete_tag</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#printed_expression</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#tag_text</string>
+				</dict>
+			</array>
+		</dict>
+		<key>interpolated_value</key>
+		<dict>
+			<key>begin</key>
+			<string>(?&lt;!\\)[#!]\{</string>
 			<key>end</key>
 			<string>\}</string>
 			<key>name</key>
@@ -127,91 +487,143 @@
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>match</key>
-					<string>[a-zA-Z_$][0-9a-zA-Z_$]*</string>
-					<key>name</key>
-					<string>variable.parameter</string>
+					<key>include</key>
+					<string>source.js</string>
 				</dict>
 			</array>
 		</dict>
-		<dict>
-			<key>match</key>
-			<string>(&amp;)([a-zA-Z0-9]+|#[0-9]+|#x[0-9a-fA-F]+)(;)</string>
-			<key>name</key>
-			<string>constant.character.entity.jade</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>&amp;</string>
-			<key>name</key>
-			<string>invalid.illegal.bad-ampersand.jade</string>
-		</dict>
-	</array>
-	<key>repository</key>
-	<dict>
-		<key>parentheses</key>
+		<key>printed_expression</key>
 		<dict>
 			<key>begin</key>
-			<string>\(</string>
+			<string>(!?=)\s*</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>constant</string>
+				</dict>
+			</dict>
 			<key>end</key>
-			<string>\)</string>
+			<string>$</string>
 			<key>patterns</key>
 			<array>
 				<dict>
 					<key>include</key>
-					<string>string.quoted.double.jade</string>
+					<string>source.js</string>
 				</dict>
+			</array>
+		</dict>
+		<key>string</key>
+		<dict>
+			<key>begin</key>
+			<string>(['"])</string>
+			<key>end</key>
+			<string>(?&lt;!\\)\1</string>
+			<key>name</key>
+			<string>string.quoted.jade</string>
+			<key>patterns</key>
+			<array>
 				<dict>
-					<key>captures</key>
+					<key>include</key>
+					<string>#interpolated_value</string>
+				</dict>
+			</array>
+		</dict>
+		<key>tag_attributes</key>
+		<dict>
+			<key>begin</key>
+			<string>(\()</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>constant.name.attribute.tag.jade</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(\))</string>
+			<key>name</key>
+			<string>attibutes.tag.jade</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>([a-z]\w+)(=)</string>
+					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>constant.language.jade</string>
+							<string>variable.name.attribute.tag.jade</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.separator.key-value.jade</string>
 						</dict>
 					</dict>
-					<key>match</key>
-					<string>([a-zA-Z0-9_-]+)\s*(?!\/)</string>
-				</dict>
-				<dict>
-					<key>begin</key>
-					<string>"</string>
 					<key>end</key>
-					<string>"</string>
+					<string>,|(?=\))</string>
 					<key>name</key>
-					<string>string.quoted.double.jade</string>
+					<string>attributes.tag.jade</string>
 					<key>patterns</key>
 					<array>
 						<dict>
-							<key>match</key>
-							<string>\\.</string>
-							<key>name</key>
-							<string>constant.character.escaped.jade</string>
+							<key>include</key>
+							<string>#string</string>
 						</dict>
-					</array>
-				</dict>
-				<dict>
-					<key>begin</key>
-					<string>'</string>
-					<key>end</key>
-					<string>'</string>
-					<key>name</key>
-					<string>string.quoted.single.jade</string>
-					<key>patterns</key>
-					<array>
 						<dict>
-							<key>match</key>
-							<string>\\.</string>
-							<key>name</key>
-							<string>constant.character.escaped.jade</string>
+							<key>include</key>
+							<string>source.js</string>
 						</dict>
 					</array>
 				</dict>
+			</array>
+		</dict>
+		<key>tag_classes</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
 				<dict>
-					<key>match</key>
-					<string>=|:</string>
 					<key>name</key>
-					<string>keyword.operator.jade</string>
+					<string>string.name.classes.tag.jade</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>\.([a-z]\w*)</string>
+			<key>name</key>
+			<string>classes.tag.jade</string>
+		</dict>
+		<key>tag_id</key>
+		<dict>
+			<key>match</key>
+			<string>#([a-z]\w*)</string>
+			<key>name</key>
+			<string>constant.id.tag.jade</string>
+		</dict>
+		<key>tag_name</key>
+		<dict>
+			<key>match</key>
+			<string>[a-z][a-z0-9_-]*</string>
+			<key>name</key>
+			<string>entity.name.tag.jade</string>
+		</dict>
+		<key>tag_text</key>
+		<dict>
+			<key>begin</key>
+			<string>.</string>
+			<key>end</key>
+			<string>$</string>
+			<key>name</key>
+			<string>text.jade</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#interpolated_value</string>
 				</dict>
 			</array>
 		</dict>
@@ -219,6 +631,6 @@
 	<key>scopeName</key>
 	<string>source.jade</string>
 	<key>uuid</key>
-	<string>C5B73B98-5F2A-42E3-9F0E-028A74A9FE4B</string>
+	<string>eee6ba25-6ac2-4f7e-9c70-cddf2bd3448b</string>
 </dict>
 </plist>
