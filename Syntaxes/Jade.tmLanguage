@@ -37,11 +37,19 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^(\s*)//-?(\S|$)</string>
+			<string>^(\s*)//-</string>
 			<key>end</key>
 			<string>^(?!(\1\s)|\s*$)</string>
 			<key>name</key>
-			<string>comment.block.jade</string>
+			<string>comment.unbuffered.block.jade</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^(\s*)//</string>
+			<key>end</key>
+			<string>^(?!(\1\s)|\s*$)</string>
+			<key>name</key>
+			<string>string.comment.buffered.block.jade</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -56,15 +64,9 @@
 					<key>match</key>
 					<string>^\s*(//)</string>
 					<key>name</key>
-					<string>comment.comment.block.jade</string>
+					<string>string.comment.buffered.block.jade</string>
 				</dict>
 			</array>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>^\s*//.*$</string>
-			<key>name</key>
-			<string>support.comment.line.double-dash.jade</string>
 		</dict>
 		<dict>
 			<key>begin</key>

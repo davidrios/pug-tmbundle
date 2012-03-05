@@ -12,20 +12,21 @@
     { "match": "^(!!!)(\\s*[a-zA-Z0-9-_]+)?",
       "name": "comment.other.doctype.jade"
     },
-    { "name": "comment.block.jade",
-      "begin": "^(\\s*)//-?(\\S|$)",
+    { "name": "comment.unbuffered.block.jade",
+      "begin": "^(\\s*)//-",
+      "end": "^(?!(\\1\\s)|\\s*$)"
+    },
+    { "name": "string.comment.buffered.block.jade",
+      "begin": "^(\\s*)//",
       "end": "^(?!(\\1\\s)|\\s*$)",
       "patterns": [
-        { "name": "comment.comment.block.jade",
+        { "name": "string.comment.buffered.block.jade",
           "match": "^\\s*(//)",
           "captures": {
             "1": { "name": "invalid.illegal.comment.comment.block.jade" }
           }
         }
       ]
-    },
-    { "name": "support.comment.line.double-dash.jade",
-      "match": "^\\s*//.*$"
     },
     { "name": "script.jade",
       "begin": "^(\\s*)(script)",
