@@ -137,7 +137,7 @@
       ]
     },
     { "name": "meta.control.flow.jade",
-      "begin": "^\\s*(for|if|else if|else|each|until|while|unless)",
+      "begin": "^\\s*(for|if|else if|else|each|until|while|unless)(\\s+|$)",
       "end": "$",
       "captures": {
         "1": { "name": "storage.type.function.jade" }
@@ -168,7 +168,7 @@
       ]
     },
     { "name": "text.block.dot.tag.jade",
-      "begin": "^([a-z.#])(?=.*?\\.$)",
+      "begin": "^([a-z#.])(?=.*?\\.$)",
       "beginCaptures": {
         "1": { "name": "entity.tag.name" }
       },
