@@ -13,26 +13,13 @@
 		<key>increaseIndentPattern</key>
 		<string>(?x)
 			^\s*(  # start with any whitespace
-				(  # start tags
-					(  # first tag
-						([a-z][a-z0-9_-]*)?  # tag name
-						(\#([a-z]\w*))?  # tag id
-						([\W-]\.[a-z]\w*)  # mandatory class
-					 	(\.[a-z]\w*)*  # additional classes
-					 	(\(.*?\))?  # tag attributes
-				 	)  # end first tag
-					(:\s*  # additional tags separated by ": "
-						([a-z][a-z0-9_-]*)?  # tag name
-						(\#([a-z]\w*))?  # tag id
-						([\W-]\.[a-z]\w*)  # mandatory class
-					 	(\.[a-z]\w*)*  # additional classes
-						(\(.*?\))?  # tag attributes
-					)*  # end additional tags
-				\.?$)  # end tags
+				([\w#.-]+(\(.*?\))?  # first tag
+				 (:\s*[\w#.-]+(\(.*?\))?)*  # additional tags
+				 \.?$)  # end tag with . or end of line
 				|(:[a-z]\w*$)  # filters
-				|(//-?(\S|$))  # multiline comments
-				|(-\s+(if|else|while))  # embedded js control flow
-				|(if|else|while|for|unless|until)  # jade block first-class
+				|(//-?$)  # multiline comments
+				|(-\s+(if|else|while)(\s+|$))  # embedded js control flow
+				|((if|else|while|for|unless|until)(\s+|$))  # jade block first-class
 			)</string>
 		<key>disableIndentNextLinePattern</key>
 		<string></string>
