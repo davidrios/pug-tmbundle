@@ -190,7 +190,7 @@
       "end": "$",
       "patterns": [
         { "name": "text.block.pipe.jade",
-          "begin": "\\|\\s",
+          "begin": "\\|",
           "end": "$",
           "patterns": [
             { "include": "#html_entity" },
