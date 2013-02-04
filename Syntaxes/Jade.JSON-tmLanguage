@@ -1,165 +1,149 @@
-{ "name": "Jade",
-  "scopeName": "source.jade", 
-  "fileTypes": ["jade"], 
+{
+  "fileTypes": [ "jade" ],
+  "name": "Jade",
   "patterns": [
-    { "name": "meta.first-class.jade",
-      "match": "^\\s*(include|yield|append|prepend|block( (append|prepend))?)\\s+(.*)",
+    {
       "captures": {
         "1": { "name": "storage.control.import.include.jade" },
         "4": { "name": "variable.control.import.include.jade" }
-      }
+      },
+      "match": "^\\s*(include|yield|append|prepend|block( (append|prepend))?)\\s+(.*)",
+      "name": "meta.first-class.jade"
     },
-    { "match": "^(!!!)(\\s*[a-zA-Z0-9-_]+)?",
+    {
+      "match": "^(!!!)(\\s*[a-zA-Z0-9-_]+)?",
       "name": "comment.other.doctype.jade"
     },
-    { "name": "comment.unbuffered.block.jade",
+    {
       "begin": "^(\\s*)//-",
-      "end": "^(?!(\\1\\s)|\\s*$)"
+      "end": "^(?!(\\1\\s)|\\s*$)",
+      "name": "comment.unbuffered.block.jade"
     },
-    { "name": "string.comment.buffered.block.jade",
+    {
       "begin": "^(\\s*)//",
       "end": "^(?!(\\1\\s)|\\s*$)",
+      "name": "string.comment.buffered.block.jade",
       "patterns": [
-        { "name": "string.comment.buffered.block.jade",
+        {
+          "captures": { "1": { "name": "invalid.illegal.comment.comment.block.jade" } },
           "match": "^\\s*(//)",
-          "captures": {
-            "1": { "name": "invalid.illegal.comment.comment.block.jade" }
-          }
+          "name": "string.comment.buffered.block.jade"
         }
       ]
     },
-    { "name": "script.jade",
+    {
       "begin": "^(\\s*)(script)",
-      "beginCaptures": {
-        "2": { "name": "entity.name.tag.script.jade" }
-      },
+      "beginCaptures": { "2": { "name": "entity.name.tag.script.jade" } },
       "end": "^(?!(\\1\\s)|\\s*$)",
+      "name": "script.jade",
       "patterns": [
-        { "name": "stuff.tag.script.jade",
+        {
           "begin": "(?=[(])",
           "end": "$",
-          "patterns": [
-            { "include": "#tag_attributes"}
-          ]
+          "name": "stuff.tag.script.jade",
+          "patterns": [{ "include": "#tag_attributes" }]
         },
         { "include": "source.js" }
       ]
     },
-    { "name": "style.jade",
+    {
       "begin": "^(\\s*)(style)",
-      "beginCaptures": {
-        "2": { "name": "entity.name.tag.script.jade" }
-      },
+      "beginCaptures": { "2": { "name": "entity.name.tag.script.jade" } },
       "end": "^(?!(\\1\\s)|\\s*$)",
+      "name": "style.jade",
       "patterns": [
-        { "name": "stuff.tag.script.jade",
-          "begin": "(?=[(])",
+        { "begin": "(?=[(])",
           "end": "$",
-          "patterns": [
-            { "include": "#tag_attributes"}
-          ]
+          "name": "stuff.tag.script.jade",
+          "patterns": [{ "include": "#tag_attributes" }]
         },
         { "include": "source.css" }
       ]
     },
-    { "name": "text.markdown.filter.jade",
+    {
       "begin": "^(\\s*):(markdown)$",
       "beginCaptures": {
         "2": { "name": "constant.language.name.markdown.filter.jade" }
       },
       "end": "^(?!(\\1\\s)|\\s*$)",
-      "patterns": [
-        { "include": "text.html.markdown" }
-      ]
+      "name": "text.markdown.filter.jade",
+      "patterns": [{ "include": "text.html.markdown" }]
     },
-    { "name": "text.sass.filter.jade",
+    {
       "begin": "^(\\s*):(sass)$",
-      "beginCaptures": {
-        "2": { "name": "constant.language.name.sass.filter.jade" }
-      },
+      "beginCaptures": { "2": { "name": "constant.language.name.sass.filter.jade" } },
       "end": "^(?!(\\1\\s)|\\s*$)",
-      "patterns": [
-        { "include": "source.sass" }
-      ]
+      "name": "text.sass.filter.jade",
+      "patterns": [{ "include": "source.sass" }]
     },
-    { "name": "text.less.filter.jade",
+    {
       "begin": "^(\\s*):(less)$",
-      "beginCaptures": {
-        "2": { "name": "constant.language.name.less.filter.jade" }
-      },
+      "beginCaptures": { "2": { "name": "constant.language.name.less.filter.jade" } },
       "end": "^(?!(\\1\\s)|\\s*$)",
-      "patterns": [
-        { "include": "source.less" }
-      ]
+      "name": "text.less.filter.jade",
+      "patterns": [{ "include": "source.less" }]
     },
-    { "name": "text.coffeescript.filter.jade",
+    {
       "begin": "^(\\s*):(coffeescript)$",
-      "beginCaptures": {
-        "2": { "name": "constant.language.name.coffeescript.filter.jade" }
-      },
+      "beginCaptures": { "2": { "name": "constant.language.name.coffeescript.filter.jade" } },
       "end": "^(?!(\\1\\s)|\\s*$)",
-      "patterns": [
-        { "include": "source.coffee" }
-      ]
+      "name": "text.coffeescript.filter.jade",
+      "patterns": [{ "include": "source.coffee" }]
     },
-    { "name": "text.generic.filter.jade",
+    {
       "begin": "^(\\s*):(\\w+)$",
-      "beginCaptures": {
-        "2": { "name": "constant.language.name.generic.filter.jade" }
-      },
-      "end": "^(?!(\\1\\s)|\\s*$)"
+      "beginCaptures": { "2": { "name": "constant.language.name.generic.filter.jade" } },
+      "end": "^(?!(\\1\\s)|\\s*$)",
+      "name": "text.generic.filter.jade"
     },
-    { "name": "javascript.embedded.jade",
+    {
       "begin": "^(\\s*)((-\\s)|(?i:[a-z0-9_]*\\s+=))",
       "end": "$",
-      "patterns": [
-        { "include": "source.js" }
-      ]
+      "name": "javascript.embedded.jade",
+      "patterns": [{ "include": "source.js" }]
     },
-    { "name": "meta.mixin.jade",
+    {
       "begin": "^\\s*(mixin)\\s+([\\w-]+)\\s*",
-      "end": "$",
       "captures": {
         "1": { "name": "storage.type.function.jade" },
         "2": { "name": "entity.name.function.jade" }
       },
+      "end": "$",
+      "name": "meta.mixin.jade",
       "patterns": [
-        { "name": "meta.args.mixin.jade",
+        {
           "begin": "(\\()",
+          "captures": { "1": { "name": "constant.args.mixin.jade" } },
           "end": "(\\))",
-          "captures": {
-            "1": { "name": "constant.args.mixin.jade" }
-          },
-          "patterns": [
-            { "include": "source.js" }
-          ]
+          "name": "meta.args.mixin.jade",
+          "patterns": [{ "include": "source.js" }]
         }
       ]
     },
-    { "name": "meta.control.flow.jade",
+    {
       "begin": "^\\s*(for|if|else if|else|each|until|while|unless)(\\s+|$)",
+      "captures": { "1": { "name": "storage.type.function.jade" } },
       "end": "$",
-      "captures": {
-        "1": { "name": "storage.type.function.jade" }
-      },
+      "name": "meta.control.flow.jade",
       "patterns": [
-        { "name": "js.embedded.control.flow.jade",
+        {
           "begin": ".",
           "end": "$",
-          "patterns": [
-            { "include": "source.js" }
-          ]
+          "name": "js.embedded.control.flow.jade",
+          "patterns": [{ "include": "source.js" }]
         }
       ]
     },
-    { "name": "text.block.dot.tag.jade",
+    {
       "begin": "^(\\s+)(?=[a-z.#].*?\\.$)",
       "end": "^(?!(\\1\\s)|\\s*$)",
+      "name": "text.block.dot.tag.jade",
       "patterns": [
         { "include": "#complete_tag" },
-        { "name": "text.block.jade",
+        {
           "begin": "^(?=.)",
           "end": "$",
+          "name": "text.block.jade",
           "patterns": [
             { "include": "#html_entity" },
             { "include": "#interpolated_value" }
@@ -167,17 +151,17 @@
         }
       ]
     },
-    { "name": "text.block.dot.tag.jade",
+    {
       "begin": "^([a-z#.])(?=.*?\\.$)",
-      "beginCaptures": {
-        "1": { "name": "entity.tag.name" }
-      },
+      "beginCaptures": { "1": { "name": "entity.tag.name" } },
       "end": "^(?!\\s|$)",
+      "name": "text.block.dot.tag.jade",
       "patterns": [
         { "include": "#complete_tag" },
-        { "name": "text.block.jade",
+        {
           "begin": "^(?=.)",
           "end": "$",
+          "name": "text.block.jade",
           "patterns": [
             { "include": "#html_entity" },
             { "include": "#interpolated_value" }
@@ -185,13 +169,15 @@
         }
       ]
     },
-    { "name": "tag.jade",
+    {
       "begin": "^\\s*",
       "end": "$",
+      "name": "tag.jade",
       "patterns": [
-        { "name": "text.block.pipe.jade",
+        {
           "begin": "\\|",
           "end": "$",
+          "name": "text.block.pipe.jade",
           "patterns": [
             { "include": "#html_entity" },
             { "include": "#interpolated_value" }
@@ -199,103 +185,32 @@
         },
         { "include": "#printed_expression" },
         { "include": "#complete_tag" },
-        { "name": "invalid.illegal.tag.jade",
-          "match": "."
+        {
+          "match": ".",
+          "name": "invalid.illegal.tag.jade"
         }
       ]
     }
   ],
   "repository": {
-    "string": {
-      "name": "string.quoted.jade",
-      "begin": "(['\"])",
-      "end": "(?<!\\\\)\\1",
-      "patterns": [
-        { "include": "#interpolated_value" }
-      ]
-    },
-    "interpolated_value": {
-      "name": "string.interpolated.jade",
-      "begin": "(?<!\\\\)[#!]\\{",
-      "end": "\\}",
-      "patterns": [
-        { "include": "source.js" }
-      ]
-    },
-    "printed_expression": {
-      "begin": "(!?=)\\s*",
-      "end": "$",
-      "captures":{
-        "1": { "name": "constant" }
-      },
-      "patterns": [
-        { "include": "source.js" }
-      ]
-    },
-    "tag_name": {
-      "name": "entity.name.tag.jade",
-      "match": "[a-z][a-z0-9_-]*"
-    },
-    "tag_id": {
-      "name": "constant.id.tag.jade",
-      "match": "#([a-z][\\w-]*)"
-    },
-    "tag_classes": {
-      "name": "classes.tag.jade",
-      "match": "\\.([\\w-]+)",
-      "captures": {
-        "1": { "name": "string.name.classes.tag.jade" }
-      }
-    },
-    "tag_attributes": {
-      "name": "attibutes.tag.jade",
-      "begin": "(\\()",
-      "end": "(\\))",
-      "captures": {
-        "1": { "name": "constant.name.attribute.tag.jade" }
-      },
-      "patterns": [
-        { "name": "attributes.tag.jade",
-          "begin": "([a-z]\\w+)(=)",
-          "beginCaptures": {
-            "1": { "name": "entity.other.attribute-name.tag.jade" },
-            "2": { "name": "punctuation.separator.key-value.jade" }
-          },
-          "end": ",|(?=\\))",
-          "patterns": [
-            { "include": "#string" },
-            { "include": "source.js" }
-          ]
-        }
-      ]
-    },
-    "tag_text": {
-      "name": "text.jade",
-      "begin": "(?=.)",
-      "end": "$",
-      "patterns": [
-        { "include": "#html_entity" },
-        { "include": "#interpolated_value" }
-      ]
-    },
     "complete_tag": {
-      "name": "complete_tag.jade",
       "begin": "(?=[a-z.#])",
       "end": "(?!:\\s+)$",
+      "name": "complete_tag.jade",
       "patterns": [
         { "include": "#tag_name" },
         { "include": "#tag_id" },
         { "include": "#tag_classes" },
         { "include": "#tag_attributes" },
-        { "name": "invalid.illegal.end.tag.jade",
-          "match": "(\\.(?!$))|(:\\s*([^\\sa-z.#]|$))"
+        {
+          "match": "(\\.(?!$))|(:\\s*([^\\sa-z.#]|$))",
+          "name": "invalid.illegal.end.tag.jade"
         },
-        { "name": "subtag.complete_tag.jade",
+        {
           "begin": ":\\s*",
           "end": "(?!:)$",
-          "patterns": [
-            { "include": "#complete_tag" }
-          ]
+          "name": "subtag.complete_tag.jade",
+          "patterns": [{ "include": "#complete_tag" }]
         },
         { "include": "#printed_expression" },
         { "include": "#tag_text" }
@@ -303,14 +218,78 @@
     },
     "html_entity": {
       "patterns": [
-        { "name": "invalid.illegal.html_entity.text.jade",
-          "match": "&(?!((#\\d+)|([a-z]\\w+));)"
+        {
+          "match": "&(?!((#\\d+)|([a-z]\\w+));)",
+          "name": "invalid.illegal.html_entity.text.jade"
         },
-        { "name": "constant.html_entity.text.jade",
-          "match": "&((#\\d+)|([a-z]\\w+));"
+        {
+          "match": "&((#\\d+)|([a-z]\\w+));",
+          "name": "constant.html_entity.text.jade"
         }
+      ]
+    },
+    "interpolated_value": {
+      "begin": "(?<!\\\\)[#!]\\{",
+      "end": "\\}",
+      "name": "string.interpolated.jade",
+      "patterns": [{ "include": "source.js" }]
+    },
+    "printed_expression": {
+      "begin": "(!?=)\\s*",
+      "captures": { "1": { "name": "constant" } },
+      "end": "$",
+      "patterns": [{ "include": "source.js" }]
+    },
+    "string": {
+      "begin": "(['\"])",
+      "end": "(?<!\\\\)\\1",
+      "name": "string.quoted.jade",
+      "patterns": [{ "include": "#interpolated_value" }]
+    },
+    "tag_attributes": {
+      "begin": "(\\()",
+      "captures": { "1": { "name": "constant.name.attribute.tag.jade" } },
+      "end": "(\\))",
+      "name": "attibutes.tag.jade",
+      "patterns": [
+        {
+          "begin": "([\\w-]+)(=)?",
+          "beginCaptures": {
+            "1": { "name": "entity.other.attribute-name.tag.jade" },
+            "2": { "name": "punctuation.separator.key-value.jade" }
+          },
+          "end": ",|(?=\\))|[\\r\\n]",
+          "name": "attributes.tag.jade",
+          "patterns": [
+            { "include": "#string" },
+            { "include": "source.js" }
+          ]
+        }
+      ]
+    },
+    "tag_classes": {
+      "captures": { "1": { "name": "string.name.classes.tag.jade" } },
+      "match": "\\.([\\w-]+)",
+      "name": "classes.tag.jade"
+    },
+    "tag_id": {
+      "match": "#([a-z][\\w-]*)",
+      "name": "constant.id.tag.jade"
+    },
+    "tag_name": {
+      "match": "[a-z][a-z0-9_-]*",
+      "name": "entity.name.tag.jade"
+    },
+    "tag_text": {
+      "begin": "(?=.)",
+      "end": "$",
+      "name": "text.jade",
+      "patterns": [
+        { "include": "#html_entity" },
+        { "include": "#interpolated_value" }
       ]
     }
   },
+  "scopeName": "source.jade",
   "uuid": "eee6ba25-6ac2-4f7e-9c70-cddf2bd3448b"
 }
