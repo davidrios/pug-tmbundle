@@ -254,18 +254,62 @@
       "name": "attibutes.tag.jade",
       "patterns": [
         {
-          "begin": "([\\w-]+)(=)?",
+          "match": "([^\\s(),=]+)\\s*((?=\\))|,|$)",
+          "captures": { "1": { "name": "entity.other.attribute-name.tag.jade" } },
+          "name": "constant.html_entity.text.jade"
+        },
+        {
+          "begin": "([^\\s(),=]+)(=)",
           "beginCaptures": {
             "1": { "name": "entity.other.attribute-name.tag.jade" },
             "2": { "name": "punctuation.separator.key-value.jade" }
           },
-          "end": ",|(?=\\))|[\\r\\n]",
+          "end": "((?=\\))|,|$)",
           "name": "attributes.tag.jade",
           "patterns": [
+            { "include": "#tag_attribute_value_paren" },
+            { "include": "#tag_attribute_value_brackets" },
+            { "include": "#tag_attribute_value_braces" },
             { "include": "#string" },
             { "include": "source.js" }
           ]
         }
+      ]
+    },
+    "tag_attribute_value_paren": {
+      "begin": "\\(",
+      "end": "\\)",
+      "name": "js.value.attribute.tag.jade",
+      "patterns": [
+        { "include": "#tag_attribute_value_paren" },
+        { "include": "#tag_attribute_value_brackets" },
+        { "include": "#tag_attribute_value_braces" },
+        { "include": "#string" },
+        { "include": "source.js" }
+      ]
+    },
+    "tag_attribute_value_brackets": {
+      "begin": "\\[",
+      "end": "\\]",
+      "name": "js.value.attribute.tag.jade",
+      "patterns": [
+        { "include": "#tag_attribute_value_paren" },
+        { "include": "#tag_attribute_value_brackets" },
+        { "include": "#tag_attribute_value_braces" },
+        { "include": "#string" },
+        { "include": "source.js" }
+      ]
+    },
+    "tag_attribute_value_braces": {
+      "begin": "\\{",
+      "end": "\\}",
+      "name": "js.value.attribute.tag.jade",
+      "patterns": [
+        { "include": "#tag_attribute_value_paren" },
+        { "include": "#tag_attribute_value_brackets" },
+        { "include": "#tag_attribute_value_braces" },
+        { "include": "#string" },
+        { "include": "source.js" }
       ]
     },
     "tag_classes": {
