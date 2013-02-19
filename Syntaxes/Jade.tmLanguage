@@ -70,7 +70,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^(\s*)(script)</string>
+			<string>^(\s*)(script\s*)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>2</key>
@@ -87,7 +87,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>(?=[(])</string>
+					<string>\G(?=\()</string>
 					<key>end</key>
 					<string>$</string>
 					<key>name</key>
@@ -108,7 +108,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^(\s*)(style)</string>
+			<string>^(\s*)(style\s*)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>2</key>
@@ -125,7 +125,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>(?=[(])</string>
+					<string>\G(?=\()</string>
 					<key>end</key>
 					<string>$</string>
 					<key>name</key>

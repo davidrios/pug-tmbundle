@@ -3,11 +3,7 @@
 _test   = [{abc: "lalal"}]
 
 .98349 lala
-._+ddsf lala
-
-.34&fisjdfjio dsf
-
-.-sdfios(test="&") &asdf ioasdjfoij &amp; -+asdfji &#40;
+._[ddsf lala
 
 //  oisdfjoiasdjf
   pasdf.
@@ -22,16 +18,17 @@ html
   mixin lala
   body
     head
-      script(type="text/javascript")
+      script(type="text/javascript")(test="123"
+        other-property)
         var la = lala;
     
-        function lala() {
-          console.log(a);
+        function script(arg1, arg2) {
+          console.log("string", arg1, arg2);
         }
-     
-        function lala() {
 
-        }
+        script(la, "string1")
+
+        console.log(script(la, "string3"));
 
         var lala = 0;
 
@@ -121,21 +118,12 @@ asdf:  ajsiodf:   b= 9 + 9
 
   p: a aosdifjoasidjf
 
-  p: +a ds
-    multi-line.  
-      aoisdjfpasd
-      asoidfjiasjdf
-
-    asdfasdf: sadfasd:
-
   p: a:    a asdfjij
     sdf
 
-  strange+sometext
   strange_sometext- lallslla
   tag=variable
   strange[sometext
-  _strange some text
 
     //-
       asjdiofajsodijfao
@@ -161,7 +149,7 @@ asdf:  ajsiodf:   b= 9 + 9
     p
       multi.line allasdkfj
       | line of text #{variable + "aosidjfsd" + 0 + undefined} some other text
-      | text & asdfij
+      | text asdfij
 
     script(type="text/javascript")
       var a = 1;
@@ -181,8 +169,6 @@ asdf:  ajsiodf:   b= 9 + 9
 
         asdfasdf
             asdfasdf
-            //
-              asdfasdf
 
       sdfasdf
 
