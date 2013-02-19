@@ -1,0 +1,20 @@
+!!! 5
+html
+  .34&unescaped ampersand
+  .-sdfios(test="&") &unescaped ampersand
+
+  p
+    . line starting with an invalid character will be rendered as pure text
+
+  dot-multi-line.  
+    with trailing whitespaces
+    won't work
+
+  nested-tags: ending-in-colon: is-an-error: s
+
+  // comment
+    comment
+    // buffered comments inside buffered comments
+      will cause a html error
+
+  p some text

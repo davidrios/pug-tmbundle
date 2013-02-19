@@ -3,45 +3,42 @@
   "name": "Jade",
   "patterns": [
     {
-      "captures": {
-        "1": { "name": "storage.control.import.include.jade" },
-        "4": { "name": "variable.control.import.include.jade" }
-      },
-      "match": "^\\s*(include|yield|append|prepend|block( (append|prepend))?)\\s+(.*)",
-      "name": "meta.first-class.jade"
-    },
-    {
       "match": "^(!!!)(\\s*[a-zA-Z0-9-_]+)?",
-      "name": "comment.other.doctype.jade"
+      "name": "comment.other.doctype.jade",
+      "comment": "Doctype declaration."
     },
     {
       "begin": "^(\\s*)//-",
       "end": "^(?!(\\1\\s)|\\s*$)",
-      "name": "comment.unbuffered.block.jade"
+      "name": "comment.unbuffered.block.jade",
+      "comment": "Unbuffered (jade-only) comments."
     },
     {
       "begin": "^(\\s*)//",
       "end": "^(?!(\\1\\s)|\\s*$)",
       "name": "string.comment.buffered.block.jade",
+      "comment": "Buffered (html) comments.",
       "patterns": [
         {
           "captures": { "1": { "name": "invalid.illegal.comment.comment.block.jade" } },
-          "match": "^\\s*(//)",
-          "name": "string.comment.buffered.block.jade"
+          "match": "^\\s*(//)(?!-)",
+          "name": "string.comment.buffered.block.jade",
+          "comment": "Buffered comments inside buffered comments will generate invalid html."
         }
       ]
     },
     {
-      "begin": "^(\\s*)(script\\s*)",
+      "begin": "^(\\s*)(?=((script)|([\\w.#]\\S*?:\\s+script))\\s*)",
       "beginCaptures": { "2": { "name": "entity.name.tag.script.jade" } },
       "end": "^(?!(\\1\\s)|\\s*$)",
       "name": "script.jade",
+      "comment": "Script tag with JavaScript code. Tried to detect nested script tag.",
       "patterns": [
         {
-          "begin": "\\G(?=\\()",
+          "begin": "\\G(?=[\\w.#])",
           "end": "$",
           "name": "stuff.tag.script.jade",
-          "patterns": [{ "include": "#tag_attributes" }]
+          "patterns": [{ "include": "#complete_tag" }]
         },
         { "include": "source.js" }
       ]
@@ -95,45 +92,8 @@
       "begin": "^(\\s*):(\\w+)$",
       "beginCaptures": { "2": { "name": "constant.language.name.generic.filter.jade" } },
       "end": "^(?!(\\1\\s)|\\s*$)",
-      "name": "text.generic.filter.jade"
-    },
-    {
-      "begin": "^(\\s*)((-\\s)|(?i:[a-z0-9_]*\\s+=))",
-      "end": "$",
-      "name": "javascript.embedded.jade",
-      "patterns": [{ "include": "source.js" }]
-    },
-    {
-      "begin": "^\\s*(mixin)\\s+([\\w-]+)\\s*",
-      "captures": {
-        "1": { "name": "storage.type.function.jade" },
-        "2": { "name": "entity.name.function.jade" }
-      },
-      "end": "$",
-      "name": "meta.mixin.jade",
-      "patterns": [
-        {
-          "begin": "(\\()",
-          "captures": { "1": { "name": "constant.args.mixin.jade" } },
-          "end": "(\\))",
-          "name": "meta.args.mixin.jade",
-          "patterns": [{ "include": "source.js" }]
-        }
-      ]
-    },
-    {
-      "begin": "^\\s*(for|if|else if|else|each|until|while|unless)(\\s+|$)",
-      "captures": { "1": { "name": "storage.type.function.jade" } },
-      "end": "$",
-      "name": "meta.control.flow.jade",
-      "patterns": [
-        {
-          "begin": ".",
-          "end": "$",
-          "name": "js.embedded.control.flow.jade",
-          "patterns": [{ "include": "source.js" }]
-        }
-      ]
+      "name": "text.generic.filter.jade",
+      "comment": "Generic Jade filter."
     },
     {
       "begin": "^(\\s+)(?=[a-z.#].*?\\.$)",
@@ -174,28 +134,78 @@
       "begin": "^\\s*",
       "end": "$",
       "name": "tag.jade",
+      "comment": "All constructs that generally span a single line starting with any number of white-spaces.",
       "patterns": [
+        {
+          "captures": {
+            "1": { "name": "storage.type.import.include.jade" },
+            "4": { "name": "variable.control.import.include.jade" }
+          },
+          "match": "(include|yield|append|prepend|block( (append|prepend))?)\\s+(.*)$",
+          "name": "meta.first-class.jade",
+          "comment": "Template blocks and includes."
+        },
+        {
+          "begin": "((-\\s+)|(([a-zA-Z0-9_]+)\\s+=))",
+          "beginCaptures": { "4": { "name": "variable.parameter.javascript.embedded.jade" } },
+          "end": "$",
+          "name": "javascript.embedded.jade",
+          "comment": "Non-buffered executable code. Ex.:",
+          "comment": "- var name = 'value';",
+          "comment": "name = function() {}",
+          "patterns": [{ "include": "source.js" }]
+        },
+        {
+          "begin": "(((mixin\\s+)|\\+)([\\w-]+))\\s*",
+          "beginCaptures": {
+            "2": { "name": "storage.type.function.jade" },
+            "4": { "name": "entity.name.function.jade" }
+          },
+          "end": "$",
+          "name": "meta.mixin.jade",
+          "comment": "Mixin declaration and use, including the new '+' syntax.",
+          "patterns": [
+            {
+              "begin": "",
+              "end": "$",
+              "name": "args.mixin.jade",
+              "patterns": [{ "include": "source.js" }]
+            }
+          ]
+        },
+        {
+          "begin": "(for|if|else if|else|each|until|while|unless)(\\s+|$)",
+          "captures": { "1": { "name": "storage.type.function.jade" } },
+          "end": "$",
+          "name": "meta.control.flow.jade",
+          "comment": "JavaScript control flow.",
+          "patterns": [
+            {
+              "begin": "",
+              "end": "$",
+              "name": "js.embedded.control.flow.jade",
+              "patterns": [{ "include": "source.js" }]
+            }
+          ]
+        },
         {
           "begin": "\\|",
           "end": "$",
           "name": "text.block.pipe.jade",
+          "comment": "Tag pipe text line.",
           "patterns": [
             { "include": "#html_entity" },
             { "include": "#interpolated_value" }
           ]
         },
         { "include": "#printed_expression" },
-        { "include": "#complete_tag" },
-        {
-          "match": ".",
-          "name": "invalid.illegal.tag.jade"
-        }
+        { "include": "#complete_tag" }
       ]
     }
   ],
   "repository": {
     "complete_tag": {
-      "begin": "(?=[a-z.#])",
+      "begin": "(?=[\\w.#])",
       "end": "(?!:\\s+)$",
       "name": "complete_tag.jade",
       "patterns": [
@@ -204,11 +214,11 @@
         { "include": "#tag_classes" },
         { "include": "#tag_attributes" },
         {
-          "match": "(\\.(?!$))|(:\\s*([^\\sa-z.#]|$))",
+          "match": "(\\.(?!$))|(:\\s*$)",
           "name": "invalid.illegal.end.tag.jade"
         },
         {
-          "begin": ":\\s*",
+          "begin": ":\\s+",
           "end": "(?!:)$",
           "name": "subtag.complete_tag.jade",
           "patterns": [{ "include": "#complete_tag" }]
@@ -230,13 +240,19 @@
       ]
     },
     "interpolated_value": {
-      "begin": "(?<!\\\\)[#!]\\{",
+      "begin": "(?<!\\\\)[#!]\\{(?=.*?\\})",
       "end": "\\}",
       "name": "string.interpolated.jade",
-      "patterns": [{ "include": "source.js" }]
+      "patterns": [
+        {
+          "match": "{",
+          "name": "invalid.illegal.tag.jade"
+        },
+        { "include": "source.js" }
+      ]
     },
     "printed_expression": {
-      "begin": "(!?=)\\s*",
+      "begin": "(!?\\=)\\s*",
       "captures": { "1": { "name": "constant" } },
       "end": "$",
       "patterns": [{ "include": "source.js" }]
@@ -256,7 +272,7 @@
         {
           "match": "([^\\s(),=]+)\\s*((?=\\))|,|$)",
           "captures": { "1": { "name": "entity.other.attribute-name.tag.jade" } },
-          "name": "constant.html_entity.text.jade"
+          "name": "attribues.tag.jade"
         },
         {
           "begin": "([^\\s(),=]+)(=)",
@@ -322,7 +338,7 @@
       "name": "constant.id.tag.jade"
     },
     "tag_name": {
-      "match": "[a-z][a-z0-9_-]*",
+      "match": "[\\w](([\\w:-]+[\\w-])|([\\w-]*))",
       "name": "entity.name.tag.jade"
     },
     "tag_text": {

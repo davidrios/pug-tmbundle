@@ -1,6 +1,7 @@
 !!! 5
 - var variable = "<em>some text</em>"
-_test   = [{abc: "lalal"}]
+_test  =  [{abc: "lalal"}]
+name = function() {}
 
 .98349 lala
 ._[ddsf lala
@@ -10,6 +11,11 @@ _test   = [{abc: "lalal"}]
     siodfaj sodifjaosdifj asoidfjiasjdf
     aiosd jfoaisjd foiajsdofij
 
+Fdiv _test
+_iv:asd-_FD: _Fsadf tag name weird characters
+asdf:    ab: [after bracket should be text
+[after-bracket is rendered as standalone text
+
 div(sdf-+a\||./asd=123,   type="text",lol,
   lol
   lol, abc=_test, fdg=console.log(123, (1 + (1 + 2)), undefined || true && "sdf#{1+1}asdf")
@@ -17,8 +23,17 @@ div(sdf-+a\||./asd=123,   type="text",lol,
 include page
 html
   mixin lala(abc, lala)
-    div= lala
-  mixin lala
+    div.lala-output
+      p.abc= abc
+      p.lala= lala
+
+  mixin lala((123+{asdf:(1+1)}), "mixin long call")
+
+  .test
+    +lala(123, "mixin + call 1")
+
+  .test2+lala(123, "mixin + call 2")
+
   body
     head
       script(type="text/javascript",   qwerqwer)(test="123", lol=(1+
@@ -46,19 +61,27 @@ html
           display: none;
         }
 
-    link(rel="stylesheet", href="asdiofjs.css")
+      link(rel="stylesheet", href="asdiofjs.css")
+
+    div.script-nested: script.dsfsdf#idscript(prop)
+      console.log(1 + 1);
+      var script2 = function() {};
 
     block lala
+      div.lala-block
       yield
-      div
 
-    block prepend lala
+    div.lala-block-test
+      block prepend lala
+        div.lala-prepend line1
+        | line2
 
-    append lala
+      append lala
+        div.lala-append line1
+        | line2
+        yield
 
-  var lala = 0;
-
-    for i in [1,2,3]
+    for i in [1,2,3,null]
       div= i
 
     h1 title
@@ -81,11 +104,15 @@ html
 
     #test(abc="lala", lele=9, lili=variable) some text
 
-    = variable
+    p.variable-output
+      = variable
 
-    != variable + "asdufhaisd"
+      != variable + "concatenated text"
 
-    .class some text with #{variable} and !{variable} vars \#{this will show}
+    .class some text with #{variable} and !{variable}} vars \#{this will show}
+    .class.
+      line-break on interpolation won't work #{ 1 + (
+      1 - 1) }
 
     p some text  // not some comment
 
@@ -117,13 +144,21 @@ html
     //
       sdafsdf
 
-asdf:  ajsiodf:   b= 9 + 9
+extra-space-after:  ajsiodf:   b= 9 + 9
 
   p: a aosdifjoasidjf
 
-  p: a:    a asdfjij
+  p: [a ds
+    multi-line.
+      aoisdjfpasd
+      asoidfjiasjdf
+
+    asdfasdf: sadfasd: asdfsdf
+
+  p: a:  .a asdfjij
     sdf
 
+  strange[sometext
   strange_sometext- lallslla
   tag=variable
   strange[sometext
@@ -152,7 +187,7 @@ asdf:  ajsiodf:   b= 9 + 9
     p
       multi.line allasdkfj
       | line of text #{variable + "aosidjfsd" + 0 + undefined} some other text
-      | text asdfij
+      | more pure text
 
     script(type="text/javascript")
       var a = 1;
