@@ -204,7 +204,7 @@
 			<key>end</key>
 			<string>^(?!(\1\s)|\s*$)</string>
 			<key>name</key>
-			<string>text.sass.filter.jade</string>
+			<string>source.sass.filter.jade</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -227,12 +227,35 @@
 			<key>end</key>
 			<string>^(?!(\1\s)|\s*$)</string>
 			<key>name</key>
-			<string>text.less.filter.jade</string>
+			<string>source.less.filter.jade</string>
 			<key>patterns</key>
 			<array>
 				<dict>
 					<key>include</key>
 					<string>source.less</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^(\s*):(stylus)$</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>constant.language.name.less.filter.jade</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>^(?!(\1\s)|\s*$)</string>
+			<key>name</key>
+			<string>source.stylus.filter.jade</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>source.stylus</string>
 				</dict>
 			</array>
 		</dict>
@@ -250,7 +273,7 @@
 			<key>end</key>
 			<string>^(?!(\1\s)|\s*$)</string>
 			<key>name</key>
-			<string>text.coffeescript.filter.jade</string>
+			<string>source.coffeescript.filter.jade</string>
 			<key>patterns</key>
 			<array>
 				<dict>

@@ -84,21 +84,28 @@
       "begin": "^(\\s*):(sass)$",
       "beginCaptures": { "2": { "name": "constant.language.name.sass.filter.jade" } },
       "end": "^(?!(\\1\\s)|\\s*$)",
-      "name": "text.sass.filter.jade",
+      "name": "source.sass.filter.jade",
       "patterns": [{ "include": "source.sass" }]
     },
     {
       "begin": "^(\\s*):(less)$",
       "beginCaptures": { "2": { "name": "constant.language.name.less.filter.jade" } },
       "end": "^(?!(\\1\\s)|\\s*$)",
-      "name": "text.less.filter.jade",
+      "name": "source.less.filter.jade",
       "patterns": [{ "include": "source.less" }]
+    },
+    {
+      "begin": "^(\\s*):(stylus)$",
+      "beginCaptures": { "2": { "name": "constant.language.name.less.filter.jade" } },
+      "end": "^(?!(\\1\\s)|\\s*$)",
+      "name": "source.stylus.filter.jade",
+      "patterns": [{ "include": "source.stylus" }]
     },
     {
       "begin": "^(\\s*):(coffeescript)$",
       "beginCaptures": { "2": { "name": "constant.language.name.coffeescript.filter.jade" } },
       "end": "^(?!(\\1\\s)|\\s*$)",
-      "name": "text.coffeescript.filter.jade",
+      "name": "source.coffeescript.filter.jade",
       "patterns": [{ "include": "source.coffee" }]
     },
     {
