@@ -72,48 +72,85 @@
       ]
     },
     {
-      "begin": "^(\\s*):(markdown)$",
+      "begin": "^(\\s*):(markdown)(?=\\(|$)$",
       "beginCaptures": {
         "2": { "name": "constant.language.name.markdown.filter.jade" }
       },
       "end": "^(?!(\\1\\s)|\\s*$)",
       "name": "text.markdown.filter.jade",
-      "patterns": [{ "include": "text.html.markdown" }]
+      "patterns": [
+        { "include": "#filter_args" },
+        { "include": "text.html.markdown" }
+      ]
     },
     {
-      "begin": "^(\\s*):(sass)$",
+      "begin": "^(\\s*):(sass)(?=\\(|$)$",
       "beginCaptures": { "2": { "name": "constant.language.name.sass.filter.jade" } },
       "end": "^(?!(\\1\\s)|\\s*$)",
       "name": "source.sass.filter.jade",
-      "patterns": [{ "include": "source.sass" }]
+      "patterns": [
+        { "include": "#filter_args" },
+        { "include": "source.sass" }
+      ]
     },
     {
-      "begin": "^(\\s*):(less)$",
+      "begin": "^(\\s*):(less)(?=\\(|$)$",
       "beginCaptures": { "2": { "name": "constant.language.name.less.filter.jade" } },
       "end": "^(?!(\\1\\s)|\\s*$)",
       "name": "source.less.filter.jade",
-      "patterns": [{ "include": "source.less" }]
+      "patterns": [
+        { "include": "#filter_args" },
+        { "include": "source.less" }
+      ]
     },
     {
-      "begin": "^(\\s*):(stylus)$",
-      "beginCaptures": { "2": { "name": "constant.language.name.less.filter.jade" } },
+      "begin": "^(\\s*):(stylus)(?=\\(|$)$",
+      "beginCaptures": { "2": { "name": "constant.language.name.stylus.filter.jade" } },
       "end": "^(?!(\\1\\s)|\\s*$)",
       "name": "source.stylus.filter.jade",
-      "patterns": [{ "include": "source.stylus" }]
+      "patterns": [
+        { "include": "#filter_args" },
+        { "include": "source.stylus" }
+      ]
     },
     {
-      "begin": "^(\\s*):(coffeescript)$",
+      "begin": "^(\\s*):(coffeescript)(?=\\(|$)",
       "beginCaptures": { "2": { "name": "constant.language.name.coffeescript.filter.jade" } },
       "end": "^(?!(\\1\\s)|\\s*$)",
       "name": "source.coffeescript.filter.jade",
-      "patterns": [{ "include": "source.coffee" }]
+      "patterns": [
+        { "include": "#filter_args" },
+        { "include": "source.coffee" }
+      ]
     },
     {
-      "begin": "^(\\s*):(\\w+)$",
-      "beginCaptures": { "2": { "name": "constant.language.name.generic.filter.jade" } },
+      "begin": "^(\\s*)((:(?=.))|(:$))",
+      "beginCaptures": { "4": { "name": "invalid.illegal.empty.generic.filter.jade" } },
       "end": "^(?!(\\1\\s)|\\s*$)",
       "name": "text.generic.filter.jade",
-      "comment": "Generic Jade filter."
+      "comment": "Generic Jade filter.",
+      "patterns": [
+        {
+          "begin": "\\G(?<=:)(?=.)",
+          "end": "$",
+          "name": "name.generic.filter.jade",
+          "patterns": [
+            {
+              "match": "\\G\\(",
+              "name": "invalid.illegal.name.generic.filter.jade"
+            },
+            {
+              "match": "\\w",
+              "name": "constant.language.name.generic.filter.jade"
+            },
+            { "include": "#filter_args" },
+            {
+              "match": "\\W",
+              "name": "invalid.illegal.name.generic.filter.jade"
+            }
+          ]
+        }
+      ]
     },
     {
       "begin": "^(\\s+)(?=[a-z.#].*?\\.$)",
@@ -166,8 +203,8 @@
           "comment": "Template blocks and includes."
         },
         {
-          "begin": "((-\\s+)|(([a-zA-Z0-9_]+)\\s+=))",
-          "beginCaptures": { "4": { "name": "variable.parameter.javascript.embedded.jade" } },
+          "begin": "(-|(([a-zA-Z0-9_]+)\\s+=))",
+          "beginCaptures": { "3": { "name": "variable.parameter.javascript.embedded.jade" } },
           "end": "$",
           "name": "javascript.embedded.jade",
           "comment": "Non-buffered executable code. Ex.:",
@@ -224,6 +261,47 @@
     }
   ],
   "repository": {
+    "filter_args": {
+      "begin": "\\G(\\()",
+      "captures": {
+        "1": { "name": "meta.args.filter.jade" },
+        "2": { "name": "invalid.illegal.extra.args.filter.jade" }
+      },
+      "end": "(\\))(.*?$)",
+      "name": "args.filter.jade",
+      "patterns": [
+        {
+          "begin": "([^\\s(),=]+)(=?)",
+          "beginCaptures": {
+            "1": { "name": "entity.other.attribute-name.tag.jade" },
+            "2": { "name": "punctuation.separator.key-value.jade" }
+          },
+          "end": "((?=\\))|,|$)",
+          "name": "attributes.tag.jade",
+          "contentName": "string.value.args.filter.jade",
+          "patterns": [{ "include": "#filter_args_paren" }]
+        }
+      ]
+    },
+    "filter_args_paren": {
+      "begin": "\\(",
+      "end": "\\)|$",
+      "patterns": [
+        { "include": "#filter_args_paren" }
+      ]
+    },
+    "pure_text": {
+      "begin": "[^\\w.#-]",
+      "end": "$",
+      "name": "text.jade",
+      "patterns": [
+        {
+          "match": "{",
+          "name": "invalid.illegal.tag.jade"
+        },
+        { "include": "source.js" }
+      ]
+    },
     "complete_tag": {
       "begin": "(?=[\\w.#])",
       "end": "(?!:\\s+)$",
