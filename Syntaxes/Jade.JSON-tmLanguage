@@ -28,14 +28,20 @@
       ]
     },
     {
-      "begin": "^(\\s*)(?=((script)|([\\w.#]\\S*?:\\s+script))\\s*)",
+      "begin": "^(\\s*)(script)(?=[.#(\\s])",
       "beginCaptures": { "2": { "name": "entity.name.tag.script.jade" } },
       "end": "^(?!(\\1\\s)|\\s*$)",
-      "name": "script.jade",
-      "comment": "Script tag with JavaScript code. Tried to detect nested script tag.",
+      "name": "source.script.jade",
+      "comment": "Script tag with JavaScript code.",
       "patterns": [
         {
-          "begin": "\\G(?=[\\w.#])",
+          "begin": "\\G(?=\\()",
+          "end": "$",
+          "name": "stuff.tag.script.jade",
+          "patterns": [{ "include": "#tag_attributes" }]
+        },
+        {
+          "begin": "\\G(?=[.#])",
           "end": "$",
           "name": "stuff.tag.script.jade",
           "patterns": [{ "include": "#complete_tag" }]
@@ -44,16 +50,23 @@
       ]
     },
     {
-      "begin": "^(\\s*)(style\\s*)",
+      "begin": "^(\\s*)(style)(?=[.#(\\s])",
       "beginCaptures": { "2": { "name": "entity.name.tag.script.jade" } },
       "end": "^(?!(\\1\\s)|\\s*$)",
-      "name": "style.jade",
+      "name": "source.style.jade",
+      "comment": "Style tag with CSS code.",
       "patterns": [
         {
           "begin": "\\G(?=\\()",
           "end": "$",
-          "name": "stuff.tag.script.jade",
+          "name": "stuff.tag.style.jade",
           "patterns": [{ "include": "#tag_attributes" }]
+        },
+        {
+          "begin": "\\G(?=[.#])",
+          "end": "$",
+          "name": "stuff.tag.style.jade",
+          "patterns": [{ "include": "#complete_tag" }]
         },
         { "include": "source.css" }
       ]

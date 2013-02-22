@@ -59,7 +59,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^(\s*)(?=((script)|([\w.#]\S*?:\s+script))\s*)</string>
+			<string>^(\s*)(script)(?=[.#(\s])</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>2</key>
@@ -69,16 +69,31 @@
 				</dict>
 			</dict>
 			<key>comment</key>
-			<string>Script tag with JavaScript code. Tried to detect nested script tag.</string>
+			<string>Script tag with JavaScript code.</string>
 			<key>end</key>
 			<string>^(?!(\1\s)|\s*$)</string>
 			<key>name</key>
-			<string>script.jade</string>
+			<string>source.script.jade</string>
 			<key>patterns</key>
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>\G(?=[\w.#])</string>
+					<string>\G(?=\()</string>
+					<key>end</key>
+					<string>$</string>
+					<key>name</key>
+					<string>stuff.tag.script.jade</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#tag_attributes</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>\G(?=[.#])</string>
 					<key>end</key>
 					<string>$</string>
 					<key>name</key>
@@ -99,7 +114,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^(\s*)(style\s*)</string>
+			<string>^(\s*)(style)(?=[.#(\s])</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>2</key>
@@ -108,10 +123,12 @@
 					<string>entity.name.tag.script.jade</string>
 				</dict>
 			</dict>
+			<key>comment</key>
+			<string>Style tag with CSS code.</string>
 			<key>end</key>
 			<string>^(?!(\1\s)|\s*$)</string>
 			<key>name</key>
-			<string>style.jade</string>
+			<string>source.style.jade</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -120,12 +137,27 @@
 					<key>end</key>
 					<string>$</string>
 					<key>name</key>
-					<string>stuff.tag.script.jade</string>
+					<string>stuff.tag.style.jade</string>
 					<key>patterns</key>
 					<array>
 						<dict>
 							<key>include</key>
 							<string>#tag_attributes</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>\G(?=[.#])</string>
+					<key>end</key>
+					<string>$</string>
+					<key>name</key>
+					<string>stuff.tag.style.jade</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#complete_tag</string>
 						</dict>
 					</array>
 				</dict>

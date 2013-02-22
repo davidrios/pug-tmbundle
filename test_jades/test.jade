@@ -36,7 +36,7 @@ html
 
   body
     head
-      script(type="text/javascript",   qwerqwer)(test="123", lol=(1+
+      script#idscript.script(type="text/javascript",   qwerqwer)(test="123", lol=(1+
         1),  other)
         var la = lala;
     
@@ -50,8 +50,8 @@ html
 
         var lala = 0;
 
-      style
-        main.lala.lala {
+      style(type="text/css")
+        .lala.lala {
           display: none;
           float: left;
           color: #000;
@@ -62,10 +62,6 @@ html
         }
 
       link(rel="stylesheet", href="asdiofjs.css")
-
-    div.script-nested: script.dsfsdf#idscript(prop)
-      console.log(1 + 1);
-      var script2 = function() {};
 
     block lala
       div.lala-block
