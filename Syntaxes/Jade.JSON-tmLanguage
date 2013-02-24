@@ -458,7 +458,13 @@
       "begin": "(['\"])",
       "end": "(?<!\\\\)\\1",
       "name": "string.quoted.jade",
-      "patterns": [{ "include": "#interpolated_value" }]
+      "patterns": [
+        {
+          "match": "\\\\((x[0-9a-fA-F]{2})|(u[0-9]{4})|.)",
+          "name": "constant.character.quoted.jade"
+        },
+        { "include": "#interpolated_value" }
+      ]
     }
   },
   "scopeName": "source.jade",

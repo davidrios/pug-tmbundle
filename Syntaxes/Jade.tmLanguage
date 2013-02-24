@@ -801,6 +801,12 @@
 			<key>patterns</key>
 			<array>
 				<dict>
+					<key>match</key>
+					<string>\\((x[0-9a-fA-F]{2})|(u[0-9]{4})|.)</string>
+					<key>name</key>
+					<string>constant.character.quoted.jade</string>
+				</dict>
+				<dict>
 					<key>include</key>
 					<string>#interpolated_value</string>
 				</dict>
