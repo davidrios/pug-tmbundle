@@ -734,15 +734,15 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>&amp;(?!((#\d+)|([a-z]\w+));)</string>
+					<string>(&amp;)([a-zA-Z0-9]+|#[0-9]+|#x[0-9a-fA-F]+)(;)</string>
 					<key>name</key>
-					<string>invalid.illegal.html_entity.text.jade</string>
+					<string>constant.character.entity.html.text.jade</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>&amp;((#\d+)|([a-z]\w+));</string>
+					<string>[&lt;&gt;&amp;]</string>
 					<key>name</key>
-					<string>constant.html_entity.text.jade</string>
+					<string>invalid.illegal.html_entity.text.jade</string>
 				</dict>
 			</array>
 		</dict>
