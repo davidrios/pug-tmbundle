@@ -465,29 +465,8 @@
 					<string>meta.first-class.jade</string>
 				</dict>
 				<dict>
-					<key>begin</key>
-					<string>(-|(([a-zA-Z0-9_]+)\s+=))</string>
-					<key>beginCaptures</key>
-					<dict>
-						<key>3</key>
-						<dict>
-							<key>name</key>
-							<string>variable.parameter.javascript.embedded.jade</string>
-						</dict>
-					</dict>
-					<key>comment</key>
-					<string>name = function() {}</string>
-					<key>end</key>
-					<string>$</string>
-					<key>name</key>
-					<string>javascript.embedded.jade</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>include</key>
-							<string>source.js</string>
-						</dict>
-					</array>
+					<key>include</key>
+					<string>#unbuffered_code</string>
 				</dict>
 				<dict>
 					<key>begin</key>
@@ -592,6 +571,23 @@
 					<string>#printed_expression</string>
 				</dict>
 				<dict>
+					<key>begin</key>
+					<string>\G([^\w.#]|(\.[^\w-]))|(#[^\{\w-])</string>
+					<key>comment</key>
+					<string>Line starting with characters incompatible with tag name/id/class is standalone text.</string>
+					<key>end</key>
+					<string>$</string>
+					<key>name</key>
+					<string>text.jade</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#interpolated_value</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
 					<key>include</key>
 					<string>#complete_tag</string>
 				</dict>
@@ -603,13 +599,23 @@
 		<key>complete_tag</key>
 		<dict>
 			<key>begin</key>
-			<string>(?=[\w.#])</string>
+			<string>(?=[\w.#])|(:\s*)</string>
 			<key>end</key>
-			<string>(?!:\s+)$</string>
+			<string>(\.?$)|(?=:.)</string>
 			<key>name</key>
 			<string>complete_tag.jade</string>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>include</key>
+					<string>#unbuffered_code</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(?&lt;=:)\w.*$</string>
+					<key>name</key>
+					<string>invalid.illegal.name.tag.jade</string>
+				</dict>
 				<dict>
 					<key>include</key>
 					<string>#tag_name</string>
@@ -627,25 +633,21 @@
 					<string>#tag_attributes</string>
 				</dict>
 				<dict>
-					<key>match</key>
-					<string>(\.(?!$))|(:\s*$)</string>
-					<key>name</key>
-					<string>invalid.illegal.end.tag.jade</string>
-				</dict>
-				<dict>
-					<key>begin</key>
-					<string>:\s+</string>
-					<key>end</key>
-					<string>(?!:)$</string>
-					<key>name</key>
-					<string>subtag.complete_tag.jade</string>
-					<key>patterns</key>
-					<array>
+					<key>captures</key>
+					<dict>
+						<key>2</key>
 						<dict>
-							<key>include</key>
-							<string>#complete_tag</string>
+							<key>name</key>
+							<string>invalid.illegal.end.tag.jade</string>
 						</dict>
-					</array>
+						<key>4</key>
+						<dict>
+							<key>name</key>
+							<string>invalid.illegal.end.tag.jade</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>((\.)\s+$)|((:)\s*$)</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -782,28 +784,6 @@
 			<string>$</string>
 			<key>patterns</key>
 			<array>
-				<dict>
-					<key>include</key>
-					<string>source.js</string>
-				</dict>
-			</array>
-		</dict>
-		<key>pure_text</key>
-		<dict>
-			<key>begin</key>
-			<string>[^\w.#-]</string>
-			<key>end</key>
-			<string>$</string>
-			<key>name</key>
-			<string>text.jade</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>match</key>
-					<string>{</string>
-					<key>name</key>
-					<string>invalid.illegal.tag.jade</string>
-				</dict>
 				<dict>
 					<key>include</key>
 					<string>source.js</string>
@@ -956,7 +936,7 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>([^\s(),=]+)(=)</string>
+					<string>([^\s(),=]*[^\s(),=!])(!?\=)</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -1002,32 +982,50 @@
 		</dict>
 		<key>tag_classes</key>
 		<dict>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>string.name.classes.tag.jade</string>
-				</dict>
-			</dict>
 			<key>match</key>
-			<string>\.([\w-]+)</string>
+			<string>\.[\w-]+</string>
 			<key>name</key>
-			<string>classes.tag.jade</string>
+			<string>string.name.classes.tag.jade</string>
 		</dict>
 		<key>tag_id</key>
 		<dict>
 			<key>match</key>
-			<string>#([a-z][\w-]*)</string>
+			<string>#[\w-]+</string>
 			<key>name</key>
 			<string>constant.id.tag.jade</string>
 		</dict>
 		<key>tag_name</key>
 		<dict>
-			<key>match</key>
-			<string>[\w](([\w:-]+[\w-])|([\w-]*))</string>
+			<key>begin</key>
+			<string>([#!]\{(?=.*?\}))|(\w(([\w:-]+[\w-])|([\w-]*)))</string>
+			<key>end</key>
+			<string>(\G(?&lt;!\5[^\w-]))|\}|$</string>
 			<key>name</key>
 			<string>entity.name.tag.jade</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>\G(?&lt;=\{)</string>
+					<key>end</key>
+					<string>(?=\})</string>
+					<key>name</key>
+					<string>entity.name.tag.jade</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>match</key>
+							<string>{</string>
+							<key>name</key>
+							<string>invalid.illegal.tag.jade</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>source.js</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
 		</dict>
 		<key>tag_text</key>
 		<dict>
@@ -1046,6 +1044,32 @@
 				<dict>
 					<key>include</key>
 					<string>#interpolated_value</string>
+				</dict>
+			</array>
+		</dict>
+		<key>unbuffered_code</key>
+		<dict>
+			<key>begin</key>
+			<string>(-|(([a-zA-Z0-9_]+)\s+=))</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>variable.parameter.javascript.embedded.jade</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>name = function() {}</string>
+			<key>end</key>
+			<string>$</string>
+			<key>name</key>
+			<string>javascript.embedded.jade</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>source.js</string>
 				</dict>
 			</array>
 		</dict>

@@ -12,12 +12,23 @@ name = function() {}
     siodfaj sodifjaosdifj asoidfjiasjdf
     aiosd jfoaisjd foiajsdofij
 
-:asdfasdf
-  p lolol
-
 _iv:asd-_FD: _Fsadf tag name weird characters
-asdf:    ab: [after bracket should be text
-[after-bracket is rendered as standalone text
+asdf:    ab:[this should be text
+#{"tag" + "_iname"} some tag with an iterpolated name
+
+[this is rendered as standalone text
+.=this too
+##this too
+.#this too
+"this too"
+#{this too
+
+sub: tag: thisisavar = 'var_text_55'
+= 'as demonstrated here: ' + thisisavar
+
+sub2: tag2: -console.log('unbuffered js inside subtag?')
+
+sdaf#-tagid.-sdfa oidsjfoijdf
 
 div(sdf-+a\||./asd=123,   type="text",lol,
   lol
@@ -27,13 +38,13 @@ include page
 html
   mixin lala(abc, lala)
     div.lala-output
-      p.abc= abc
+      p.abc= null + abc
       p.lala= lala
 
-  mixin lala((123+{asdf:(1+1)}), "mixin long call")
+  mixin lala((123+{asdf:(1+1)}), "mixin long call")after long mixin use
 
   .test
-    +lala(123, "mixin + call 1")
+    +lala(123, "mixin + call 1")after + mixin use
 
   .test2+lala(123, "mixin + call 2")
 
@@ -52,6 +63,8 @@ html
         console.log(script(la, "string3"));
 
         var lala = 0;
+
+        var obj = {abc: 123};
 
       style(type="text/css")
         .lala.lala {
@@ -154,7 +167,7 @@ extra-space-after:  ajsiodf:   b= 9 + 9
 
     asdfasdf: sadfasd: asdfsdf
 
-  p: a:  .a asdfjij
+  p: a:.a asdfjij
     sdf
 
   strange[sometext

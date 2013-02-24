@@ -3,20 +3,22 @@ html
   .34&unescaped ampersand
   .-sdfios(test="&") &unescaped ampersand
 
-  p
-    . line starting with an invalid character will be rendered as pure text
-
   dot-multi-line.  
     with trailing whitespaces
-    won't work
 
-  nested-tags: ending-in-colon: is-an-error: s
+  nested-tags: ending-in-colon:
+
+  #{"tag" + "_iname"{} extra '{' in interpolated tag name
+
+  p interpolated text #{ console.log(null); {} with extra '{'
+
+  .some:tag after ':' without spaces
 
   :invalid-filter
     cant have special characters
 
   :
-    empty filter is also not allowed
+    empty filter name
 
   // comment
     comment

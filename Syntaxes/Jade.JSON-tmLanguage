@@ -202,16 +202,7 @@
           "name": "meta.first-class.jade",
           "comment": "Template blocks and includes."
         },
-        {
-          "begin": "(-|(([a-zA-Z0-9_]+)\\s+=))",
-          "beginCaptures": { "3": { "name": "variable.parameter.javascript.embedded.jade" } },
-          "end": "$",
-          "name": "javascript.embedded.jade",
-          "comment": "Non-buffered executable code. Ex.:",
-          "comment": "- var name = 'value';",
-          "comment": "name = function() {}",
-          "patterns": [{ "include": "source.js" }]
-        },
+        { "include": "#unbuffered_code" },
         {
           "begin": "(((mixin\\s+)|\\+)([\\w-]+))\\s*",
           "beginCaptures": {
@@ -256,6 +247,13 @@
           ]
         },
         { "include": "#printed_expression" },
+        {
+          "begin": "\\G([^\\w.#]|(\\.[^\\w-]))|(#[^\\{\\w-])",
+          "end": "$",
+          "name": "text.jade",
+          "comment": "Line starting with characters incompatible with tag name/id/class is standalone text.",
+          "patterns": [{ "include": "#interpolated_value" }]
+        },
         { "include": "#complete_tag" }
       ]
     }
@@ -290,76 +288,67 @@
         { "include": "#filter_args_paren" }
       ]
     },
-    "pure_text": {
-      "begin": "[^\\w.#-]",
+    "unbuffered_code": {
+      "begin": "(-|(([a-zA-Z0-9_]+)\\s+=))",
+      "beginCaptures": { "3": { "name": "variable.parameter.javascript.embedded.jade" } },
       "end": "$",
-      "name": "text.jade",
-      "patterns": [
-        {
-          "match": "{",
-          "name": "invalid.illegal.tag.jade"
-        },
-        { "include": "source.js" }
-      ]
+      "name": "javascript.embedded.jade",
+      "comment": "Non-buffered executable code. Ex.:",
+      "comment": "- var name = 'value';",
+      "comment": "name = function() {}",
+      "patterns": [{ "include": "source.js" }]
     },
     "complete_tag": {
-      "begin": "(?=[\\w.#])",
-      "end": "(?!:\\s+)$",
+      "begin": "(?=[\\w.#])|(:\\s*)",
+      "end": "(\\.?$)|(?=:.)",
       "name": "complete_tag.jade",
       "patterns": [
+        { "include": "#unbuffered_code" },
+        {
+          "match": "(?<=:)\\w.*$",
+          "name": "invalid.illegal.name.tag.jade"
+        },
         { "include": "#tag_name" },
         { "include": "#tag_id" },
         { "include": "#tag_classes" },
         { "include": "#tag_attributes" },
         {
-          "match": "(\\.(?!$))|(:\\s*$)",
-          "name": "invalid.illegal.end.tag.jade"
-        },
-        {
-          "begin": ":\\s+",
-          "end": "(?!:)$",
-          "name": "subtag.complete_tag.jade",
-          "patterns": [{ "include": "#complete_tag" }]
+          "match": "((\\.)\\s+$)|((:)\\s*$)",
+          "captures": {
+            "2": { "name": "invalid.illegal.end.tag.jade" },
+            "4": { "name": "invalid.illegal.end.tag.jade" }
+          }
         },
         { "include": "#printed_expression" },
         { "include": "#tag_text" }
       ]
     },
-    "html_entity": {
+    "tag_name": {
+      "begin": "([#!]\\{(?=.*?\\}))|(\\w(([\\w:-]+[\\w-])|([\\w-]*)))",
+      "end": "(\\G(?<!\\5[^\\w-]))|\\}|$",
+      "name": "entity.name.tag.jade",
       "patterns": [
         {
-          "match": "&(?!((#\\d+)|([a-z]\\w+));)",
-          "name": "invalid.illegal.html_entity.text.jade"
-        },
-        {
-          "match": "&((#\\d+)|([a-z]\\w+));",
-          "name": "constant.html_entity.text.jade"
+          "begin": "\\G(?<=\\{)",
+          "end": "(?=\\})",
+          "name": "entity.name.tag.jade",
+          "patterns": [
+            {
+              "match": "{",
+              "name": "invalid.illegal.tag.jade"
+            },
+            { "include": "source.js" }
+          ]
         }
       ]
     },
-    "interpolated_value": {
-      "begin": "(?<!\\\\)[#!]\\{(?=.*?\\})",
-      "end": "\\}",
-      "name": "string.interpolated.jade",
-      "patterns": [
-        {
-          "match": "{",
-          "name": "invalid.illegal.tag.jade"
-        },
-        { "include": "source.js" }
-      ]
+    "tag_id": {
+      "match": "#[\\w-]+",
+      "name": "constant.id.tag.jade"
     },
-    "printed_expression": {
-      "begin": "(!?\\=)\\s*",
-      "captures": { "1": { "name": "constant" } },
-      "end": "$",
-      "patterns": [{ "include": "source.js" }]
-    },
-    "string": {
-      "begin": "(['\"])",
-      "end": "(?<!\\\\)\\1",
-      "name": "string.quoted.jade",
-      "patterns": [{ "include": "#interpolated_value" }]
+    "tag_classes": {
+      "match": "\\.[\\w-]+",
+      "name": "string.name.classes.tag.jade"
     },
     "tag_attributes": {
       "begin": "(\\()",
@@ -373,7 +362,7 @@
           "name": "attribues.tag.jade"
         },
         {
-          "begin": "([^\\s(),=]+)(=)",
+          "begin": "([^\\s(),=]*[^\\s(),=!])(!?\\=)",
           "beginCaptures": {
             "1": { "name": "entity.other.attribute-name.tag.jade" },
             "2": { "name": "punctuation.separator.key-value.jade" }
@@ -426,19 +415,6 @@
         { "include": "source.js" }
       ]
     },
-    "tag_classes": {
-      "captures": { "1": { "name": "string.name.classes.tag.jade" } },
-      "match": "\\.([\\w-]+)",
-      "name": "classes.tag.jade"
-    },
-    "tag_id": {
-      "match": "#([a-z][\\w-]*)",
-      "name": "constant.id.tag.jade"
-    },
-    "tag_name": {
-      "match": "[\\w](([\\w:-]+[\\w-])|([\\w-]*))",
-      "name": "entity.name.tag.jade"
-    },
     "tag_text": {
       "begin": "(?=.)",
       "end": "$",
@@ -447,6 +423,42 @@
         { "include": "#html_entity" },
         { "include": "#interpolated_value" }
       ]
+    },
+    "html_entity": {
+      "patterns": [
+        {
+          "match": "&(?!((#\\d+)|([a-z]\\w+));)",
+          "name": "invalid.illegal.html_entity.text.jade"
+        },
+        {
+          "match": "&((#\\d+)|([a-z]\\w+));",
+          "name": "constant.html_entity.text.jade"
+        }
+      ]
+    },
+    "interpolated_value": {
+      "begin": "(?<!\\\\)[#!]\\{(?=.*?\\})",
+      "end": "\\}",
+      "name": "string.interpolated.jade",
+      "patterns": [
+        {
+          "match": "{",
+          "name": "invalid.illegal.tag.jade"
+        },
+        { "include": "source.js" }
+      ]
+    },
+    "printed_expression": {
+      "begin": "(!?\\=)\\s*",
+      "captures": { "1": { "name": "constant" } },
+      "end": "$",
+      "patterns": [{ "include": "source.js" }]
+    },
+    "string": {
+      "begin": "(['\"])",
+      "end": "(?<!\\\\)\\1",
+      "name": "string.quoted.jade",
+      "patterns": [{ "include": "#interpolated_value" }]
     }
   },
   "scopeName": "source.jade",
