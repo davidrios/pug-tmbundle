@@ -462,7 +462,7 @@
 					<key>comment</key>
 					<string>Template blocks and includes.</string>
 					<key>match</key>
-					<string>(include|yield|append|prepend|block( (append|prepend))?)\s+(.*)$</string>
+					<string>(extends|include|yield|append|prepend|block( (append|prepend))?)\s+(.*)$</string>
 					<key>name</key>
 					<string>meta.first-class.jade</string>
 				</dict>

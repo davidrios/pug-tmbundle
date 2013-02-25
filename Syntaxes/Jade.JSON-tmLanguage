@@ -201,7 +201,7 @@
             "1": { "name": "storage.type.import.include.jade" },
             "4": { "name": "variable.control.import.include.jade" }
           },
-          "match": "(include|yield|append|prepend|block( (append|prepend))?)\\s+(.*)$",
+          "match": "(extends|include|yield|append|prepend|block( (append|prepend))?)\\s+(.*)$",
           "name": "meta.first-class.jade",
           "comment": "Template blocks and includes."
         },
