@@ -14,7 +14,7 @@ tag_id = r'(#[\w-]+)'
 tag_class = r'(\.[\w-]+)'
 
 tag_name = r'''(
-  ([#!]\{.*?\}) # interpolated name
+  ([#!]\{[^}]*\}) # interpolated name
   | # or
   (\w(([\w:-]+[\w-])|([\w-]*))) # regular name
 )'''
@@ -85,6 +85,7 @@ if __name__ == '__main__':
       'atag(attr, att="("): asdf r2= abc, attr3="test"().',
       'atag(attr, att="("): asdf (r2= abc, attr3="test").',
       'atag(attr, attr2=abc, attr3="te(s"dfsd)st").',
+      '#{null+123}}.',
       'atag.',
       'atag.cls.cls#id.',
       '.cls: atag.cls: #idtag.',
@@ -93,14 +94,15 @@ if __name__ == '__main__':
       "atag(attr, attr2=abc, attr3='te(s\\'dfsd)st', asdfasdf=')', asdf=\"asdf))\").",
       'atag(attr, attr2=2)(more="attrs"): withsub: .cls(abc=1).',
       'div.class.another: p.red(style="").asdfsd(lol=123)#ohno.',
+      '#{null+123{}.',
     ]:
         print '"%s": %s' % (i, r.match(i))
 
     print 'timing results ----------------'
     number = 100
-    print 'simple test: %s' % timeit('simpletest()', setup='from jade_tag import simpletest', number=number)
-    print 'without pre-regex: %s' % timeit('nocheck()', setup='from jade_tag import nocheck', number=number)
-    print 'with pre-regex: %s' % timeit('docheck()', setup='from jade_tag import docheck', number=number)
+    print 'simple test: %s' % timeit('simpletest()', setup='from dot_block_tag import simpletest', number=number)
+    print 'without pre-regex: %s' % timeit('nocheck()', setup='from dot_block_tag import nocheck', number=number)
+    print 'with pre-regex: %s' % timeit('docheck()', setup='from dot_block_tag import docheck', number=number)
     print '-------------------------------'
 
     print dot_block_tag.replace('\\', '\\\\').replace('"', '\\"')
