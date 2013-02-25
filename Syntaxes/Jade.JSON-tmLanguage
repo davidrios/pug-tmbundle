@@ -153,9 +153,12 @@
       ]
     },
     {
-      "begin": "^(\\s+)(?=[a-z.#].*?\\.$)",
+      "begin": "^(\\s+)(?=[\\w.#].*?\\.$)(?=(((((#[\\w-]+)|(\\.[\\w-]+))|(([#!]\\{.*?\\})|(\\w(([\\w:-]+[\\w-])|([\\w-]*)))))((#[\\w-]+)|(\\.[\\w-]+)|(\\(([^()\\'\\\"]*((\\'([^\\']|((?<!\\\\)\\\\\\'))*\\')|(\\\"([^\\\"]|((?<!\\\\)\\\\\\\"))*\\\")))*[^()]*\\))*)*)(:\\s+((((#[\\w-]+)|(\\.[\\w-]+))|(([#!]\\{.*?\\})|(\\w(([\\w:-]+[\\w-])|([\\w-]*)))))((#[\\w-]+)|(\\.[\\w-]+)|(\\(([^()\\'\\\"]*((\\'([^\\']|((?<!\\\\)\\\\\\'))*\\')|(\\\"([^\\\"]|((?<!\\\\)\\\\\\\"))*\\\")))*[^()]*\\))*)*))*)\\.$)",
       "end": "^(?!(\\1\\s)|\\s*$)",
       "name": "text.block.dot.tag.jade",
+      "comment": "Indented dot text block.",
+      "comment": "The test to get this accurately (with some tradeoffs) is very complex, and we don't want",
+      "comment": "that to run on every line of the file, so we use a first simpler screening test.",
       "patterns": [
         { "include": "#complete_tag" },
         {
