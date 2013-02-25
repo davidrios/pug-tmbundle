@@ -44,36 +44,18 @@ tag = r'''
 )''' % {'tag_id': tag_id, 'tag_class': tag_class, 'tag_name': tag_name, 'tag_attrs': tag_attrs}
 
 dot_block_tag = r'''
+(?=[\w.#].*?\.$) # first, let's see if it meets the most basic requirements
 (?=( # a dot text block tag
-  %(tag)s # starts with a tag
-  (:\s+%(tag)s)* # followed by optional subtags
-)\.$) # and ending with a '.'
+  ((:\s+)?%(tag)s)+ # is a tag followed by any number of subtags
+)\.$) # and ending the line with a '.'
 ''' % {'tag': tag}
 
 dot_block_tag = collapse_re(dot_block_tag)
 
-test_case = ['a dummy line of text'] * 10000
-test_case = test_case + ['some: tag: .cls#id.']
-
-nocheckre = re.compile(dot_block_tag)
-def nocheck():
-    for i in test_case:
-        nocheckre.match(i)
-
-docheckre = re.compile(r'(?=[\w.#].*?\.$)' + dot_block_tag)
-def docheck():
-    for i in test_case:
-        docheckre.match(i)
-
-simpletestre = re.compile(r'(\.$)')
-def simpletest():
-    for i in test_case:
-        simpletestre.match(i)
-
 if __name__ == '__main__':
     r = re.compile(dot_block_tag)
     for i in [
-      '',
+      ': asdfsdf.',
       '.',
       'atag',
       'atag.cls.cls#id',
@@ -86,7 +68,7 @@ if __name__ == '__main__':
       'atag(attr, att="("): asdf (r2= abc, attr3="test").',
       'atag(attr, attr2=abc, attr3="te(s"dfsd)st").',
       '#{null+123}}.',
-      'atag.',
+      'atag:  :  asdfdsf.',
       'atag.cls.cls#id.',
       '.cls: atag.cls: #idtag.',
       'atag(attr, attr2=abc, attr3="te(sdfsd)st").',
@@ -95,14 +77,8 @@ if __name__ == '__main__':
       'atag(attr, attr2=2)(more="attrs"): withsub: .cls(abc=1).',
       'div.class.another: p.red(style="").asdfsd(lol=123)#ohno.',
       '#{null+123{}.',
+      'abc(123)asd.'  # oddly this should match, despite an unexpected output
     ]:
         print '"%s": %s' % (i, r.match(i))
-
-    print 'timing results ----------------'
-    number = 100
-    print 'simple test: %s' % timeit('simpletest()', setup='from dot_block_tag import simpletest', number=number)
-    print 'without pre-regex: %s' % timeit('nocheck()', setup='from dot_block_tag import nocheck', number=number)
-    print 'with pre-regex: %s' % timeit('docheck()', setup='from dot_block_tag import docheck', number=number)
-    print '-------------------------------'
 
     print dot_block_tag.replace('\\', '\\\\').replace('"', '\\"')
