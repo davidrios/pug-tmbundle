@@ -23,6 +23,18 @@ asdf:    ab:[this should be text
 "this too"
 #{this too
 
+#{null + 'first-level'}: asdf.
+  some text block
+
+.lol: p(prop="()(()").
+  another block of text
+
+#test(abc="asdfsdf").
+  lol
+
+p some text.
+  this should be a tag
+
 sub: tag: thisisavar = 'var_text_55'
 = 'as #{1+1}demonstrated here: ' + thisisavar
 
@@ -200,9 +212,16 @@ extra-space-after:  ajsiodf:   b= 9 + 9
     #{null+123}}.
       this should be a tag
 
-    .odd(weird="yes")asd.
-      oddly this should be a text block
-      despite the unexpected html ouput
+    .odd(weird="yes")
+      asd.
+        oddly this should be a text block
+        despite the unexpected html ouput
+
+    asdf()asdf()asdf()asdf.
+      oadsijfoai sdofia jsodifjaosdf
+
+    p asdfoasdiofj.
+      osdajf osidjfo
 
 
   multi line #{"asdfsdf" + variable}

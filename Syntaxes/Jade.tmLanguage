@@ -358,7 +358,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^(\s+)(?=[\w.#].*?\.$)(?=(((:\s+)?((((#[\w-]+)|(\.[\w-]+))|(([#!]\{[^}]*\})|(\w(([\w:-]+[\w-])|([\w-]*)))))((#[\w-]+)|(\.[\w-]+)|(\(([^()\'\"]*((\'([^\']|((?&lt;!\\)\\\'))*\')|(\"([^\"]|((?&lt;!\\)\\\"))*\")))*[^()]*\))*)*))+)\.$)</string>
+			<string>^(\s+)(?=[\w.#].*?\.$)(?=(?:(?:(?::\s+)?(?:(?:(?:(?:#[\w-]+)|(?:\.[\w-]+))|(?:(?:[#!]\{[^}]*\})|(?:\w(?:(?:[\w:-]+[\w-])|(?:[\w-]*)))))(?:(?:#[\w-]+)|(?:\.[\w-]+)|(?:\((?:[^()\'\"]*(?:(?:\'(?:[^\']|(?:(?&lt;!\\)\\\'))*\')|(?:\"(?:[^\"]|(?:(?&lt;!\\)\\\"))*\")))*[^()]*\))*)*))+)\.$)</string>
 			<key>comment</key>
 			<string>that to run on every line of the file, so we use a first simpler screening test.</string>
 			<key>end</key>
@@ -394,13 +394,23 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^([a-z#.])(?=.*?\.$)</string>
+			<string>^(?=[\w.#].*?\.$)(?=(?:(?:(?::\s+)?(?:(?:(?:(?:#[\w-]+)|(?:\.[\w-]+))|(?:(?:[#!]\{[^}]*\})|(?:\w(?:(?:[\w:-]+[\w-])|(?:[\w-]*)))))(?:(?:#[\w-]+)|(?:\.[\w-]+)|(?:\((?:[^()\'\"]*(?:(?:\'(?:[^\']|(?:(?&lt;!\\)\\\'))*\')|(?:\"(?:[^\"]|(?:(?&lt;!\\)\\\"))*\")))*[^()]*\))*)*))+)\.$)(?:(?:(#[\w-]+)|(\.[\w-]+))|((?:[#!]\{[^}]*\})|(?:\w(?:(?:[\w:-]+[\w-])|(?:[\w-]*)))))</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>entity.tag.name</string>
+					<string>constant.id.tag.jade</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>string.name.classes.tag.jade</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.jade</string>
 				</dict>
 			</dict>
 			<key>end</key>
@@ -409,6 +419,10 @@
 			<string>text.block.dot.tag.jade</string>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>include</key>
+					<string>#tag_attributes</string>
+				</dict>
 				<dict>
 					<key>include</key>
 					<string>#complete_tag</string>
