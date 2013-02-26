@@ -371,7 +371,7 @@
           "name": "attribues.tag.jade"
         },
         {
-          "begin": "([^\\s(),=]*[^\\s(),=!])(!?\\=)",
+          "begin": "([^\\s(),=]*[^\\s(),=!])\\s*(!?\\=)",
           "beginCaptures": {
             "1": { "name": "entity.other.attribute-name.tag.jade" },
             "2": { "name": "punctuation.separator.key-value.jade" }

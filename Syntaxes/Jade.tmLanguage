@@ -360,7 +360,7 @@
 			<key>begin</key>
 			<string>^(\s+)(?=[\w.#].*?\.$)(?=(?:(?:(?::\s+)?(?:(?:(?:(?:#[\w-]+)|(?:\.[\w-]+))|(?:(?:[#!]\{[^}]*\})|(?:\w(?:(?:[\w:-]+[\w-])|(?:[\w-]*)))))(?:(?:#[\w-]+)|(?:\.[\w-]+)|(?:\((?:[^()\'\"]*(?:(?:\'(?:[^\']|(?:(?&lt;!\\)\\\'))*\')|(?:\"(?:[^\"]|(?:(?&lt;!\\)\\\"))*\")))*[^()]*\))*)*))+)\.$)</string>
 			<key>comment</key>
-			<string>that to run on every line of the file, so we use a first simpler screening test.</string>
+			<string>Generated from dot_block_tag.py</string>
 			<key>end</key>
 			<string>^(?!(\1\s)|\s*$)</string>
 			<key>name</key>
@@ -413,6 +413,8 @@
 					<string>entity.name.tag.jade</string>
 				</dict>
 			</dict>
+			<key>comment</key>
+			<string>Generated from dot_block_tag.py</string>
 			<key>end</key>
 			<string>^(?!\s|$)</string>
 			<key>name</key>
@@ -958,7 +960,7 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>([^\s(),=]*[^\s(),=!])(!?\=)</string>
+					<string>([^\s(),=]*[^\s(),=!])\s*(!?\=)</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
