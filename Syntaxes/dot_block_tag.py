@@ -92,4 +92,4 @@ if __name__ == '__main__':
     print "normal --------------"
     print dot_block_tag.replace('\\', '\\\\').replace('"', '\\"')
     print "capturing -----------"
-    print collapse_re(dot_block_tag_capturing)
+    print collapse_re(dot_block_tag_capturing).replace('\\', '\\\\').replace('"', '\\"')
