@@ -486,6 +486,10 @@
 					<string>#flow_control</string>
 				</dict>
 				<dict>
+					<key>include</key>
+					<string>#case_conds</string>
+				</dict>
+				<dict>
 					<key>begin</key>
 					<string>\|</string>
 					<key>comment</key>
@@ -569,6 +573,88 @@
 			<string>(extends|include|yield|append|prepend|block( (append|prepend))?)\s+(.*)$</string>
 			<key>name</key>
 			<string>meta.first-class.jade</string>
+		</dict>
+		<key>case_conds</key>
+		<dict>
+			<key>begin</key>
+			<string>(default|when)((\s+|(?=:))|$)</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.function.jade</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Jade case conditionals.</string>
+			<key>end</key>
+			<string>$</string>
+			<key>name</key>
+			<string>meta.control.flow.jade</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>\G(?!:)</string>
+					<key>end</key>
+					<string>(?=:\s+)|$</string>
+					<key>name</key>
+					<string>js.embedded.control.flow.jade</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#case_when_paren</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>source.js</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>:\s+</string>
+					<key>end</key>
+					<string>$</string>
+					<key>name</key>
+					<string>tag.case.control.flow.jade</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#complete_tag</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
+		<key>case_when_paren</key>
+		<dict>
+			<key>begin</key>
+			<string>\(</string>
+			<key>end</key>
+			<string>\)</string>
+			<key>name</key>
+			<string>js.when.control.flow.jade</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#case_when_paren</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>:</string>
+					<key>name</key>
+					<string>invalid.illegal.name.tag.jade</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>source.js</string>
+				</dict>
+			</array>
 		</dict>
 		<key>complete_tag</key>
 		<dict>
@@ -737,7 +823,7 @@
 		<key>flow_control</key>
 		<dict>
 			<key>begin</key>
-			<string>(for|if|else if|else|each|until|while|unless)(\s+|$)</string>
+			<string>(for|if|else if|else|each|until|while|unless|case)(\s+|$)</string>
 			<key>captures</key>
 			<dict>
 				<key>1</key>
@@ -747,7 +833,7 @@
 				</dict>
 			</dict>
 			<key>comment</key>
-			<string>JavaScript control flow.</string>
+			<string>Jade control flow.</string>
 			<key>end</key>
 			<string>$</string>
 			<key>name</key>

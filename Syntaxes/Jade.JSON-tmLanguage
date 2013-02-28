@@ -208,6 +208,7 @@
         { "include": "#unbuffered_code" },
         { "include": "#mixins" },
         { "include": "#flow_control" },
+        { "include": "#case_conds" },
         {
           "begin": "\\|",
           "end": "$",
@@ -303,17 +304,56 @@
       ]
     },
     "flow_control": {
-      "begin": "(for|if|else if|else|each|until|while|unless)(\\s+|$)",
+      "begin": "(for|if|else if|else|each|until|while|unless|case)(\\s+|$)",
       "captures": { "1": { "name": "storage.type.function.jade" } },
       "end": "$",
       "name": "meta.control.flow.jade",
-      "comment": "JavaScript control flow.",
+      "comment": "Jade control flow.",
       "patterns": [
         {
           "begin": "",
           "end": "$",
           "name": "js.embedded.control.flow.jade",
           "patterns": [{ "include": "source.js" }]
+        }
+      ]
+    },
+    "case_when_paren": {
+      "begin": "\\(",
+      "end": "\\)",
+      "name": "js.when.control.flow.jade",
+      "patterns": [
+        { "include": "#case_when_paren" },
+        {
+          "match": ":",
+          "name": "invalid.illegal.name.tag.jade"
+        },
+        { "include": "source.js" }
+      ]
+    },
+    "case_conds": {
+      "begin": "(default|when)((\\s+|(?=:))|$)",
+      "captures": { "1": { "name": "storage.type.function.jade" } },
+      "end": "$",
+      "name": "meta.control.flow.jade",
+      "comment": "Jade case conditionals.",
+      "patterns": [
+        {
+          "begin": "\\G(?!:)",
+          "end": "(?=:\\s+)|$",
+          "name": "js.embedded.control.flow.jade",
+          "patterns": [
+            { "include": "#case_when_paren" },
+            { "include": "source.js" }
+          ]
+        },
+        {
+          "begin": ":\\s+",
+          "end": "$",
+          "name": "tag.case.control.flow.jade",
+          "patterns": [
+            { "include": "#complete_tag" }
+          ]
         }
       ]
     },
