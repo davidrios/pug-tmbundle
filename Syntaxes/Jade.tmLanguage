@@ -470,106 +470,20 @@
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>captures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>storage.type.import.include.jade</string>
-						</dict>
-						<key>4</key>
-						<dict>
-							<key>name</key>
-							<string>variable.control.import.include.jade</string>
-						</dict>
-					</dict>
-					<key>comment</key>
-					<string>Template blocks and includes.</string>
-					<key>match</key>
-					<string>(extends|include|yield|append|prepend|block( (append|prepend))?)\s+(.*)$</string>
-					<key>name</key>
-					<string>meta.first-class.jade</string>
+					<key>include</key>
+					<string>#blocks_and_includes</string>
 				</dict>
 				<dict>
 					<key>include</key>
 					<string>#unbuffered_code</string>
 				</dict>
 				<dict>
-					<key>begin</key>
-					<string>(((mixin\s+)|\+)([\w-]+))\s*</string>
-					<key>beginCaptures</key>
-					<dict>
-						<key>2</key>
-						<dict>
-							<key>name</key>
-							<string>storage.type.function.jade</string>
-						</dict>
-						<key>4</key>
-						<dict>
-							<key>name</key>
-							<string>entity.name.function.jade</string>
-						</dict>
-					</dict>
-					<key>comment</key>
-					<string>Mixin declaration and use, including the new '+' syntax.</string>
-					<key>end</key>
-					<string>$</string>
-					<key>name</key>
-					<string>meta.mixin.jade</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>begin</key>
-							<string></string>
-							<key>end</key>
-							<string>$</string>
-							<key>name</key>
-							<string>args.mixin.jade</string>
-							<key>patterns</key>
-							<array>
-								<dict>
-									<key>include</key>
-									<string>source.js</string>
-								</dict>
-							</array>
-						</dict>
-					</array>
+					<key>include</key>
+					<string>#mixins</string>
 				</dict>
 				<dict>
-					<key>begin</key>
-					<string>(for|if|else if|else|each|until|while|unless)(\s+|$)</string>
-					<key>captures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>storage.type.function.jade</string>
-						</dict>
-					</dict>
-					<key>comment</key>
-					<string>JavaScript control flow.</string>
-					<key>end</key>
-					<string>$</string>
-					<key>name</key>
-					<string>meta.control.flow.jade</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>begin</key>
-							<string></string>
-							<key>end</key>
-							<string>$</string>
-							<key>name</key>
-							<string>js.embedded.control.flow.jade</string>
-							<key>patterns</key>
-							<array>
-								<dict>
-									<key>include</key>
-									<string>source.js</string>
-								</dict>
-							</array>
-						</dict>
-					</array>
+					<key>include</key>
+					<string>#flow_control</string>
 				</dict>
 				<dict>
 					<key>begin</key>
@@ -634,6 +548,28 @@
 	</array>
 	<key>repository</key>
 	<dict>
+		<key>blocks_and_includes</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.import.include.jade</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>variable.control.import.include.jade</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Template blocks and includes.</string>
+			<key>match</key>
+			<string>(extends|include|yield|append|prepend|block( (append|prepend))?)\s+(.*)$</string>
+			<key>name</key>
+			<string>meta.first-class.jade</string>
+		</dict>
 		<key>complete_tag</key>
 		<dict>
 			<key>begin</key>
@@ -646,7 +582,19 @@
 			<array>
 				<dict>
 					<key>include</key>
+					<string>#blocks_and_includes</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#unbuffered_code</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#mixins</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#flow_control</string>
 				</dict>
 				<dict>
 					<key>match</key>
@@ -786,6 +734,43 @@
 				</dict>
 			</array>
 		</dict>
+		<key>flow_control</key>
+		<dict>
+			<key>begin</key>
+			<string>(for|if|else if|else|each|until|while|unless)(\s+|$)</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.function.jade</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>JavaScript control flow.</string>
+			<key>end</key>
+			<string>$</string>
+			<key>name</key>
+			<string>meta.control.flow.jade</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string></string>
+					<key>end</key>
+					<string>$</string>
+					<key>name</key>
+					<string>js.embedded.control.flow.jade</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>source.js</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
 		<key>html_entity</key>
 		<dict>
 			<key>patterns</key>
@@ -823,6 +808,48 @@
 				<dict>
 					<key>include</key>
 					<string>source.js</string>
+				</dict>
+			</array>
+		</dict>
+		<key>mixins</key>
+		<dict>
+			<key>begin</key>
+			<string>(((mixin\s+)|\+)([\w-]+))\s*</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.function.jade</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.function.jade</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Mixin declaration and use, including the new '+' syntax.</string>
+			<key>end</key>
+			<string>$</string>
+			<key>name</key>
+			<string>meta.mixin.jade</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string></string>
+					<key>end</key>
+					<string>$</string>
+					<key>name</key>
+					<string>args.mixin.jade</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>source.js</string>
+						</dict>
+					</array>
 				</dict>
 			</array>
 		</dict>

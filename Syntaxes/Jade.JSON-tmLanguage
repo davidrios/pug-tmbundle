@@ -204,49 +204,10 @@
       "name": "tag.jade",
       "comment": "All constructs that generally span a single line starting with any number of white-spaces.",
       "patterns": [
-        {
-          "captures": {
-            "1": { "name": "storage.type.import.include.jade" },
-            "4": { "name": "variable.control.import.include.jade" }
-          },
-          "match": "(extends|include|yield|append|prepend|block( (append|prepend))?)\\s+(.*)$",
-          "name": "meta.first-class.jade",
-          "comment": "Template blocks and includes."
-        },
+        { "include": "#blocks_and_includes" },
         { "include": "#unbuffered_code" },
-        {
-          "begin": "(((mixin\\s+)|\\+)([\\w-]+))\\s*",
-          "beginCaptures": {
-            "2": { "name": "storage.type.function.jade" },
-            "4": { "name": "entity.name.function.jade" }
-          },
-          "end": "$",
-          "name": "meta.mixin.jade",
-          "comment": "Mixin declaration and use, including the new '+' syntax.",
-          "patterns": [
-            {
-              "begin": "",
-              "end": "$",
-              "name": "args.mixin.jade",
-              "patterns": [{ "include": "source.js" }]
-            }
-          ]
-        },
-        {
-          "begin": "(for|if|else if|else|each|until|while|unless)(\\s+|$)",
-          "captures": { "1": { "name": "storage.type.function.jade" } },
-          "end": "$",
-          "name": "meta.control.flow.jade",
-          "comment": "JavaScript control flow.",
-          "patterns": [
-            {
-              "begin": "",
-              "end": "$",
-              "name": "js.embedded.control.flow.jade",
-              "patterns": [{ "include": "source.js" }]
-            }
-          ]
-        },
+        { "include": "#mixins" },
+        { "include": "#flow_control" },
         {
           "begin": "\\|",
           "end": "$",
@@ -304,6 +265,15 @@
         { "include": "#filter_args_paren" }
       ]
     },
+    "blocks_and_includes": {
+      "captures": {
+        "1": { "name": "storage.type.import.include.jade" },
+        "4": { "name": "variable.control.import.include.jade" }
+      },
+      "match": "(extends|include|yield|append|prepend|block( (append|prepend))?)\\s+(.*)$",
+      "name": "meta.first-class.jade",
+      "comment": "Template blocks and includes."
+    },
     "unbuffered_code": {
       "begin": "(-|(([a-zA-Z0-9_]+)\\s+=))",
       "beginCaptures": { "3": { "name": "variable.parameter.javascript.embedded.jade" } },
@@ -314,12 +284,48 @@
       "comment": "name = function() {}",
       "patterns": [{ "include": "source.js" }]
     },
+    "mixins": {
+      "begin": "(((mixin\\s+)|\\+)([\\w-]+))\\s*",
+      "beginCaptures": {
+        "2": { "name": "storage.type.function.jade" },
+        "4": { "name": "entity.name.function.jade" }
+      },
+      "end": "$",
+      "name": "meta.mixin.jade",
+      "comment": "Mixin declaration and use, including the new '+' syntax.",
+      "patterns": [
+        {
+          "begin": "",
+          "end": "$",
+          "name": "args.mixin.jade",
+          "patterns": [{ "include": "source.js" }]
+        }
+      ]
+    },
+    "flow_control": {
+      "begin": "(for|if|else if|else|each|until|while|unless)(\\s+|$)",
+      "captures": { "1": { "name": "storage.type.function.jade" } },
+      "end": "$",
+      "name": "meta.control.flow.jade",
+      "comment": "JavaScript control flow.",
+      "patterns": [
+        {
+          "begin": "",
+          "end": "$",
+          "name": "js.embedded.control.flow.jade",
+          "patterns": [{ "include": "source.js" }]
+        }
+      ]
+    },
     "complete_tag": {
       "begin": "(?=[\\w.#])|(:\\s*)",
       "end": "(\\.?$)|(?=:.)",
       "name": "complete_tag.jade",
       "patterns": [
+        { "include": "#blocks_and_includes" },
         { "include": "#unbuffered_code" },
+        { "include": "#mixins" },
+        { "include": "#flow_control" },
         {
           "match": "(?<=:)\\w.*$",
           "name": "invalid.illegal.name.tag.jade"

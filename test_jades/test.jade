@@ -164,10 +164,20 @@ html
         | line2
         yield
 
-    div a list generated in a loop:
-      ul
-        for i in [1,2,3,null]
-          li= i
+    div a list generated in a loop as subtag code:
+      ul: - for i in [1,2,3,null]
+        li= i
+
+    div a list generated in another loop as subtag code:
+      ul: for i in [1,2,3,null]
+        li= i
+
+    div(style="color: red;"): append testblock1
+
+    div(style="color: green;"): include page
+
+    div(style="color: blue;"): mixin lala
+
 
     if true
       p conditional text
