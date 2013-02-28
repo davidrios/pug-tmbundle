@@ -165,6 +165,7 @@
           "end": "$",
           "name": "text.block.jade",
           "patterns": [
+            { "include": "#embedded_html" },
             { "include": "#html_entity" },
             { "include": "#interpolated_value" }
           ]
@@ -190,6 +191,7 @@
           "end": "$",
           "name": "text.block.jade",
           "patterns": [
+            { "include": "#embedded_html" },
             { "include": "#html_entity" },
             { "include": "#interpolated_value" }
           ]
@@ -251,17 +253,22 @@
           "name": "text.block.pipe.jade",
           "comment": "Tag pipe text line.",
           "patterns": [
+            { "include": "#embedded_html" },
             { "include": "#html_entity" },
             { "include": "#interpolated_value" }
           ]
         },
         { "include": "#printed_expression" },
         {
-          "begin": "\\G([^\\w.#]|(\\.[^\\w-]))|(#[^\\{\\w-])",
+          "begin": "\\G((?=<)|[^\\w.#]|(\\.[^\\w-]))|(#[^\\{\\w-])",
           "end": "$",
           "name": "text.jade",
           "comment": "Line starting with characters incompatible with tag name/id/class is standalone text.",
-          "patterns": [{ "include": "#interpolated_value" }]
+          "patterns": [
+            { "include": "#embedded_html" },
+            { "include": "#html_entity" },
+            { "include": "#interpolated_value" }
+          ]
         },
         { "include": "#complete_tag" }
       ]
@@ -429,6 +436,7 @@
       "end": "$",
       "name": "text.jade",
       "patterns": [
+        { "include": "#embedded_html" },
         { "include": "#html_entity" },
         { "include": "#interpolated_value" }
       ]
@@ -472,6 +480,15 @@
           "match": "\\\\((x[0-9a-fA-F]{2})|(u[0-9]{4})|.)",
           "name": "constant.character.quoted.jade"
         },
+        { "include": "#interpolated_value" }
+      ]
+    },
+    "embedded_html": {
+      "begin": "(?=<[^>]*>)",
+      "end": "$|(?=>)",
+      "name": "html",
+      "patterns": [
+        { "include": "text.html.basic" },
         { "include": "#interpolated_value" }
       ]
     }

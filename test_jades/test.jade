@@ -1,261 +1,221 @@
 !!! 5
-- var variable = "<em>some text</em>"
+- var em_sometext = "<em>some text</em>"
 -var var2 = 'no spaces after -'
 _test  =  [{abc: "lalal"}]
 name = function() {}
 
-.98349 lala
-._[ddsf lala
-
-//  oisdfjoiasdjf
-  pasdf.
-    siodfaj sodifjaosdifj asoidfjiasjdf
-    aiosd jfoaisjd foiajsdofij
-
-_iv:asd-_FD: _Fsadf tag name weird &amp;characters
-asdf:    ab:[this should be text
-#{"tag" + "_iname"} some tag with an iterpolated name
-
-[this is rendered as standalone text
-.=this too
-##this too
-.#this too
-"this too"
-#{this too
-
-#{null + 'first-level'}: asdf.
-  some text block
-
-.lol: p(prop="()(())").
-  another block of text
-
-#test(abc="asdfsdf").
-  lol
-
-p some text.
-  this should be a tag
-
-sub: tag: thisisavar = 'var_text_55'
-= 'as #{1+1}demonstrated here: ' + thisisavar
-
-sub2: tag2: -console.log('unbuffered js inside subtag?')
-
-sdaf#-tagid.-sdfa oidsjfoijdf
-
-div(sdf-+a\||./asd=123,   type="te\x98t\u8876",lol,
-  lol
-  lol, abc = _test, fdg=console.log(123, (1 + (1 + 2)), undefined || true && "sdf#{1+1}asdf")
-  asdf, bcd=[123, [_test, {asdf: console.log(123)}]], afd={a: 1+1, 'b': {c: (null)}})= _test
-include page
 html
-  mixin lala(abc, lala)
-    div.lala-output
-      p.abc= null + abc
-      p.lala= lala
+  head
+    script#idscript.script(type="text/javascript",   qwerqwer)(test="123", lol=(1+
+      1),  other)
+      var la = lala;
+  
+      function script(arg1, arg2) {
+        console.log("string", arg1, arg2);
+      }
 
-  mixin lala((123+{asdf:(1+1)}), "mixin long call")after long mixin use
+      script(la, "string1")
 
-  .test
-    +lala(123, "mixin + call 1")after + mixin use
+      console.log(script(la, "string3"));
 
-  .test2+lala(123, "mixin + call 2")
+      var lala = 0;
+
+      var obj = {abc: 123};
+
+    style(type="text/css")
+      .test-cls {
+        float: left;
+        color: #000;
+      }
+
+      div.saf {
+        background-color: red;
+      }
+
+    link(rel="stylesheet", href="asdiofjs.css")
 
   body
-    head
-      script#idscript.script(type="text/javascript",   qwerqwer)(test="123", lol=(1+
-        1),  other)
-        var la = lala;
-    
-        function script(arg1, arg2) {
-          console.log("string", arg1, arg2);
-        }
+    mixin lala(abc, lala)
+      div.lala-output(style="background-color: #ccc") lala output
+        ul
+          li.abc= null + abc
+          li.lala= lala
 
-        script(la, "string1")
+    div mixin long call
+      mixin lala((123+{asdf:(1+1)}), "mixin long call")strong after long mixin use
 
-        console.log(script(la, "string3"));
+    .test + mixin use
+      +lala(123, "mixin + call 1")strong after + mixin use
 
-        var lala = 0;
+    .test2+lala(456, "mixin + call 2")
 
-        var obj = {abc: 123};
+    .98349 class name only numbers
+    ._[invalid character in class name should result in it and text following be considered text
 
-      style(type="text/css")
-        .lala.lala {
-          display: none;
-          float: left;
-          color: #000;
-        }
+    //  some html comment
+      p.
+        this is some text inside the p tag
+        since it is only a html comment, jade will render it normally
 
-        div.saf {
-          display: none;
-        }
+    div
+      p: iv:asd-_FD tag name weird &amp;characters
+      p
+        asdf:    ab:[this should be text
 
-      link(rel="stylesheet", href="asdiofjs.css")
+      tstr = 'strong'
+      #{tstr} iterpolated tag name
 
-    block lala
-      div.lala-block
+    pre
+      em this is inside 'em' tag <br/>
+
+      [this is rendered as standalone text
+      .=this too
+      ##this too
+      .#this too
+      "this too"
+      #{this too
+
+    div(style="background-color: #eef") some examples of dot text blocks bellow:
+
+      #{'di' + 'v'}: em.
+        some text block inside tag with interpolated name and subtag
+
+      .lol: strong(prop="()(())").
+        another block of text, this time the tag has parenthesis inside
+        a tag property value that is a string
+
+      #test(abc="asdfsdf").
+        another case of text block
+
+      div.class.another: p.red(style="").asdfsd(lol=123)#ohno.
+        another case of text block with interpolated text: #{10*100}
+
+      .odd(weird="yes", style="color: red;")p.
+        oddly this should be a text block
+        despite the unexpected html ouput
+        and won't be red, since it is not considered
+        inside .odd
+
+      ul
+        li()li()li()li.
+          this will be a text block
+          inside the last of 4 list items.
+          because of the lack of spaces, they will be
+          considered separated.
+
+      div: [this will be text
+        p.
+          and this will be a text block
+          inside a p tag
+
+    #{'d' + 'i' + 'v'}}.
+      em this should be italic because it is not a text block, and start the line with '}.'
+
+    p a tag with text ending in dot.
+      strong &nbsp;and child tags to show that the dot text block detection is
+        em &nbsp;working
+
+    div: div: thisisavar = 'THIS_IS_A_VARIABLE'
+      = 'thisisavar is a variable declaration as demonstrated here: ' + thisisavar
+
+    sub2: tag2: -console.log('unbuffered js inside subtag?')
+
+    p#-tagid.-sdfa tag ids and classes with valid characters
+
+    p this tag has <em>embedded html #{console}</em>
+
+    textblock.
+      <div style="color: red;">
+        <p>this is embedded html in dot text block with a interpolated value: #{'te'+'st'+1}</p>
+      </div>
+
+    <div style="color: green;">
+    <p>this is directly embedded html with a interpolated value: #{'te'+'st'+2}</p>
+    </div>
+
+    emb
+      div regular tag and text
+        | <div style="color: blue;">
+        |   <p>this is embedded html in pipe text with a interpolated value: #{'te'+'st'+2}</p>
+        | </div>
+
+    p: em(sdf-+a\||./asd=123,   type="te\x98t\u8876",lol,
+      lol
+      lol, abc = _test, fdg=console.log(123, (1 + (1 + 2)), undefined || true && "sdf#{1+1}asdf")
+      asdf, bcd=[123, [_test, {asdf: console.log(123)}]], afd={a: 1+1, 'b': {c: (null)}}
+      style="background-color: #ccc;") this is a tag with all sorts of crazy properties properly highlighted
+
+    p(aprop).lol.lil#theid(style="background-color: black; color: white;").lul(anotherprop='TEST')
+      | tag with any combination/order of id/classes/attributes
+
+    include page
+
+    block testblock1
+      div.lala-block this is in testblock1
       yield
 
     div.lala-block-test
-      block prepend lala
+      block prepend testblock1
         div.lala-prepend line1
         | line2
 
-      append lala
+      append testblock1
         div.lala-append line1
         | line2
         yield
 
-    for i in [1,2,3,null]
-      div= i
+    div a list generated in a loop:
+      ul
+        for i in [1,2,3,null]
+          li= i
+
+    if true
+      p conditional text
+    else
+      p and this won't show
 
     h1 title
 
-    p= console.log("asdf")
+    p= console.log("logging before text") || 'after console.log'
 
-    label
-      | Username:
-      input(type="text")
+    #div
+      label
+        | Username1:
+        input(type="text")
 
-    label Username:
-      input(type="text")
+      label Username2:
+        input(type="text")
 
-    tag: a dsaoi
-      lala lili
+    p unescaped and escaped variable:
+      div!= em_sometext
+      div= em_sometext
+      #test(abc="lala", lele=9, lili=em_sometext) the variable used as property value
+      .class interpolated escaped and unescaped variable: #{em_sometext + "&"} and !{em_sometext}} \#{this will show}
 
-    p#lala.lele.lele!= variable
-
-    #lala.lelel.lele= variable
-
-    #test(abc="lala", lele=9, lili=variable) some text
-
-    p.variable-output
-      = variable
-
-      != variable + "concatenated text"
-
-    .class some text with #{variable + "&"} and !{variable}} vars \#{this will show}
     .class.
       line-break on interpolation won't work #{ 1 + (
       1 - 1) }
 
     p some text  // not some comment
 
-    a(href="lala", something=variable,) some link
+    a(href="lala", something=em_sometext,) some link
 
-    sdafjosidafj.ajiosd fja
+    div:  span:   em= 'extra spaces between tags and js output'
 
+    div(style="background-color: #ccf;"): p:.a subtag without spaces will work only if id or class is used directly.
+      p: em and this will be a part of it
 
-      //
-        multiline-comment
-        sdafu&iahsdf
-
-        asdfjioasdj
-    asdf
-
-        dsfasdf
-      asdf
-
-        asdfasdfa
-
-        asdfasdfa
-
-    odisfjosdijf
-
-    //
-      comment
-      sdafasdf
-
-    //
-      sdafsdf
-
-extra-space-after:  ajsiodf:   b= 9 + 9
-
-  p: a aosdifjoasidjf
-
-  p: [a ds
-    multi-line.
-      aoisdjfpasd
-      asoidfjiasjdf
-
-    asdfasdf: sadfasd: asdfsdf
-
-  p: a:.a asdfjij
-    sdf
-
-  strange[sometext
-  strange_sometext- lallslla
-  tag=variable
-  strange[sometext
+    p='output without spaces separating tag: ' + em_sometext
 
     //-
-      asjdiofajsodijfao
-      asdfjaosidjfoij
+      this is an unbuffered comment
+      it will never show on the html
+  
+      and here to test skipping a line with less spaces than the indent level
 
-      osdifjaosidjf
-
-  div: p some text
-
-    div.class.another: a(href=variable, test="la\"sdafla"): p.red(style="")some text
-
-      div.
-        oai sjdofijasdoifj
-
-    div.class.another: p.red(style="").asdfsd(lol=123)#ohno.
-      some text dasfpoasdf
-      asdjiofa jsodfijas
-      aosid fjoasidjf oaijsd
-      oiasjd foaisjdfoij#{null}
-
-    p some text.
-      this should be a tag
-
-    #{null+123}}.
-      this should be a tag
-
-    .odd(weird="yes")
-      asd.
-        oddly this should be a text block
-        despite the unexpected html ouput
-
-    asdf()asdf()asdf()asdf.
-      oadsijfoai sdofia jsodifjaosdf
-
-    p asdfoasdiofj.
-      osdajf osidjfo
-
-
-  multi line #{"asdfsdf" + variable}
+    div.class.another#someid: a(href=em_sometext, test="la\"sdafla", style="display: block; width: 100px; height: 10px"): p.red(style="")some lalalalal
 
     p
-      multi.line allasdkfj
-      | line of text #{variable + "aosidjfsd" + 0 + undefined} some other text
-      | more pure text
-
-    script(type="text/javascript")
-      var a = 1;
-
-      function lala() {
-        console.log(a);
-      }
-
-    a= variable
-    //asdoifjaois
-      ajsdiofja
-      asodifjoasidj
-
-      sdfasdf
-      a
-      asdfasdf
-
-        asdfasdf
-            asdfasdf
-
-      sdfasdf
-
-
-  asdfasdfasd
-    asdfasdf
-
-a.p.p
-
-p.lala sodifjoij + 9
+      multi.line tag with pipe lines,
+      | like this first #{em_sometext + "aosidjfsd" + 0 + undefined} ending here.
+      | <br/> more pure text breaking the line with embedded html
