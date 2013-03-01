@@ -3,7 +3,7 @@
   "name": "Jade",
   "patterns": [
     {
-      "match": "^(!!!)(\\s*[a-zA-Z0-9-_]+)?",
+      "match": "^(!!!|doctype)(\\s*[a-zA-Z0-9-_]+)?",
       "name": "comment.other.doctype.jade",
       "comment": "Doctype declaration."
     },

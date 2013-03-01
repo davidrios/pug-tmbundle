@@ -14,7 +14,7 @@
 			<key>comment</key>
 			<string>Doctype declaration.</string>
 			<key>match</key>
-			<string>^(!!!)(\s*[a-zA-Z0-9-_]+)?</string>
+			<string>^(!!!|doctype)(\s*[a-zA-Z0-9-_]+)?</string>
 			<key>name</key>
 			<string>comment.other.doctype.jade</string>
 		</dict>
