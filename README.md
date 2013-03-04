@@ -1,6 +1,6 @@
 # Jade.tmbundle
 
-**This was made specifically for Sublime Text 2. It might also work in Textmate but it's not tested**
+**This was made specifically for Sublime Text 2, but was tested and works with Textmate 2**
 
 A **TextMate Bundle** for the **Jade** templating language. Implemented in
 JSON-tmLanguage, a compiled tmLanguage version is included. All language
@@ -15,16 +15,16 @@ that are highlighted.
 
 ## Installation
 
-### TextMate
+### TextMate 2
 
-    mkdir -p ~/Library/Application\ Support/TextMate/Bundles
-    cd ~/Library/Application\ Support/TextMate/Bundles
-    git clone git://github.com/miksago/jade-tmbundle Jade.tmbundle
+    mkdir -p ~/Library/Application\ Support/TextMate/Managed/Bundles
+    cd ~/Library/Application\ Support/TextMate/Managed/Bundles
+    git clone https://github.com/davidrios/jade-tmbundle.git Jade.tmbundle
 
 ### Sublime Text 2
 
     mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 2/Packages
     cd ~/Library/Application\ Support/Sublime\ Text\ 2/Packages
-    git clone git://github.com/miksago/jade-tmbundle Jade.tmbundle
+    git clone https://github.com/davidrios/jade-tmbundle.git Jade.tmbundle
 
 Patches for additions are always welcome.
