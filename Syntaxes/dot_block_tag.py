@@ -49,7 +49,7 @@ tag = r'''
 dot_block_tag = r'''
 (?=[\w.#].*?\.$) # first, let's see if it meets the most basic requirements
 (?=(?: # a dot text block tag
-  (?:(?::\s+)?%(tag)s)+ # is a tag followed by any number of subtags
+  %(tag)s(?:(?:(?::\s+)|(?<=\)))%(tag)s)* # is a tag followed by any number of subtags
 )\.$) # and ending the line with a '.'
 ''' % {'tag': tag.replace(':REP:', '?:')}
 
