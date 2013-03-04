@@ -25,6 +25,6 @@ that are highlighted.
 
     mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 2/Packages
     cd ~/Library/Application\ Support/Sublime\ Text\ 2/Packages
-    git clone https://github.com/davidrios/jade-tmbundle.git Jade.tmbundle
+    git clone https://github.com/davidrios/jade-tmbundle.git Jade
 
 Patches for additions are always welcome.
