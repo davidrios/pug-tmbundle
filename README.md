@@ -13,6 +13,12 @@ compile it with jade to check its output.
 A test_errors.jade file is also included for testing some syntax/semantic errors
 that are highlighted.
 
+A highlighter using Python instead of JavaScript is also included for use with
+[PyJade](https://github.com/SyrusAkbary/pyjade), you can either manually select
+`Jade (Python)` from the syntaxes list or give your file the extension
+`.py.jade` to select automatically (only on Sublime Text). Also included is a
+`test.py.jade` file that can be compiled with `pyjade` to test it.
+
 ## Installation
 
 ### TextMate 2
