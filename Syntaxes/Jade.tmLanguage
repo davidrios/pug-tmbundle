@@ -358,60 +358,20 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^(\s+)(?=[\w.#].*?\.$)(?=(?:(?:(?:(?:(?:#[\w-]+)|(?:\.[\w-]+))|(?:(?:[#!]\{[^}]*\})|(?:\w(?:(?:[\w:-]+[\w-])|(?:[\w-]*)))))(?:(?:#[\w-]+)|(?:\.[\w-]+)|(?:\((?:[^()\'\"]*(?:(?:\'(?:[^\']|(?:(?&lt;!\\)\\\'))*\')|(?:\"(?:[^\"]|(?:(?&lt;!\\)\\\"))*\")))*[^()]*\))*)*)(?:(?:(?::\s+)|(?&lt;=\)))(?:(?:(?:(?:#[\w-]+)|(?:\.[\w-]+))|(?:(?:[#!]\{[^}]*\})|(?:\w(?:(?:[\w:-]+[\w-])|(?:[\w-]*)))))(?:(?:#[\w-]+)|(?:\.[\w-]+)|(?:\((?:[^()\'\"]*(?:(?:\'(?:[^\']|(?:(?&lt;!\\)\\\'))*\')|(?:\"(?:[^\"]|(?:(?&lt;!\\)\\\"))*\")))*[^()]*\))*)*))*)\.$)</string>
-			<key>comment</key>
-			<string>Generated from dot_block_tag.py</string>
-			<key>end</key>
-			<string>^(?!(\1\s)|\s*$)</string>
-			<key>name</key>
-			<string>text.block.dot.tag.jade</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>include</key>
-					<string>#complete_tag</string>
-				</dict>
-				<dict>
-					<key>begin</key>
-					<string>^(?=.)</string>
-					<key>end</key>
-					<string>$</string>
-					<key>name</key>
-					<string>text.block.jade</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>include</key>
-							<string>#embedded_html</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#html_entity</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#interpolated_value</string>
-						</dict>
-					</array>
-				</dict>
-			</array>
-		</dict>
-		<dict>
-			<key>begin</key>
-			<string>^(?=[\w.#].*?\.$)(?=(?:(?:(?:(?:(?:#[\w-]+)|(?:\.[\w-]+))|(?:(?:[#!]\{[^}]*\})|(?:\w(?:(?:[\w:-]+[\w-])|(?:[\w-]*)))))(?:(?:#[\w-]+)|(?:\.[\w-]+)|(?:\((?:[^()\'\"]*(?:(?:\'(?:[^\']|(?:(?&lt;!\\)\\\'))*\')|(?:\"(?:[^\"]|(?:(?&lt;!\\)\\\"))*\")))*[^()]*\))*)*)(?:(?:(?::\s+)|(?&lt;=\)))(?:(?:(?:(?:#[\w-]+)|(?:\.[\w-]+))|(?:(?:[#!]\{[^}]*\})|(?:\w(?:(?:[\w:-]+[\w-])|(?:[\w-]*)))))(?:(?:#[\w-]+)|(?:\.[\w-]+)|(?:\((?:[^()\'\"]*(?:(?:\'(?:[^\']|(?:(?&lt;!\\)\\\'))*\')|(?:\"(?:[^\"]|(?:(?&lt;!\\)\\\"))*\")))*[^()]*\))*)*))*)\.$)(?:(?:(#[\w-]+)|(\.[\w-]+))|((?:[#!]\{[^}]*\})|(?:\w(?:(?:[\w:-]+[\w-])|(?:[\w-]*)))))</string>
+			<string>^(\s*)(?=[\w.#].*?\.$)(?=(?:(?:(?:(?:(?:#[\w-]+)|(?:\.[\w-]+))|(?:(?:[#!]\{[^}]*\})|(?:\w(?:(?:[\w:-]+[\w-])|(?:[\w-]*)))))(?:(?:#[\w-]+)|(?:\.[\w-]+)|(?:\((?:[^()\'\"]*(?:(?:\'(?:[^\']|(?:(?&lt;!\\)\\\'))*\')|(?:\"(?:[^\"]|(?:(?&lt;!\\)\\\"))*\")))*[^()]*\))*)*)(?:(?:(?::\s+)|(?&lt;=\)))(?:(?:(?:(?:#[\w-]+)|(?:\.[\w-]+))|(?:(?:[#!]\{[^}]*\})|(?:\w(?:(?:[\w:-]+[\w-])|(?:[\w-]*)))))(?:(?:#[\w-]+)|(?:\.[\w-]+)|(?:\((?:[^()\'\"]*(?:(?:\'(?:[^\']|(?:(?&lt;!\\)\\\'))*\')|(?:\"(?:[^\"]|(?:(?&lt;!\\)\\\"))*\")))*[^()]*\))*)*))*)\.$)(?:(?:(#[\w-]+)|(\.[\w-]+))|((?:[#!]\{[^}]*\})|(?:\w(?:(?:[\w:-]+[\w-])|(?:[\w-]*)))))</string>
 			<key>beginCaptures</key>
 			<dict>
-				<key>1</key>
+				<key>2</key>
 				<dict>
 					<key>name</key>
 					<string>constant.id.tag.jade</string>
 				</dict>
-				<key>2</key>
+				<key>3</key>
 				<dict>
 					<key>name</key>
 					<string>string.name.classes.tag.jade</string>
 				</dict>
-				<key>3</key>
+				<key>4</key>
 				<dict>
 					<key>name</key>
 					<string>entity.name.tag.jade</string>
@@ -420,7 +380,7 @@
 			<key>comment</key>
 			<string>Generated from dot_block_tag.py</string>
 			<key>end</key>
-			<string>^(?!\s|$)</string>
+			<string>^(?!(\1\s)|\s*$)</string>
 			<key>name</key>
 			<string>text.block.dot.tag.jade</string>
 			<key>patterns</key>
