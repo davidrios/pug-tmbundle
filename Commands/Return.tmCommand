@@ -15,14 +15,15 @@ m = /^([ ]+\|[ ]*)/.match line
 if m and col &gt;= m[1].length
   $stdout.write "\n#{m[1]}"
 else
-  $stdout.write "\n" + /^([ ]*)/.match(line)[1]
+  $stdout.write "\n" + /^([\s\t]*)/.match(line)[1]
 end
 
 </string>
 	<key>input</key>
 	<string>none</string>
 	<key>keyEquivalent</key>
-	<string></string>
+	<string>
+</string>
 	<key>name</key>
 	<string>Return</string>
 	<key>output</key>
