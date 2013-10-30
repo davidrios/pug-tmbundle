@@ -26,3 +26,31 @@ html
       will cause a html error
 
   p some text
+
+
+  // update 2013/11: the following examples worked on previous versions of jade
+     but raise errors now
+
+  +lala(123, "mixin + call 1")tag glued to mixin call
+
+  .glued+mixin() call
+
+  #{no closing bracket
+
+  .odd(weird="yes", style="color: red;")p.
+    oddly this should be a text block
+    despite the unexpected html ouput
+    and won't be red, since it is not considered
+    inside .odd
+
+  ul
+    li()li()li()li.
+      this will be a text block
+
+  p: em(sdf-+a\||./asd=123) slash on property name
+
+  .class.
+    line-break on interpolation won't work #{ 1 + (
+    1 - 1) }
+
+  div.class.another#someid: a(href=em_sometext, test="la\"sdafla", style="display: block; width: 100px; height: 10px"): p.red(style="")some lalalalal

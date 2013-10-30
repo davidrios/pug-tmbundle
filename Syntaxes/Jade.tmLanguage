@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>fileTypes</key>
@@ -414,6 +414,10 @@
 							<key>include</key>
 							<string>#interpolated_value</string>
 						</dict>
+						<dict>
+							<key>include</key>
+							<string>#interpolated_error</string>
+						</dict>
 					</array>
 				</dict>
 			</array>
@@ -472,6 +476,10 @@
 							<key>include</key>
 							<string>#interpolated_value</string>
 						</dict>
+						<dict>
+							<key>include</key>
+							<string>#interpolated_error</string>
+						</dict>
 					</array>
 				</dict>
 				<dict>
@@ -500,6 +508,10 @@
 						<dict>
 							<key>include</key>
 							<string>#interpolated_value</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#interpolated_error</string>
 						</dict>
 					</array>
 				</dict>
@@ -709,6 +721,10 @@
 					<key>include</key>
 					<string>#interpolated_value</string>
 				</dict>
+				<dict>
+					<key>include</key>
+					<string>#interpolated_error</string>
+				</dict>
 			</array>
 		</dict>
 		<key>filter_args</key>
@@ -835,6 +851,13 @@
 				</dict>
 			</array>
 		</dict>
+		<key>interpolated_error</key>
+		<dict>
+			<key>match</key>
+			<string>(?&lt;!\\)[#!]\{(?=[^}]*$)</string>
+			<key>name</key>
+			<string>invalid.illegal.tag.jade</string>
+		</dict>
 		<key>interpolated_value</key>
 		<dict>
 			<key>begin</key>
@@ -940,6 +963,10 @@
 				<dict>
 					<key>include</key>
 					<string>#interpolated_value</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#interpolated_error</string>
 				</dict>
 			</array>
 		</dict>
@@ -1063,17 +1090,17 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>entity.other.attribute-name.tag.jade</string>
+							<string>storage.type.function.jade</string>
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>([^\s(),=]+)\s*((?=\))|,|$)</string>
+					<string>([^\s(),=/]+)\s*((?=\))|,|\s+|$)(?!=)</string>
 					<key>name</key>
 					<string>attribues.tag.jade</string>
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>([^\s(),=]*[^\s(),=!])\s*(!?\=)</string>
+					<string>([^\s(),=/]*[^\s(),=!/])\s*(!?\=)</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -1088,7 +1115,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>((?=\))|,|$)</string>
+					<string>(,|$|(?=\)|((?&lt;![+/*|&amp;=:^~!?&lt;&gt;%-])\s+[^+/*|&amp;=:^~!?&lt;&gt;%-])))</string>
 					<key>name</key>
 					<string>attributes.tag.jade</string>
 					<key>patterns</key>
@@ -1185,6 +1212,10 @@
 				<dict>
 					<key>include</key>
 					<string>#interpolated_value</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#interpolated_error</string>
 				</dict>
 			</array>
 		</dict>
