@@ -1090,7 +1090,7 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>storage.type.function.jade</string>
+							<string>entity.other.attribute-name.tag.jade</string>
 						</dict>
 					</dict>
 					<key>match</key>

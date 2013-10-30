@@ -403,7 +403,7 @@
       "patterns": [
         {
           "match": "([^\\s(),=/]+)\\s*((?=\\))|,|\\s+|$)(?!=)",
-          "captures": { "1": { "name": "storage.type.function.jade" } },
+          "captures": { "1": { "name": "entity.other.attribute-name.tag.jade" } },
           "name": "attribues.tag.jade"
         },
         {
