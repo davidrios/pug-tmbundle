@@ -16,10 +16,11 @@
 				([\w#.-]+(\(.*?\))?  # first tag
 				 (:\s*[\w#.-]+(\(.*?\))?)*  # additional tags
 				 \.?$)  # end tag with . or end of line
-				|(:[a-z]\w*$)  # filters
+				|(:[a-z]\w*($|\())  # filters
 				|(//-?$)  # multiline comments
 				|(-\s+(if|else|while)(\s+|$))  # embedded js control flow
-				|((if|else|while|for|unless|until)(\s+|$))  # jade block first-class
+				|((for|if|else if|else|each|until|while|unless|case
+				   |when|block|append|prepend)(\s+|$))  # jade block first-class
 			)</string>
 		<key>disableIndentNextLinePattern</key>
 		<string></string>
