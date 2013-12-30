@@ -1054,7 +1054,7 @@
 			<key>end</key>
 			<string>(\))</string>
 			<key>name</key>
-			<string>attibutes.tag.jade</string>
+			<string>attributes.tag.jade</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -1069,7 +1069,7 @@
 					<key>match</key>
 					<string>([^\s(),=]+)\s*((?=\))|,|$)</string>
 					<key>name</key>
-					<string>attribues.tag.jade</string>
+					<string>attributes.tag.jade</string>
 				</dict>
 				<dict>
 					<key>begin</key>
