@@ -59,7 +59,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^(\s*)(script)(?=[.#(\s])</string>
+			<string>^(\s*)(script)(?=[.#(\s])(?![^\n]*ng-template)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>2</key>

@@ -28,7 +28,7 @@
       ]
     },
     {
-      "begin": "^(\\s*)(script)(?=[.#(\\s])",
+      "begin": "^(\\s*)(script)(?=[.#(\\s])(?![^\\n]*ng-template)",
       "beginCaptures": { "2": { "name": "entity.name.tag.script.jade" } },
       "end": "^(?!(\\1\\s)|\\s*$)",
       "name": "source.script.jade",
