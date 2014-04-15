@@ -357,6 +357,7 @@
         { "include": "#tag_id" },
         { "include": "#tag_classes" },
         { "include": "#tag_attributes" },
+        { "include": "#tag_mixin_attributes" },
         {
           "match": "((\\.)\\s+$)|((:)\\s*$)",
           "captures": {
@@ -422,6 +423,19 @@
             { "include": "source.js" }
           ]
         }
+      ]
+    },
+    "tag_mixin_attributes": {
+      "begin": "(&attributes\\()",
+      "captures": { "1": { "name": "entity.name.function.jade" } },
+      "end": "(\\))",
+      "name": "attibutes.tag.jade",
+      "patterns": [
+        {
+          "match": "attributes(?=\\))",
+          "name": "storage.type.keyword.jade"
+        },
+        { "include": "source.js" }
       ]
     },
     "tag_attribute_value_paren": {

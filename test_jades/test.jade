@@ -1,4 +1,4 @@
-!!! 5
+doctype html
 - var em_sometext = "<em>some text</em>"
 -var var2 = 'no spaces after -'
 _test  =  [{abc: "lalal"}]
@@ -7,7 +7,7 @@ name = function() {}
 html
   head
     script#idscript.script(type="text/javascript",   qwerqwer)(test="123", lol=(1+
-      1),  other)
+      1),  other).
       var la = lala;
   
       function script(arg1, arg2) {
@@ -22,7 +22,7 @@ html
 
       var obj = {abc: 123};
 
-    style(type="text/css")
+    style(type="text/css").
       .test-cls {
         float: left;
         color: #000;
@@ -47,7 +47,14 @@ html
     .test + mixin use
       +lala(123, "mixin + call 1")
 
-    .98349 class name only numbers
+    mixin another()
+      - console.log(attributes)
+      input&attributes({cde: 3434})(ccc=343)&attributes(attributes).cls&attributes([1,2,'no'])
+
+    .test mixin attributes new syntax
+      +another(abc=123, bcd='lol')
+
+    .98349 class name omly numbers
     ._[invalid character in class name should result in it and text following be considered text
 
     //  some html comment
@@ -67,9 +74,7 @@ html
       em this is inside 'em' tag <br/>
 
       [this is rendered as standalone text
-      .=this too
       ##this too
-      .#this too
       "this too"
 
     div(style="background-color: #eef") some examples of dot text blocks bellow:
@@ -124,17 +129,17 @@ html
         | </div>
 
     p: em(sdf-+a\||.asd=123,   type="te\x98t\u8876",lol,
-      lol
-      lol, abc = _test, fdg=console.log(123, (1 + (1 + 2)), undefined || true && "sdf#{1+1}asdf")
+      lol2
+      lol3, abc = _test, fdg=console.log(123, (1 + (1 + 2)), undefined || true && "sdf#{1+1}asdf")
       asdf, bcd=[123, [_test, {asdf: console.log(123)}]], afd={a: 1+1, 'b': {c: (null)}}
       style="background-color: #ccc;") this is a tag with all sorts of crazy properties properly highlighted
 
     p(qwer,|asdf, zxcv, poiu)= console + NaN
 
     p: em(sdf-+a\||.asd=123 + undefined | 64   type="te\x98t\u8876" lol
-      lol
-      lol abc = _test fuuuuu fdg=console.log(123, (1 + (1 + 2)), undefined || true && "sdf#{1+1}asdf")
-      asdf bcd=[123, [_test, {asdf: console.log(123)}]] faaaaaa afd={a: 1+1, 'b': {c: (null)}} lol=sdf+sdf lastattr
+      lol2
+      lol3 abc = _test fuuuuu fdg=console.log(123, (1 + (1 + 2)), undefined || true && "sdf#{1+1}asdf")
+      asdf bcd=[123, [_test, {asdf: console.log(123)}]] faaaaaa afd={a: 1+1, 'b': {c: (null)}} lol4=sdf+sdf lastattr
       style="background-color: #ccc;") new attributes without commas
 
     p(qwer |asdf zxcv lol=123 * 0 || Math + "sdf") attributes no commas

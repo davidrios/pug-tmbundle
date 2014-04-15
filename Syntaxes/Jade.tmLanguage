@@ -677,6 +677,10 @@
 					<string>#tag_attributes</string>
 				</dict>
 				<dict>
+					<key>include</key>
+					<string>#tag_mixin_attributes</string>
+				</dict>
+				<dict>
 					<key>captures</key>
 					<dict>
 						<key>2</key>
@@ -1157,6 +1161,36 @@
 			<string>#[\w-]+</string>
 			<key>name</key>
 			<string>constant.id.tag.jade</string>
+		</dict>
+		<key>tag_mixin_attributes</key>
+		<dict>
+			<key>begin</key>
+			<string>(&amp;attributes\()</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.function.jade</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(\))</string>
+			<key>name</key>
+			<string>attibutes.tag.jade</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>attributes(?=\))</string>
+					<key>name</key>
+					<string>storage.type.keyword.jade</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>source.js</string>
+				</dict>
+			</array>
 		</dict>
 		<key>tag_name</key>
 		<dict>
