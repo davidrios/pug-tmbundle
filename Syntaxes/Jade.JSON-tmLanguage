@@ -114,7 +114,7 @@
       ]
     },
     {
-      "begin": "^(\\s*):(coffeescript)(?=\\(|$)",
+      "begin": "^(\\s*):(coffee(script)?)(?=\\(|$)",
       "beginCaptures": { "2": { "name": "constant.language.name.coffeescript.filter.jade" } },
       "end": "^(?!(\\1\\s)|\\s*$)",
       "name": "source.coffeescript.filter.jade",
