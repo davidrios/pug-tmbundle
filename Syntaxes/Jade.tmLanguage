@@ -904,11 +904,15 @@
 			<array>
 				<dict>
 					<key>include</key>
+					<string>#inline_jade</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#mixins</string>
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>(?=[\w.#])|(:\s*)</string>
+					<string>(?&lt;!\])(?=[\w.#])|(:\s*)</string>
 					<key>end</key>
 					<string>(?=\]|(:.)|=|\s)</string>
 					<key>name</key>
@@ -934,6 +938,10 @@
 						<dict>
 							<key>include</key>
 							<string>#tag_mixin_attributes</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#inline_jade</string>
 						</dict>
 						<dict>
 							<key>match</key>

@@ -530,9 +530,10 @@
       "end": "(\\])",
       "name": "inline.jade",
       "patterns": [
+        { "include": "#inline_jade" },
         { "include": "#mixins" },
         {
-          "begin": "(?=[\\w.#])|(:\\s*)",
+          "begin": "(?<!\\])(?=[\\w.#])|(:\\s*)",
           "end": "(?=\\]|(:.)|=|\\s)",
           "name": "tag.inline.jade",
           "patterns": [
@@ -541,6 +542,7 @@
             { "include": "#tag_classes" },
             { "include": "#tag_attributes" },
             { "include": "#tag_mixin_attributes" },
+            { "include": "#inline_jade" },
             {
               "match": "\\[",
               "name": "invalid.illegal.tag.jade"
