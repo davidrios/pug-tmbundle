@@ -404,6 +404,10 @@
 					<array>
 						<dict>
 							<key>include</key>
+							<string>#inline_jade</string>
+						</dict>
+						<dict>
+							<key>include</key>
 							<string>#embedded_html</string>
 						</dict>
 						<dict>
@@ -468,6 +472,10 @@
 					<string>text.block.pipe.jade</string>
 					<key>patterns</key>
 					<array>
+						<dict>
+							<key>include</key>
+							<string>#inline_jade</string>
+						</dict>
 						<dict>
 							<key>include</key>
 							<string>#embedded_html</string>

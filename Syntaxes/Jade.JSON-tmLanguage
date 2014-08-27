@@ -171,6 +171,7 @@
           "end": "$",
           "name": "text.block.jade",
           "patterns": [
+            { "include": "#inline_jade" },
             { "include": "#embedded_html" },
             { "include": "#html_entity" },
             { "include": "#interpolated_value" },
@@ -197,6 +198,7 @@
           "name": "text.block.pipe.jade",
           "comment": "Tag pipe text line.",
           "patterns": [
+            { "include": "#inline_jade" },
             { "include": "#embedded_html" },
             { "include": "#html_entity" },
             { "include": "#interpolated_value" },
