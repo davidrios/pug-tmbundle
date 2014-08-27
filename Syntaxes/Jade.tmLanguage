@@ -566,6 +566,10 @@
 			<array>
 				<dict>
 					<key>include</key>
+					<string>#brackets_js</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>source.js</string>
 				</dict>
 			</array>

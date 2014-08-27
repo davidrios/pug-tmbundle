@@ -227,6 +227,7 @@
       "end": "\\]",
       "name": "js.value.attribute.tag.jade",
       "patterns": [
+        { "include": "#brackets_js" },
         { "include": "source.js" }
       ]
     },

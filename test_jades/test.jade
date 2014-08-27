@@ -239,7 +239,7 @@ html
     p Test #[|text line]
     p Test buffered #[= console.log('inline tag code') + 'inline code']
     p Test unbuffered #[- console.log('inline tag code') + 'inline code']
-    p #[- abcf = [123,'abc']] #[= abcf]
+    p #[- abcf = [[123, [[],[]], []],'abc']] #[= abcf]
     p Crazy #[em: strong #[span #[='inline']]: test]
     p We can also #[strong combine #[em multiple #[img(src='http://jade-lang.com/style/logo.png')]]]
     p Another #[strong.lil#okf(acs=[1,2]) test [[with brackets]] [in#[='side']]]
