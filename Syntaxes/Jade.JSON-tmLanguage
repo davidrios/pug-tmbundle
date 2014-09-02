@@ -421,12 +421,12 @@
       "begin": "(\\()",
       "captures": { "1": { "name": "constant.name.attribute.tag.jade" } },
       "end": "(\\))",
-      "name": "attibutes.tag.jade",
+      "name": "attributes.tag.jade",
       "patterns": [
         {
           "match": "([^\\s(),=/]+)\\s*((?=\\))|,|\\s+|$)(?!=)",
           "captures": { "1": { "name": "entity.other.attribute-name.tag.jade" } },
-          "name": "attribues.tag.jade"
+          "name": "attributes.tag.jade"
         },
         {
           "begin": "([^\\s(),=/]*[^\\s(),=!/])\\s*(!?\\=)",
@@ -450,7 +450,7 @@
       "begin": "(&attributes\\()",
       "captures": { "1": { "name": "entity.name.function.jade" } },
       "end": "(\\))",
-      "name": "attibutes.tag.jade",
+      "name": "attributes.tag.jade",
       "patterns": [
         {
           "match": "attributes(?=\\))",

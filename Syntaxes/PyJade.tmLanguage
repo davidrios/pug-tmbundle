@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>fileTypes</key>
 	<array>
 		<string>py.jade</string>
+		<string>pyjade</string>
 	</array>
 	<key>name</key>
 	<string>Jade (Python)</string>
@@ -59,7 +60,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^(\s*)(script)(?=[.#(\s])</string>
+			<string>^(\s*)(script)(?=[.#(\s])((?![^\n]*type=)|(?=[^\n]*text/javascript))</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>2</key>
@@ -277,7 +278,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^(\s*):(coffeescript)(?=\(|$)</string>
+			<string>^(\s*):(coffee(script)?)(?=\(|$)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>2</key>
@@ -369,7 +370,7 @@
 				<key>3</key>
 				<dict>
 					<key>name</key>
-					<string>string.name.classes.tag.jade</string>
+					<string>constant.language.js</string>
 				</dict>
 				<key>4</key>
 				<dict>
@@ -404,6 +405,10 @@
 					<array>
 						<dict>
 							<key>include</key>
+							<string>#inline_jade</string>
+						</dict>
+						<dict>
+							<key>include</key>
 							<string>#embedded_html</string>
 						</dict>
 						<dict>
@@ -413,6 +418,10 @@
 						<dict>
 							<key>include</key>
 							<string>#interpolated_value</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#interpolated_error</string>
 						</dict>
 					</array>
 				</dict>
@@ -429,6 +438,10 @@
 			<string>tag.jade</string>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>include</key>
+					<string>#inline_jade</string>
+				</dict>
 				<dict>
 					<key>include</key>
 					<string>#blocks_and_includes</string>
@@ -462,6 +475,10 @@
 					<array>
 						<dict>
 							<key>include</key>
+							<string>#inline_jade</string>
+						</dict>
+						<dict>
+							<key>include</key>
 							<string>#embedded_html</string>
 						</dict>
 						<dict>
@@ -471,6 +488,10 @@
 						<dict>
 							<key>include</key>
 							<string>#interpolated_value</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#interpolated_error</string>
 						</dict>
 					</array>
 				</dict>
@@ -491,6 +512,10 @@
 					<array>
 						<dict>
 							<key>include</key>
+							<string>#inline_jade</string>
+						</dict>
+						<dict>
+							<key>include</key>
 							<string>#embedded_html</string>
 						</dict>
 						<dict>
@@ -500,6 +525,10 @@
 						<dict>
 							<key>include</key>
 							<string>#interpolated_value</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#interpolated_error</string>
 						</dict>
 					</array>
 				</dict>
@@ -533,6 +562,26 @@
 			<string>(extends|include|yield|append|prepend|block( (append|prepend))?)\s+(.*)$</string>
 			<key>name</key>
 			<string>meta.first-class.jade</string>
+		</dict>
+		<key>brackets_js</key>
+		<dict>
+			<key>begin</key>
+			<string>\[</string>
+			<key>end</key>
+			<string>\]</string>
+			<key>name</key>
+			<string>js.value.attribute.tag.jade</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#brackets_js</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>source.python</string>
+				</dict>
+			</array>
 		</dict>
 		<key>case_conds</key>
 		<dict>
@@ -665,6 +714,10 @@
 					<string>#tag_attributes</string>
 				</dict>
 				<dict>
+					<key>include</key>
+					<string>#tag_mixin_attributes</string>
+				</dict>
+				<dict>
 					<key>captures</key>
 					<dict>
 						<key>2</key>
@@ -708,6 +761,10 @@
 				<dict>
 					<key>include</key>
 					<string>#interpolated_value</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#interpolated_error</string>
 				</dict>
 			</array>
 		</dict>
@@ -835,6 +892,150 @@
 				</dict>
 			</array>
 		</dict>
+		<key>inline_jade</key>
+		<dict>
+			<key>begin</key>
+			<string>(?&lt;!\\)(#\[)</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.function.jade</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.function.jade</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(\])</string>
+			<key>name</key>
+			<string>inline.jade</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#inline_jade</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#mixins</string>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>(?&lt;!\])(?=[\w.#])|(:\s*)</string>
+					<key>end</key>
+					<string>(?=\]|(:.)|=|\s)</string>
+					<key>name</key>
+					<string>tag.inline.jade</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#tag_name</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#tag_id</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#tag_classes</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#tag_attributes</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#tag_mixin_attributes</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#inline_jade</string>
+						</dict>
+						<dict>
+							<key>match</key>
+							<string>\[</string>
+							<key>name</key>
+							<string>invalid.illegal.tag.jade</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#unbuffered_code</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#printed_expression</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\[</string>
+					<key>name</key>
+					<string>invalid.illegal.tag.jade</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#inline_jade_text</string>
+				</dict>
+			</array>
+		</dict>
+		<key>inline_jade_text</key>
+		<dict>
+			<key>begin</key>
+			<string></string>
+			<key>end</key>
+			<string>(?=\])</string>
+			<key>name</key>
+			<string>text.jade</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>\[</string>
+					<key>end</key>
+					<string>\]</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#inline_jade_text</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#inline_jade</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#embedded_html</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#html_entity</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#interpolated_value</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#interpolated_error</string>
+				</dict>
+			</array>
+		</dict>
+		<key>interpolated_error</key>
+		<dict>
+			<key>match</key>
+			<string>(?&lt;!\\)[#!]\{(?=[^}]*$)</string>
+			<key>name</key>
+			<string>invalid.illegal.tag.jade</string>
+		</dict>
 		<key>interpolated_value</key>
 		<dict>
 			<key>begin</key>
@@ -877,7 +1078,7 @@
 			<key>comment</key>
 			<string>Mixin declaration and use, including the new '+' syntax.</string>
 			<key>end</key>
-			<string>$</string>
+			<string>(?=\])|$</string>
 			<key>name</key>
 			<string>meta.mixin.jade</string>
 			<key>patterns</key>
@@ -886,11 +1087,23 @@
 					<key>begin</key>
 					<string></string>
 					<key>end</key>
-					<string>$</string>
+					<string>(?=\])|$</string>
 					<key>name</key>
 					<string>args.mixin.jade</string>
 					<key>patterns</key>
 					<array>
+						<dict>
+							<key>include</key>
+							<string>#tag_attribute_value_paren</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#tag_attribute_value_brackets</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#tag_attribute_value_braces</string>
+						</dict>
 						<dict>
 							<key>include</key>
 							<string>source.python</string>
@@ -912,9 +1125,13 @@
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>$</string>
+			<string>(?=\])|$</string>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>include</key>
+					<string>#brackets_js</string>
+				</dict>
 				<dict>
 					<key>include</key>
 					<string>source.python</string>
@@ -940,6 +1157,10 @@
 				<dict>
 					<key>include</key>
 					<string>#interpolated_value</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#interpolated_error</string>
 				</dict>
 			</array>
 		</dict>
@@ -1067,13 +1288,13 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>([^\s(),=]+)\s*((?=\))|,|$)</string>
+					<string>([^\s(),=/]+)\s*((?=\))|,|\s+|$)(?!=)</string>
 					<key>name</key>
 					<string>attributes.tag.jade</string>
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>([^\s(),=]*[^\s(),=!])\s*(!?\=)</string>
+					<string>([^\s(),=/]*[^\s(),=!/])\s*(!?\=)</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -1088,7 +1309,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>((?=\))|,|$)</string>
+					<string>(,|$|(?=\)|((?&lt;![+/*|&amp;=:^~!?&lt;&gt;%-])\s+[^+/*|&amp;=:^~!?&lt;&gt;%-])))</string>
 					<key>name</key>
 					<string>attributes.tag.jade</string>
 					<key>patterns</key>
@@ -1122,7 +1343,7 @@
 			<key>match</key>
 			<string>\.[\w-]+</string>
 			<key>name</key>
-			<string>string.name.classes.tag.jade</string>
+			<string>constant.language.js</string>
 		</dict>
 		<key>tag_id</key>
 		<dict>
@@ -1130,6 +1351,36 @@
 			<string>#[\w-]+</string>
 			<key>name</key>
 			<string>constant.id.tag.jade</string>
+		</dict>
+		<key>tag_mixin_attributes</key>
+		<dict>
+			<key>begin</key>
+			<string>(&amp;attributes\()</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.function.jade</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(\))</string>
+			<key>name</key>
+			<string>attributes.tag.jade</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>attributes(?=\))</string>
+					<key>name</key>
+					<string>storage.type.keyword.jade</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>source.python</string>
+				</dict>
+			</array>
 		</dict>
 		<key>tag_name</key>
 		<dict>
@@ -1176,6 +1427,10 @@
 			<array>
 				<dict>
 					<key>include</key>
+					<string>#inline_jade</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#embedded_html</string>
 				</dict>
 				<dict>
@@ -1185,6 +1440,10 @@
 				<dict>
 					<key>include</key>
 					<string>#interpolated_value</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#interpolated_error</string>
 				</dict>
 			</array>
 		</dict>
@@ -1203,11 +1462,15 @@
 			<key>comment</key>
 			<string>name = function() {}</string>
 			<key>end</key>
-			<string>$</string>
+			<string>(?=\])|$</string>
 			<key>name</key>
 			<string>javascript.embedded.jade</string>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>include</key>
+					<string>#brackets_js</string>
+				</dict>
 				<dict>
 					<key>include</key>
 					<string>source.python</string>
