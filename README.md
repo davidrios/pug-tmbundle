@@ -1,6 +1,6 @@
 # Jade.tmbundle
 
-**This was made specifically for Sublime Text 2, but was tested and works with Textmate 2**
+**This was made specifically for Sublime Text 2, but was tested and works with Textmate 2 and Sublime Text 3**
 
 A **TextMate Bundle** for the **Jade** templating language. Implemented in
 JSON-tmLanguage, a compiled tmLanguage version is included. All language
@@ -21,16 +21,22 @@ A highlighter using Python instead of JavaScript is also included for use with
 
 ## Installation
 
+### Using Package Control in SUblime Text 2/3
+
+Package control is a package manager for Sublime Text extensions (think of it like "apt-get" for Sublime Text). If you haven't already, install [Package Control](https://sublime.wbond.net/installation) into your instance of Sublime Text and restart. Choose **Package Controll: Install Package** (press `Ctrl/Cmd + p` and then type `pi`), search for package named `Jade` and install. Restart if you cannot select "Jade" from syntax highlighter menu.
+
 ### TextMate 2
 
     mkdir -p ~/Library/Application\ Support/TextMate/Managed/Bundles
     cd ~/Library/Application\ Support/TextMate/Managed/Bundles
     git clone https://github.com/davidrios/jade-tmbundle.git Jade.tmbundle
 
-### Sublime Text 2
+### Sublime Text manual installation
 
     mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 2/Packages
     cd ~/Library/Application\ Support/Sublime\ Text\ 2/Packages
     git clone https://github.com/davidrios/jade-tmbundle.git Jade
+
+Replace '2' with '3' in case of Sublime Text 3.
 
 Patches for additions are always welcome.
