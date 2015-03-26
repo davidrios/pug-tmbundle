@@ -207,11 +207,20 @@
         },
         { "include": "#printed_expression" },
         {
-          "begin": "\\G((?=<)|[^\\w.#]|(\\.[^\\w-]))|(#[^\\{\\w-])",
+          "begin": "\\G(?=(#[^\\{\\w-])|[^\\w.#])",
           "end": "$",
           "name": "text.jade",
           "comment": "Line starting with characters incompatible with tag name/id/class is standalone text.",
           "patterns": [
+            {
+              "begin": "</?(?=[!#])",
+              "end": ">|$",
+              "patterns": [
+                { "include": "#inline_jade" },
+                { "include": "#interpolated_value" },
+                { "include": "#interpolated_error" }
+              ]
+            },
             { "include": "#inline_jade" },
             { "include": "#embedded_html" },
             { "include": "#html_entity" },
@@ -414,7 +423,8 @@
       "name": "constant.id.tag.jade"
     },
     "tag_classes": {
-      "match": "\\.[\\w-]+",
+      "match": "\\.([^\\w-])?[\\w-]*",
+      "captures": { "1": { "name": "invalid.illegal.tag.jade" } },
       "name": "constant.language.js"
     },
     "tag_attributes": {

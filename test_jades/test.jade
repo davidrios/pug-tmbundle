@@ -251,3 +251,21 @@ html
       block with #[i inline] tag.
 
     | pipe text with #[i inline] tag.
+
+    !{'tag' + 234} text line starting with interpolated
+    [!{sdfasdf}
+    ##{sadf} lol2
+    "#[asdf]"
+
+    - var left_wrapper = 'p'
+    - var left_classes = 'one two'
+    - var left = 'the content'
+
+    .!!@# sdfasdf
+
+    <#[span test inline in brackets]>
+
+    div
+      <#{left_wrapper}.lol#dsfsdf class="group-left !{left_classes}">
+      != left
+      </!{left_wrapper}>
