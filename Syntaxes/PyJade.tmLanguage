@@ -278,7 +278,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^(\s*):(coffee(script)?)(?=\(|$)</string>
+			<string>^(\s*):(coffee(-?script)?)(?=\(|$)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>2</key>
