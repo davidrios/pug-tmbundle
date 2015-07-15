@@ -60,6 +60,23 @@
 		</dict>
 		<dict>
 			<key>begin</key>
+			<string>^(\s*)-</string>
+			<key>comment</key>
+			<string>Unbuffered code block.</string>
+			<key>end</key>
+			<string>^(?!(\1\s)|\s*$)</string>
+			<key>name</key>
+			<string>javascript.embedded.jade</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>source.python</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
 			<string>^(\s*)(script)(?=[.#(\s])((?![^\n]*type=)|(?=[^\n]*(text|application)/javascript))</string>
 			<key>beginCaptures</key>
 			<dict>
@@ -109,7 +126,7 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>source.js</string>
+					<string>source.python</string>
 				</dict>
 			</array>
 		</dict>

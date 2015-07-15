@@ -261,7 +261,13 @@ html
     - var left_classes = 'one two'
     - var left = 'the content'
 
-    .!!@# sdfasdf
+    -
+      var peeps = ["Mathias",
+        "David", "Github"];
+
+      var msg = peeps.map(function(name) {
+        return "Hi " + name
+      }).join(", ");
 
     <#[span test inline in brackets]>
 
