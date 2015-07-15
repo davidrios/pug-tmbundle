@@ -443,7 +443,7 @@
       "name": "attributes.tag.jade",
       "patterns": [
         {
-          "match": "([^\\s(),=/]+)\\s*((?=\\))|,|\\s+|$)(?!=)",
+          "match": "([^\\s(),=/]+)\\s*((?=\\))|,|\\s+|$)(?!\\!?\\=)",
           "captures": { "1": { "name": "entity.other.attribute-name.tag.jade" } },
           "name": "attributes.tag.jade"
         },

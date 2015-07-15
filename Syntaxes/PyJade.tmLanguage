@@ -1326,7 +1326,7 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>([^\s(),=/]+)\s*((?=\))|,|\s+|$)(?!=)</string>
+					<string>([^\s(),=/]+)\s*((?=\))|,|\s+|$)(?!\!?\=)</string>
 					<key>name</key>
 					<string>attributes.tag.jade</string>
 				</dict>
