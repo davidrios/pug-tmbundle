@@ -60,7 +60,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^(\s*)-</string>
+			<string>^(\s*)-$</string>
 			<key>comment</key>
 			<string>Unbuffered code block.</string>
 			<key>end</key>

@@ -28,7 +28,7 @@
       ]
     },
     {
-      "begin": "^(\\s*)-",
+      "begin": "^(\\s*)-$",
       "end": "^(?!(\\1\\s)|\\s*$)",
       "name": "javascript.embedded.jade",
       "comment": "Unbuffered code block.",
