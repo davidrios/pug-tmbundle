@@ -54,6 +54,19 @@ html
     .test mixin attributes new syntax
       +another(abc=123, bcd='lol')
 
+    mixin mix2()
+      div: p.mix2
+        block
+
+    +mix2(): p paragraph in mix2
+
+    mixin mix2() mix2tag lol
+
+    mixin mix3()
+      div: p.mix3
+
+    +mix3().mix2class It's time
+
     .98349 class name omly numbers
     ._[invalid character in class name should result in it and text following be considered text
 

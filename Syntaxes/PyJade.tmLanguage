@@ -1144,7 +1144,7 @@
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>source.python</string>
+							<string>#complete_tag</string>
 						</dict>
 					</array>
 				</dict>

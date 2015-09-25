@@ -320,7 +320,7 @@
             { "include": "#tag_attribute_value_paren" },
             { "include": "#tag_attribute_value_brackets" },
             { "include": "#tag_attribute_value_braces" },
-            { "include": "source.js" }
+            { "include": "#complete_tag" }
           ]
         }
       ]
