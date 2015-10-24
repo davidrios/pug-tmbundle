@@ -59,7 +59,7 @@
       ]
     },
     {
-      "begin": "^(\\s*)(style)(?=[.#(\\s])",
+      "begin": "^(\\s*)(style)((\\.$)|(?=[.#(].*\\.$))",
       "beginCaptures": { "2": { "name": "entity.name.tag.script.jade" } },
       "end": "^(?!(\\1\\s)|\\s*$)",
       "name": "meta.tag.other",

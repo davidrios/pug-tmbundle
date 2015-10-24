@@ -131,7 +131,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^(\s*)(style)(?=[.#(\s])</string>
+			<string>^(\s*)(style)((\.$)|(?=[.#(].*\.$))</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>2</key>
