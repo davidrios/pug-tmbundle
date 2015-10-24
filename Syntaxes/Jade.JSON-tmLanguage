@@ -116,7 +116,6 @@
       "begin": "^(\\s*):(stylus)(?=\\(|$)$",
       "beginCaptures": { "2": { "name": "constant.language.name.stylus.filter.jade" } },
       "end": "^(?!(\\1\\s)|\\s*$)",
-      "name": "source.stylus.filter.jade",
       "patterns": [
         { "include": "#filter_args" },
         { "include": "source.stylus" }
