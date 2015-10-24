@@ -16,7 +16,7 @@
 			<key>match</key>
 			<string>^(!!!|doctype)(\s*[a-zA-Z0-9-_]+)?</string>
 			<key>name</key>
-			<string>comment.other.doctype.jade</string>
+			<string>meta.tag.sgml.doctype.html</string>
 		</dict>
 		<dict>
 			<key>begin</key>
@@ -65,7 +65,7 @@
 			<key>end</key>
 			<string>^(?!(\1\s)|\s*$)</string>
 			<key>name</key>
-			<string>javascript.embedded.jade</string>
+			<string>source.js</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -90,7 +90,7 @@
 			<key>end</key>
 			<string>^(?!(\1\s)|\s*$)</string>
 			<key>name</key>
-			<string>source.script.jade</string>
+			<string>meta.tag.other</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -145,7 +145,7 @@
 			<key>end</key>
 			<string>^(?!(\1\s)|\s*$)</string>
 			<key>name</key>
-			<string>source.style.jade</string>
+			<string>meta.tag.other</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -391,15 +391,13 @@
 				<key>4</key>
 				<dict>
 					<key>name</key>
-					<string>entity.name.tag.jade</string>
+					<string>meta.tag.other entity.name.tag.jade</string>
 				</dict>
 			</dict>
 			<key>comment</key>
 			<string>Generated from dot_block_tag.py</string>
 			<key>end</key>
 			<string>^(?!(\1\s)|\s*$)</string>
-			<key>name</key>
-			<string>text.block.dot.tag.jade</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -450,8 +448,6 @@
 			<string>All constructs that generally span a single line starting with any number of white-spaces.</string>
 			<key>end</key>
 			<string>$</string>
-			<key>name</key>
-			<string>tag.jade</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -522,8 +518,6 @@
 					<string>Line starting with characters incompatible with tag name/id/class is standalone text.</string>
 					<key>end</key>
 					<string>$</string>
-					<key>name</key>
-					<string>text.jade</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -708,8 +702,6 @@
 			<string>(?=[\w.#])|(:\s*)</string>
 			<key>end</key>
 			<string>(\.?$)|(?=:.)</string>
-			<key>name</key>
-			<string>complete_tag.jade</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -848,8 +840,6 @@
 					<string>string.value.args.filter.jade</string>
 					<key>end</key>
 					<string>((?=\))|,|$)</string>
-					<key>name</key>
-					<string>attributes.tag.jade</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -1027,8 +1017,6 @@
 			<string></string>
 			<key>end</key>
 			<string>(?=\])</string>
-			<key>name</key>
-			<string>text.jade</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -1117,7 +1105,7 @@
 			<key>end</key>
 			<string>(?=\])|$</string>
 			<key>name</key>
-			<string>meta.mixin.jade</string>
+			<string>source.meta.function</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -1163,6 +1151,8 @@
 			</dict>
 			<key>end</key>
 			<string>(?=\])|$</string>
+			<key>name</key>
+			<string>source.js</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -1312,7 +1302,7 @@
 			<key>end</key>
 			<string>(\))</string>
 			<key>name</key>
-			<string>attributes.tag.jade</string>
+			<string>meta.tag.other</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -1326,8 +1316,6 @@
 					</dict>
 					<key>match</key>
 					<string>([^\s(),=/]+)\s*((?=\))|,|\s+|$)(?!\!?\=)</string>
-					<key>name</key>
-					<string>attributes.tag.jade</string>
 				</dict>
 				<dict>
 					<key>begin</key>
@@ -1347,8 +1335,6 @@
 					</dict>
 					<key>end</key>
 					<string>(,|$|(?=\)|((?&lt;![+/*|&amp;=:^~!?&lt;&gt;%-])\s+[^+/*|&amp;=:^~!?&lt;&gt;%-])))</string>
-					<key>name</key>
-					<string>attributes.tag.jade</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -1412,7 +1398,7 @@
 			<key>end</key>
 			<string>(\))</string>
 			<key>name</key>
-			<string>attributes.tag.jade</string>
+			<string>meta.tag.other</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -1434,7 +1420,7 @@
 			<key>end</key>
 			<string>(\G(?&lt;!\5[^\w-]))|\}|$</string>
 			<key>name</key>
-			<string>entity.name.tag.jade</string>
+			<string>meta.tag.other entity.name.tag.jade</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -1443,7 +1429,7 @@
 					<key>end</key>
 					<string>(?=\})</string>
 					<key>name</key>
-					<string>entity.name.tag.jade</string>
+					<string>meta.tag.other entity.name.tag.jade</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -1466,8 +1452,6 @@
 			<string>(?=.)</string>
 			<key>end</key>
 			<string>$</string>
-			<key>name</key>
-			<string>text.jade</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -1509,7 +1493,7 @@
 			<key>end</key>
 			<string>(?=\])|$</string>
 			<key>name</key>
-			<string>javascript.embedded.jade</string>
+			<string>source.js</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -1524,7 +1508,7 @@
 		</dict>
 	</dict>
 	<key>scopeName</key>
-	<string>source.jade</string>
+	<string>text.jade</string>
 	<key>uuid</key>
 	<string>eee6ba25-6ac2-4f7e-9c70-cddf2bd3448b</string>
 </dict>
