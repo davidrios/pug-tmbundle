@@ -5,7 +5,7 @@
 	<key>name</key>
 	<string>Comments</string>
 	<key>scope</key>
-	<string>source.jade,source.pyjade</string>
+	<string>text.jade,source.pyjade</string>
 	<key>settings</key>
 	<dict>
 		<key>shellVariables</key>
