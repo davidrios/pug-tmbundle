@@ -19,7 +19,7 @@ echo "&lt;/pre&gt;"
 	<key>output</key>
 	<string>showAsHTML</string>
 	<key>scope</key>
-	<string>source.jade</string>
+	<string>text.jade</string>
 	<key>uuid</key>
 	<string>4E2866A2-7FAE-4980-84E1-0E8AAB7C36FB</string>
 </dict>

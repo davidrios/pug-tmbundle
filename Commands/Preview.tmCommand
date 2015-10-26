@@ -17,7 +17,7 @@ jade
 	<key>output</key>
 	<string>showAsHTML</string>
 	<key>scope</key>
-	<string>source.jade</string>
+	<string>text.jade</string>
 	<key>uuid</key>
 	<string>FF542D1A-4247-4240-8348-DB30EB477256</string>
 </dict>
