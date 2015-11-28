@@ -195,7 +195,8 @@
         { "include": "#inline_jade" },
         { "include": "#blocks_and_includes" },
         { "include": "#unbuffered_code" },
-        { "include": "#mixins" },
+        { "include": "#mixin_definition" },
+        { "include": "#mixin_call" },
         { "include": "#flow_control" },
         { "include": "#case_conds" },
         {
@@ -297,27 +298,42 @@
         { "include": "source.js" }
       ]
     },
-    "mixins": {
-      "begin": "(((mixin\\s+)|\\+)([\\w-]+))\\s*",
+    "mixin_definition": {
+      "match": "(mixin\\s+)([\\w-]+)(?:(\\()((?:[a-zA-Z_]\\w*(?:,\\s*)?)*)(\\)))?$",
+      "captures": {
+        "1": { "name": "storage.type.function.jade" },
+        "2": { "name": "entity.name.function.jade" },
+        "3": { "name": "punctuation.definition.parameters.begin.js" },
+        "4": { "name": "variable.parameter.function.js" },
+        "5": { "name": "punctuation.definition.parameters.begin.js" }
+      }
+    },
+    "js_paren": {
+      "begin": "\\(",
+      "end": "\\)",
+      "patterns": [
+        { "include": "#js_paren" },
+        { "include": "source.js" }
+      ]
+    },
+    "mixin_call": {
+      "begin": "((?:mixin\\s+)|\\+)([\\w-]+)",
       "beginCaptures": {
-        "2": { "name": "storage.type.function.jade" },
-        "4": { "name": "entity.name.function.jade" }
+        "1": { "name": "storage.type.function.jade" },
+        "2": { "name": "entity.name.function.jade" }
       },
-      "end": "(?=\\])|$",
-      "name": "source.meta.function",
-      "comment": "Mixin declaration and use, including the new '+' syntax.",
+      "end": "(?!\\()|$",
       "patterns": [
         {
-          "begin": "",
-          "end": "(?=\\])|$",
+          "begin": "(?<!\\))\\(",
+          "end": "\\)",
           "name": "args.mixin.jade",
           "patterns": [
-            { "include": "#tag_attribute_value_paren" },
-            { "include": "#tag_attribute_value_brackets" },
-            { "include": "#tag_attribute_value_braces" },
-            { "include": "#complete_tag" }
+            { "include": "#js_paren" },
+            { "include": "source.js" }
           ]
-        }
+        },
+        { "include": "#tag_attributes" }
       ]
     },
     "flow_control": {
@@ -380,7 +396,7 @@
       "patterns": [
         { "include": "#blocks_and_includes" },
         { "include": "#unbuffered_code" },
-        { "include": "#mixins" },
+        { "include": "#mixin_call" },
         { "include": "#flow_control" },
         {
           "match": "(?<=:)\\w.*$",
@@ -543,7 +559,7 @@
       "name": "inline.jade",
       "patterns": [
         { "include": "#inline_jade" },
-        { "include": "#mixins" },
+        { "include": "#mixin_call" },
         {
           "begin": "(?<!\\])(?=[\\w.#])|(:\\s*)",
           "end": "(?=\\]|(:.)|=|\\s)",
