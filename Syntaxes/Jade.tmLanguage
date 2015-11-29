@@ -1139,6 +1139,27 @@
 						</dict>
 						<dict>
 							<key>include</key>
+							<string>#string</string>
+						</dict>
+						<dict>
+							<key>captures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>entity.other.attribute-name.tag.jade</string>
+								</dict>
+								<key>2</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.separator.key-value.jade</string>
+								</dict>
+							</dict>
+							<key>match</key>
+							<string>([^\s(),=/]+)\s*(=)\s*</string>
+						</dict>
+						<dict>
+							<key>include</key>
 							<string>source.js</string>
 						</dict>
 					</array>
