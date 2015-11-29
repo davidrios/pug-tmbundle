@@ -332,11 +332,8 @@
             { "include": "#js_paren" },
             { "include": "#string" },
             {
-              "match": "([^\\s(),=/]+)\\s*(=)\\s*",
-              "captures": {
-                "1": { "name": "entity.other.attribute-name.tag.jade" },
-                "2": { "name": "punctuation.separator.key-value.jade" }
-              }
+              "match": "([^\\s(),=/]+)\\s*=\\s*",
+              "captures": { "1": { "name": "entity.other.attribute-name.tag.jade" } }
             },
             { "include": "source.js" }
           ]
