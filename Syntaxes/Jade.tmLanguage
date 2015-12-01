@@ -596,26 +596,6 @@
 			<key>name</key>
 			<string>meta.first-class.jade</string>
 		</dict>
-		<key>brackets_js</key>
-		<dict>
-			<key>begin</key>
-			<string>\[</string>
-			<key>end</key>
-			<string>\]</string>
-			<key>name</key>
-			<string>js.value.attribute.tag.jade</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>include</key>
-					<string>#brackets_js</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>source.js</string>
-				</dict>
-			</array>
-		</dict>
 		<key>case_conds</key>
 		<dict>
 			<key>begin</key>
@@ -1085,7 +1065,43 @@
 				</dict>
 			</array>
 		</dict>
-		<key>js_paren</key>
+		<key>js_braces</key>
+		<dict>
+			<key>begin</key>
+			<string>\{</string>
+			<key>end</key>
+			<string>\}</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#js_braces</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>source.js</string>
+				</dict>
+			</array>
+		</dict>
+		<key>js_brackets</key>
+		<dict>
+			<key>begin</key>
+			<string>\[</string>
+			<key>end</key>
+			<string>\]</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#js_brackets</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>source.js</string>
+				</dict>
+			</array>
+		</dict>
+		<key>js_parens</key>
 		<dict>
 			<key>begin</key>
 			<string>\(</string>
@@ -1095,7 +1111,7 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#js_paren</string>
+					<string>#js_parens</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -1135,7 +1151,7 @@
 					<array>
 						<dict>
 							<key>include</key>
-							<string>#js_paren</string>
+							<string>#js_parens</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -1218,7 +1234,7 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#brackets_js</string>
+					<string>#js_brackets</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -1252,106 +1268,43 @@
 				</dict>
 			</array>
 		</dict>
-		<key>tag_attribute_value_braces</key>
+		<key>tag_attribute_name</key>
 		<dict>
-			<key>begin</key>
-			<string>\{</string>
-			<key>end</key>
-			<string>\}</string>
-			<key>name</key>
-			<string>js.value.attribute.tag.jade</string>
-			<key>patterns</key>
-			<array>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
 				<dict>
-					<key>include</key>
-					<string>#tag_attribute_value_paren</string>
+					<key>name</key>
+					<string>entity.other.attribute-name.tag.jade</string>
 				</dict>
-				<dict>
-					<key>include</key>
-					<string>#tag_attribute_value_brackets</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#tag_attribute_value_braces</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#string</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>source.js</string>
-				</dict>
-			</array>
+			</dict>
+			<key>match</key>
+			<string>([^\s(),=/!]+)\s*</string>
 		</dict>
-		<key>tag_attribute_value_brackets</key>
+		<key>tag_attribute_name_paren</key>
 		<dict>
 			<key>begin</key>
-			<string>\[</string>
-			<key>end</key>
-			<string>\]</string>
-			<key>name</key>
-			<string>js.value.attribute.tag.jade</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>include</key>
-					<string>#tag_attribute_value_paren</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#tag_attribute_value_brackets</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#tag_attribute_value_braces</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#string</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>source.js</string>
-				</dict>
-			</array>
-		</dict>
-		<key>tag_attribute_value_paren</key>
-		<dict>
-			<key>begin</key>
-			<string>\(</string>
+			<string>\(\s*</string>
 			<key>end</key>
 			<string>\)</string>
 			<key>name</key>
-			<string>js.value.attribute.tag.jade</string>
+			<string>entity.other.attribute-name.tag.jade</string>
 			<key>patterns</key>
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#tag_attribute_value_paren</string>
+					<string>#tag_attribute_name_paren</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#tag_attribute_value_brackets</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#tag_attribute_value_braces</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#string</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>source.js</string>
+					<string>#tag_attribute_name</string>
 				</dict>
 			</array>
 		</dict>
 		<key>tag_attributes</key>
 		<dict>
 			<key>begin</key>
-			<string>(\()</string>
+			<string>(\(\s*)</string>
 			<key>captures</key>
 			<dict>
 				<key>1</key>
@@ -1367,52 +1320,74 @@
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>captures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>entity.other.attribute-name.tag.jade</string>
-						</dict>
-					</dict>
+					<key>include</key>
+					<string>#tag_attribute_name_paren</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#tag_attribute_name</string>
+				</dict>
+				<dict>
 					<key>match</key>
-					<string>([^\s(),=/]+)\s*((?=\))|,|\s+|$)(?!\!?\=)</string>
+					<string>!</string>
+					<key>name</key>
+					<string>invalid.illegal.tag.jade</string>
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>([^\s(),=/]*[^\s(),=!/])\s*(!?\=)</string>
-					<key>beginCaptures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>entity.other.attribute-name.tag.jade</string>
-						</dict>
-						<key>2</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.separator.key-value.jade</string>
-						</dict>
-					</dict>
+					<string>=\s*</string>
 					<key>end</key>
-					<string>(,|$|(?=\)|((?&lt;![+/*|&amp;=:^~!?&lt;&gt;%-])\s+[^+/*|&amp;=:^~!?&lt;&gt;%-])))</string>
+					<string>$|(?=,|(?:\s+[^!%&amp;*-+~|&lt;&gt;:?/])|\))</string>
+					<key>name</key>
+					<string>attribute_value</string>
 					<key>patterns</key>
 					<array>
 						<dict>
 							<key>include</key>
-							<string>#tag_attribute_value_paren</string>
+							<string>#string</string>
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#tag_attribute_value_brackets</string>
+							<string>#js_parens</string>
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#tag_attribute_value_braces</string>
+							<string>#js_brackets</string>
 						</dict>
+						<dict>
+							<key>include</key>
+							<string>#js_braces</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>source.js</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>(?&lt;=[%&amp;*-+~|&lt;&gt;:?/])\s+</string>
+					<key>end</key>
+					<string>$|(?=,|(?:\s+[^!%&amp;*-+~|&lt;&gt;:?/])|\))</string>
+					<key>name</key>
+					<string>attribute_value2</string>
+					<key>patterns</key>
+					<array>
 						<dict>
 							<key>include</key>
 							<string>#string</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#js_parens</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#js_brackets</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#js_braces</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -1559,7 +1534,7 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#brackets_js</string>
+					<string>#js_brackets</string>
 				</dict>
 				<dict>
 					<key>include</key>
