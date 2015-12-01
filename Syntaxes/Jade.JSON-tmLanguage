@@ -293,7 +293,7 @@
       "match": "(mixin\\s+)([\\w-]+)(?:(\\()((?:[a-zA-Z_]\\w*(?:,\\s*)?)*)(\\)))?$",
       "captures": {
         "1": { "name": "storage.type.function.jade" },
-        "2": { "name": "entity.name.function.jade" },
+        "2": { "name": "meta.tag.other entity.name.function.jade" },
         "3": { "name": "punctuation.definition.parameters.begin.js" },
         "4": { "name": "variable.parameter.function.js" },
         "5": { "name": "punctuation.definition.parameters.begin.js" }
@@ -303,7 +303,7 @@
       "begin": "((?:mixin\\s+)|\\+)([\\w-]+)",
       "beginCaptures": {
         "1": { "name": "storage.type.function.jade" },
-        "2": { "name": "entity.name.function.jade" }
+        "2": { "name": "meta.tag.other entity.name.function.jade" }
       },
       "end": "(?!\\()|$",
       "patterns": [
@@ -316,7 +316,7 @@
             { "include": "#string" },
             {
               "match": "([^\\s(),=/]+)\\s*=\\s*",
-              "captures": { "1": { "name": "entity.other.attribute-name.tag.jade" } }
+              "captures": { "1": { "name": "meta.tag.other entity.other.attribute-name.tag.jade" } }
             },
             { "include": "source.js" }
           ]

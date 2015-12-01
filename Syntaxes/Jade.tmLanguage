@@ -1133,7 +1133,7 @@
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>entity.name.function.jade</string>
+					<string>meta.tag.other entity.name.function.jade</string>
 				</dict>
 			</dict>
 			<key>end</key>
@@ -1163,7 +1163,7 @@
 								<key>1</key>
 								<dict>
 									<key>name</key>
-									<string>entity.other.attribute-name.tag.jade</string>
+									<string>meta.tag.other entity.other.attribute-name.tag.jade</string>
 								</dict>
 							</dict>
 							<key>match</key>
@@ -1193,7 +1193,7 @@
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>entity.name.function.jade</string>
+					<string>meta.tag.other entity.name.function.jade</string>
 				</dict>
 				<key>3</key>
 				<dict>
