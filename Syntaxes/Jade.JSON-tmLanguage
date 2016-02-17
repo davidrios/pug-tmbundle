@@ -290,7 +290,7 @@
       ]
     },
     "mixin_definition": {
-      "match": "(mixin\\s+)([\\w-]+)(?:(\\()((?:[a-zA-Z_]\\w*(?:,\\s*)?)*)(\\)))?$",
+      "match": "(mixin\\s+)([\\w-]+)(?:(\\()\\s*((?:[a-zA-Z_]\\w*\\s*)(?:,\\s*[a-zA-Z_]\\w*\\s*)*)(\\)))?$",
       "captures": {
         "1": { "name": "storage.type.function.jade" },
         "2": { "name": "meta.tag.other entity.name.function.jade" },
