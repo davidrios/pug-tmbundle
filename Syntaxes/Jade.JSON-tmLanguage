@@ -443,7 +443,7 @@
         { "include": "#tag_attribute_name_paren" },
         { "include": "#tag_attribute_name" },
         {
-          "match": "!",
+          "match": "!(?!=)",
           "name": "invalid.illegal.tag.jade"
         },
         {
