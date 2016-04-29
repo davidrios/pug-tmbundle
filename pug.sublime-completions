@@ -1,5 +1,5 @@
 {
-	"scope": "entity.name.tag.jade",
+	"scope": "entity.name.tag.pug",
 	"completions":
 	[
 		"a",//	Defines a hyperlink
@@ -31,7 +31,7 @@
 		//Defines centered text
 		"cite",//	Defines the title of a work
 		"code",//	Defines a piece of computer code
-		"col",//	Specifies column properties for each column within a <colgroup> element 
+		"col",//	Specifies column properties for each column within a <colgroup> element
 		"colgroup",//	Specifies a group of one or more columns in a table for formatting
 		"command",//	Defines a command button that a user can invoke
 		"datalist",//	Specifies a list of pre-defined options for input controls
@@ -45,7 +45,7 @@
 		"div",//	Defines a section in a document
 		"dl",//	Defines a description list
 		"dt",//	Defines a term/name in a description list
-		"em",//	Defines emphasized text 
+		"em",//	Defines emphasized text
 		"embed",//	Defines a container for an external (non-HTML) application
 		"fieldset",//	Groups related elements in a form
 		"figcaption",//	Defines a caption for a <figure> element

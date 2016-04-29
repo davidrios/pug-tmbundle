@@ -5,7 +5,7 @@
 	<key>name</key>
 	<string>Miscellaneous</string>
 	<key>scope</key>
-	<string>text.jade</string>
+	<string>text.pug</string>
 	<key>settings</key>
 	<dict>
 		<key>decreaseIndentPattern</key>
@@ -20,7 +20,7 @@
 				|(//-?$)  # multiline comments
 				|(-\s+(if|else|while)(\s+|$))  # embedded js control flow
 				|((for|if|else if|else|each|until|while|unless|case
-				   |when|block|append|prepend)(\s+|$))  # jade block first-class
+				   |when|block|append|prepend)(\s+|$))  # pug block first-class
 			)</string>
 		<key>disableIndentNextLinePattern</key>
 		<string></string>
