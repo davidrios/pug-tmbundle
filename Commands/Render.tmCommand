@@ -7,7 +7,7 @@
 	<key>command</key>
 	<string>#!/usr/bin/env sh
 echo "&lt;pre style='font-family:Menlo; font-size: 12px; word-wrap: break-word;'&gt;"
-jade | sed 's/&lt;/\&amp;lt;/g' | sed 's/&gt;/\&amp;gt;/g'
+pug | sed 's/&lt;/\&amp;lt;/g' | sed 's/&gt;/\&amp;gt;/g'
 echo "&lt;/pre&gt;"
 </string>
 	<key>input</key>
@@ -19,7 +19,7 @@ echo "&lt;/pre&gt;"
 	<key>output</key>
 	<string>showAsHTML</string>
 	<key>scope</key>
-	<string>text.jade</string>
+	<string>text.pug</string>
 	<key>uuid</key>
 	<string>4E2866A2-7FAE-4980-84E1-0E8AAB7C36FB</string>
 </dict>

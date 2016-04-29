@@ -35,7 +35,7 @@ pure_tag = r'''
 ''' % {'tag_id': tag_id, 'tag_class': tag_class, 'tag_name': tag_name}
 
 tag = r'''
-(?: # a jade tag starts with
+(?: # a pug tag starts with
   %(pure_tag)s # a pure tag (name/id/classes)
   (?: # followed by an optional number of
     %(tag_id)s

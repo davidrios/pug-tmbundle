@@ -9,7 +9,7 @@ html
     script#idscript.script(type="text/javascript",   qwerqwer)(test="123", lol=(1+
       1),  other).
       var la = lala;
-  
+
       function script(arg1, arg2) {
         console.log("string", arg1, arg2);
       }
@@ -73,7 +73,7 @@ html
     //  some html comment
       p.
         this is some text inside the p tag
-        since it is only a html comment, jade will render it normally
+        since it is only a html comment, pug will render it normally
 
     div
       p: iv:asd-_FD tag name weird &amp;characters
@@ -235,7 +235,7 @@ html
     //-
       this is an unbuffered comment
       it will never show on the html
-  
+
       and here to test skipping a line with less spaces than the indent level
 
     div.class.another#someid: a(href=em_sometext, test="la\"sdafla", style="display: block; width: 100px; height: 10px"): p.red(style="") some lalalalal
@@ -254,7 +254,7 @@ html
     p Test unbuffered #[- console.log('inline tag code') + 'inline code']
     p #[- abcf = [[123, [[],[]], []],'abc']] #[= abcf]
     p Crazy #[em: strong #[span #[='inline']]: test]
-    p We can also #[strong combine #[em multiple #[img(src='http://jade-lang.com/style/logo.png')]]]
+    p We can also #[strong combine #[em multiple #[img(src='http://pug-lang.com/style/logo.png')]]]
     p Another #[strong.lil#okf(acs=[1,2]) test [[with brackets]] [in#[='side']]]
     #[strong start] line with #[i]\#[j] inline
     #[#[#[#[#[i a] b] c] d]e]

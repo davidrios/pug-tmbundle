@@ -4,11 +4,11 @@
 <dict>
 	<key>fileTypes</key>
 	<array>
-		<string>py.jade</string>
-		<string>pyjade</string>
+		<string>py.pug</string>
+		<string>pypug</string>
 	</array>
 	<key>name</key>
-	<string>Jade (Python)</string>
+	<string>Pug (Python)</string>
 	<key>patterns</key>
 	<array>
 		<dict>
@@ -17,17 +17,17 @@
 			<key>match</key>
 			<string>^(!!!|doctype)(\s*[a-zA-Z0-9-_]+)?</string>
 			<key>name</key>
-			<string>comment.other.doctype.jade</string>
+			<string>comment.other.doctype.pug</string>
 		</dict>
 		<dict>
 			<key>begin</key>
 			<string>^(\s*)//-</string>
 			<key>comment</key>
-			<string>Unbuffered (jade-only) comments.</string>
+			<string>Unbuffered (pug-only) comments.</string>
 			<key>end</key>
 			<string>^(?!(\1\s)|\s*$)</string>
 			<key>name</key>
-			<string>comment.unbuffered.block.jade</string>
+			<string>comment.unbuffered.block.pug</string>
 		</dict>
 		<dict>
 			<key>begin</key>
@@ -37,7 +37,7 @@
 			<key>end</key>
 			<string>^(?!(\1\s)|\s*$)</string>
 			<key>name</key>
-			<string>string.comment.buffered.block.jade</string>
+			<string>string.comment.buffered.block.pug</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -46,7 +46,7 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>invalid.illegal.comment.comment.block.jade</string>
+							<string>invalid.illegal.comment.comment.block.pug</string>
 						</dict>
 					</dict>
 					<key>comment</key>
@@ -54,7 +54,7 @@
 					<key>match</key>
 					<string>^\s*(//)(?!-)</string>
 					<key>name</key>
-					<string>string.comment.buffered.block.jade</string>
+					<string>string.comment.buffered.block.pug</string>
 				</dict>
 			</array>
 		</dict>
@@ -66,7 +66,7 @@
 			<key>end</key>
 			<string>^(?!(\1\s)|\s*$)</string>
 			<key>name</key>
-			<string>javascript.embedded.jade</string>
+			<string>javascript.embedded.pug</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -83,7 +83,7 @@
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>entity.name.tag.script.jade</string>
+					<string>entity.name.tag.script.pug</string>
 				</dict>
 			</dict>
 			<key>comment</key>
@@ -91,7 +91,7 @@
 			<key>end</key>
 			<string>^(?!(\1\s)|\s*$)</string>
 			<key>name</key>
-			<string>source.script.jade</string>
+			<string>source.script.pug</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -100,7 +100,7 @@
 					<key>end</key>
 					<string>$</string>
 					<key>name</key>
-					<string>stuff.tag.script.jade</string>
+					<string>stuff.tag.script.pug</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -115,7 +115,7 @@
 					<key>end</key>
 					<string>$</string>
 					<key>name</key>
-					<string>stuff.tag.script.jade</string>
+					<string>stuff.tag.script.pug</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -138,7 +138,7 @@
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>entity.name.tag.script.jade</string>
+					<string>entity.name.tag.script.pug</string>
 				</dict>
 			</dict>
 			<key>comment</key>
@@ -146,7 +146,7 @@
 			<key>end</key>
 			<string>^(?!(\1\s)|\s*$)</string>
 			<key>name</key>
-			<string>source.style.jade</string>
+			<string>source.style.pug</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -155,7 +155,7 @@
 					<key>end</key>
 					<string>$</string>
 					<key>name</key>
-					<string>stuff.tag.style.jade</string>
+					<string>stuff.tag.style.pug</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -170,7 +170,7 @@
 					<key>end</key>
 					<string>$</string>
 					<key>name</key>
-					<string>stuff.tag.style.jade</string>
+					<string>stuff.tag.style.pug</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -193,13 +193,13 @@
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>constant.language.name.markdown.filter.jade</string>
+					<string>constant.language.name.markdown.filter.pug</string>
 				</dict>
 			</dict>
 			<key>end</key>
 			<string>^(?!(\1\s)|\s*$)</string>
 			<key>name</key>
-			<string>text.markdown.filter.jade</string>
+			<string>text.markdown.filter.pug</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -220,13 +220,13 @@
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>constant.language.name.sass.filter.jade</string>
+					<string>constant.language.name.sass.filter.pug</string>
 				</dict>
 			</dict>
 			<key>end</key>
 			<string>^(?!(\1\s)|\s*$)</string>
 			<key>name</key>
-			<string>source.sass.filter.jade</string>
+			<string>source.sass.filter.pug</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -247,13 +247,13 @@
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>constant.language.name.less.filter.jade</string>
+					<string>constant.language.name.less.filter.pug</string>
 				</dict>
 			</dict>
 			<key>end</key>
 			<string>^(?!(\1\s)|\s*$)</string>
 			<key>name</key>
-			<string>source.less.filter.jade</string>
+			<string>source.less.filter.pug</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -274,13 +274,13 @@
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>constant.language.name.stylus.filter.jade</string>
+					<string>constant.language.name.stylus.filter.pug</string>
 				</dict>
 			</dict>
 			<key>end</key>
 			<string>^(?!(\1\s)|\s*$)</string>
 			<key>name</key>
-			<string>source.stylus.filter.jade</string>
+			<string>source.stylus.filter.pug</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -301,13 +301,13 @@
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>constant.language.name.coffeescript.filter.jade</string>
+					<string>constant.language.name.coffeescript.filter.pug</string>
 				</dict>
 			</dict>
 			<key>end</key>
 			<string>^(?!(\1\s)|\s*$)</string>
 			<key>name</key>
-			<string>source.coffeescript.filter.jade</string>
+			<string>source.coffeescript.filter.pug</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -328,15 +328,15 @@
 				<key>4</key>
 				<dict>
 					<key>name</key>
-					<string>invalid.illegal.empty.generic.filter.jade</string>
+					<string>invalid.illegal.empty.generic.filter.pug</string>
 				</dict>
 			</dict>
 			<key>comment</key>
-			<string>Generic Jade filter.</string>
+			<string>Generic Pug filter.</string>
 			<key>end</key>
 			<string>^(?!(\1\s)|\s*$)</string>
 			<key>name</key>
-			<string>text.generic.filter.jade</string>
+			<string>text.generic.filter.pug</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -345,20 +345,20 @@
 					<key>end</key>
 					<string>$</string>
 					<key>name</key>
-					<string>name.generic.filter.jade</string>
+					<string>name.generic.filter.pug</string>
 					<key>patterns</key>
 					<array>
 						<dict>
 							<key>match</key>
 							<string>\G\(</string>
 							<key>name</key>
-							<string>invalid.illegal.name.generic.filter.jade</string>
+							<string>invalid.illegal.name.generic.filter.pug</string>
 						</dict>
 						<dict>
 							<key>match</key>
 							<string>\w</string>
 							<key>name</key>
-							<string>constant.language.name.generic.filter.jade</string>
+							<string>constant.language.name.generic.filter.pug</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -368,7 +368,7 @@
 							<key>match</key>
 							<string>\W</string>
 							<key>name</key>
-							<string>invalid.illegal.name.generic.filter.jade</string>
+							<string>invalid.illegal.name.generic.filter.pug</string>
 						</dict>
 					</array>
 				</dict>
@@ -382,7 +382,7 @@
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>constant.id.tag.jade</string>
+					<string>constant.id.tag.pug</string>
 				</dict>
 				<key>3</key>
 				<dict>
@@ -392,7 +392,7 @@
 				<key>4</key>
 				<dict>
 					<key>name</key>
-					<string>entity.name.tag.jade</string>
+					<string>entity.name.tag.pug</string>
 				</dict>
 			</dict>
 			<key>comment</key>
@@ -400,7 +400,7 @@
 			<key>end</key>
 			<string>^(?!(\1\s)|\s*$)</string>
 			<key>name</key>
-			<string>text.block.dot.tag.jade</string>
+			<string>text.block.dot.tag.pug</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -417,12 +417,12 @@
 					<key>end</key>
 					<string>$</string>
 					<key>name</key>
-					<string>text.block.jade</string>
+					<string>text.block.pug</string>
 					<key>patterns</key>
 					<array>
 						<dict>
 							<key>include</key>
-							<string>#inline_jade</string>
+							<string>#inline_pug</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -452,12 +452,12 @@
 			<key>end</key>
 			<string>$</string>
 			<key>name</key>
-			<string>tag.jade</string>
+			<string>tag.pug</string>
 			<key>patterns</key>
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#inline_jade</string>
+					<string>#inline_pug</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -487,12 +487,12 @@
 					<key>end</key>
 					<string>$</string>
 					<key>name</key>
-					<string>text.block.pipe.jade</string>
+					<string>text.block.pipe.pug</string>
 					<key>patterns</key>
 					<array>
 						<dict>
 							<key>include</key>
-							<string>#inline_jade</string>
+							<string>#inline_pug</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -524,7 +524,7 @@
 					<key>end</key>
 					<string>$</string>
 					<key>name</key>
-					<string>text.jade</string>
+					<string>text.pug</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -536,7 +536,7 @@
 							<array>
 								<dict>
 									<key>include</key>
-									<string>#inline_jade</string>
+									<string>#inline_pug</string>
 								</dict>
 								<dict>
 									<key>include</key>
@@ -550,7 +550,7 @@
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#inline_jade</string>
+							<string>#inline_pug</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -586,12 +586,12 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>storage.type.import.include.jade</string>
+					<string>storage.type.import.include.pug</string>
 				</dict>
 				<key>4</key>
 				<dict>
 					<key>name</key>
-					<string>variable.control.import.include.jade</string>
+					<string>variable.control.import.include.pug</string>
 				</dict>
 			</dict>
 			<key>comment</key>
@@ -599,7 +599,7 @@
 			<key>match</key>
 			<string>(extends|include|yield|append|prepend|block( (append|prepend))?)\s+(.*)$</string>
 			<key>name</key>
-			<string>meta.first-class.jade</string>
+			<string>meta.first-class.pug</string>
 		</dict>
 		<key>brackets_js</key>
 		<dict>
@@ -608,7 +608,7 @@
 			<key>end</key>
 			<string>\]</string>
 			<key>name</key>
-			<string>js.value.attribute.tag.jade</string>
+			<string>js.value.attribute.tag.pug</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -630,15 +630,15 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>storage.type.function.jade</string>
+					<string>storage.type.function.pug</string>
 				</dict>
 			</dict>
 			<key>comment</key>
-			<string>Jade case conditionals.</string>
+			<string>Pug case conditionals.</string>
 			<key>end</key>
 			<string>$</string>
 			<key>name</key>
-			<string>meta.control.flow.jade</string>
+			<string>meta.control.flow.pug</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -647,7 +647,7 @@
 					<key>end</key>
 					<string>(?=:\s+)|$</string>
 					<key>name</key>
-					<string>js.embedded.control.flow.jade</string>
+					<string>js.embedded.control.flow.pug</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -666,7 +666,7 @@
 					<key>end</key>
 					<string>$</string>
 					<key>name</key>
-					<string>tag.case.control.flow.jade</string>
+					<string>tag.case.control.flow.pug</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -684,7 +684,7 @@
 			<key>end</key>
 			<string>\)</string>
 			<key>name</key>
-			<string>js.when.control.flow.jade</string>
+			<string>js.when.control.flow.pug</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -695,7 +695,7 @@
 					<key>match</key>
 					<string>:</string>
 					<key>name</key>
-					<string>invalid.illegal.name.tag.jade</string>
+					<string>invalid.illegal.name.tag.pug</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -710,7 +710,7 @@
 			<key>end</key>
 			<string>(\.?$)|(?=:.)</string>
 			<key>name</key>
-			<string>complete_tag.jade</string>
+			<string>complete_tag.pug</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -733,7 +733,7 @@
 					<key>match</key>
 					<string>(?&lt;=:)\w.*$</string>
 					<key>name</key>
-					<string>invalid.illegal.name.tag.jade</string>
+					<string>invalid.illegal.name.tag.pug</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -761,12 +761,12 @@
 						<key>2</key>
 						<dict>
 							<key>name</key>
-							<string>invalid.illegal.end.tag.jade</string>
+							<string>invalid.illegal.end.tag.pug</string>
 						</dict>
 						<key>4</key>
 						<dict>
 							<key>name</key>
-							<string>invalid.illegal.end.tag.jade</string>
+							<string>invalid.illegal.end.tag.pug</string>
 						</dict>
 					</dict>
 					<key>match</key>
@@ -815,18 +815,18 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>meta.args.filter.jade</string>
+					<string>meta.args.filter.pug</string>
 				</dict>
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>invalid.illegal.extra.args.filter.jade</string>
+					<string>invalid.illegal.extra.args.filter.pug</string>
 				</dict>
 			</dict>
 			<key>end</key>
 			<string>(\))(.*?$)</string>
 			<key>name</key>
-			<string>args.filter.jade</string>
+			<string>args.filter.pug</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -837,20 +837,20 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>entity.other.attribute-name.tag.jade</string>
+							<string>entity.other.attribute-name.tag.pug</string>
 						</dict>
 						<key>2</key>
 						<dict>
 							<key>name</key>
-							<string>punctuation.separator.key-value.jade</string>
+							<string>punctuation.separator.key-value.pug</string>
 						</dict>
 					</dict>
 					<key>contentName</key>
-					<string>string.value.args.filter.jade</string>
+					<string>string.value.args.filter.pug</string>
 					<key>end</key>
 					<string>((?=\))|,|$)</string>
 					<key>name</key>
-					<string>attributes.tag.jade</string>
+					<string>attributes.tag.pug</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -884,15 +884,15 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>storage.type.function.jade</string>
+					<string>storage.type.function.pug</string>
 				</dict>
 			</dict>
 			<key>comment</key>
-			<string>Jade control flow.</string>
+			<string>Pug control flow.</string>
 			<key>end</key>
 			<string>$</string>
 			<key>name</key>
-			<string>meta.control.flow.jade</string>
+			<string>meta.control.flow.pug</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -901,7 +901,7 @@
 					<key>end</key>
 					<string>$</string>
 					<key>name</key>
-					<string>js.embedded.control.flow.jade</string>
+					<string>js.embedded.control.flow.pug</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -920,17 +920,17 @@
 					<key>match</key>
 					<string>(&amp;)([a-zA-Z0-9]+|#[0-9]+|#x[0-9a-fA-F]+)(;)</string>
 					<key>name</key>
-					<string>constant.character.entity.html.text.jade</string>
+					<string>constant.character.entity.html.text.pug</string>
 				</dict>
 				<dict>
 					<key>match</key>
 					<string>[&lt;&gt;&amp;]</string>
 					<key>name</key>
-					<string>invalid.illegal.html_entity.text.jade</string>
+					<string>invalid.illegal.html_entity.text.pug</string>
 				</dict>
 			</array>
 		</dict>
-		<key>inline_jade</key>
+		<key>inline_pug</key>
 		<dict>
 			<key>begin</key>
 			<string>(?&lt;!\\)(#\[)</string>
@@ -939,23 +939,23 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>entity.name.function.jade</string>
+					<string>entity.name.function.pug</string>
 				</dict>
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>entity.name.function.jade</string>
+					<string>entity.name.function.pug</string>
 				</dict>
 			</dict>
 			<key>end</key>
 			<string>(\])</string>
 			<key>name</key>
-			<string>inline.jade</string>
+			<string>inline.pug</string>
 			<key>patterns</key>
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#inline_jade</string>
+					<string>#inline_pug</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -967,7 +967,7 @@
 					<key>end</key>
 					<string>(?=\]|(:.)|=|\s)</string>
 					<key>name</key>
-					<string>tag.inline.jade</string>
+					<string>tag.inline.pug</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -992,13 +992,13 @@
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#inline_jade</string>
+							<string>#inline_pug</string>
 						</dict>
 						<dict>
 							<key>match</key>
 							<string>\[</string>
 							<key>name</key>
-							<string>invalid.illegal.tag.jade</string>
+							<string>invalid.illegal.tag.pug</string>
 						</dict>
 					</array>
 				</dict>
@@ -1014,22 +1014,22 @@
 					<key>match</key>
 					<string>\[</string>
 					<key>name</key>
-					<string>invalid.illegal.tag.jade</string>
+					<string>invalid.illegal.tag.pug</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#inline_jade_text</string>
+					<string>#inline_pug_text</string>
 				</dict>
 			</array>
 		</dict>
-		<key>inline_jade_text</key>
+		<key>inline_pug_text</key>
 		<dict>
 			<key>begin</key>
 			<string></string>
 			<key>end</key>
 			<string>(?=\])</string>
 			<key>name</key>
-			<string>text.jade</string>
+			<string>text.pug</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -1041,13 +1041,13 @@
 					<array>
 						<dict>
 							<key>include</key>
-							<string>#inline_jade_text</string>
+							<string>#inline_pug_text</string>
 						</dict>
 					</array>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#inline_jade</string>
+					<string>#inline_pug</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -1072,7 +1072,7 @@
 			<key>match</key>
 			<string>(?&lt;!\\)[#!]\{(?=[^}]*$)</string>
 			<key>name</key>
-			<string>invalid.illegal.tag.jade</string>
+			<string>invalid.illegal.tag.pug</string>
 		</dict>
 		<key>interpolated_value</key>
 		<dict>
@@ -1081,14 +1081,14 @@
 			<key>end</key>
 			<string>\}</string>
 			<key>name</key>
-			<string>string.interpolated.jade</string>
+			<string>string.interpolated.pug</string>
 			<key>patterns</key>
 			<array>
 				<dict>
 					<key>match</key>
 					<string>{</string>
 					<key>name</key>
-					<string>invalid.illegal.tag.jade</string>
+					<string>invalid.illegal.tag.pug</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -1105,12 +1105,12 @@
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>storage.type.function.jade</string>
+					<string>storage.type.function.pug</string>
 				</dict>
 				<key>4</key>
 				<dict>
 					<key>name</key>
-					<string>entity.name.function.jade</string>
+					<string>entity.name.function.pug</string>
 				</dict>
 			</dict>
 			<key>comment</key>
@@ -1118,7 +1118,7 @@
 			<key>end</key>
 			<string>(?=\])|$</string>
 			<key>name</key>
-			<string>meta.mixin.jade</string>
+			<string>meta.mixin.pug</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -1127,7 +1127,7 @@
 					<key>end</key>
 					<string>(?=\])|$</string>
 					<key>name</key>
-					<string>args.mixin.jade</string>
+					<string>args.mixin.pug</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -1183,14 +1183,14 @@
 			<key>end</key>
 			<string>(?&lt;!\\)\1</string>
 			<key>name</key>
-			<string>string.quoted.jade</string>
+			<string>string.quoted.pug</string>
 			<key>patterns</key>
 			<array>
 				<dict>
 					<key>match</key>
 					<string>\\((x[0-9a-fA-F]{2})|(u[0-9]{4})|.)</string>
 					<key>name</key>
-					<string>constant.character.quoted.jade</string>
+					<string>constant.character.quoted.pug</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -1209,7 +1209,7 @@
 			<key>end</key>
 			<string>\}</string>
 			<key>name</key>
-			<string>js.value.attribute.tag.jade</string>
+			<string>js.value.attribute.tag.pug</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -1241,7 +1241,7 @@
 			<key>end</key>
 			<string>\]</string>
 			<key>name</key>
-			<string>js.value.attribute.tag.jade</string>
+			<string>js.value.attribute.tag.pug</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -1273,7 +1273,7 @@
 			<key>end</key>
 			<string>\)</string>
 			<key>name</key>
-			<string>js.value.attribute.tag.jade</string>
+			<string>js.value.attribute.tag.pug</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -1307,13 +1307,13 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>constant.name.attribute.tag.jade</string>
+					<string>constant.name.attribute.tag.pug</string>
 				</dict>
 			</dict>
 			<key>end</key>
 			<string>(\))</string>
 			<key>name</key>
-			<string>attributes.tag.jade</string>
+			<string>attributes.tag.pug</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -1322,13 +1322,13 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>entity.other.attribute-name.tag.jade</string>
+							<string>entity.other.attribute-name.tag.pug</string>
 						</dict>
 					</dict>
 					<key>match</key>
 					<string>([^\s(),=/]+)\s*((?=\))|,|\s+|$)(?!\!?\=)</string>
 					<key>name</key>
-					<string>attributes.tag.jade</string>
+					<string>attributes.tag.pug</string>
 				</dict>
 				<dict>
 					<key>begin</key>
@@ -1338,18 +1338,18 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>entity.other.attribute-name.tag.jade</string>
+							<string>entity.other.attribute-name.tag.pug</string>
 						</dict>
 						<key>2</key>
 						<dict>
 							<key>name</key>
-							<string>punctuation.separator.key-value.jade</string>
+							<string>punctuation.separator.key-value.pug</string>
 						</dict>
 					</dict>
 					<key>end</key>
 					<string>(,|$|(?=\)|((?&lt;![+/*|&amp;=:^~!?&lt;&gt;%-])\s+[^+/*|&amp;=:^~!?&lt;&gt;%-])))</string>
 					<key>name</key>
-					<string>attributes.tag.jade</string>
+					<string>attributes.tag.pug</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -1383,7 +1383,7 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>invalid.illegal.tag.jade</string>
+					<string>invalid.illegal.tag.pug</string>
 				</dict>
 			</dict>
 			<key>match</key>
@@ -1396,7 +1396,7 @@
 			<key>match</key>
 			<string>#[\w-]+</string>
 			<key>name</key>
-			<string>constant.id.tag.jade</string>
+			<string>constant.id.tag.pug</string>
 		</dict>
 		<key>tag_mixin_attributes</key>
 		<dict>
@@ -1407,20 +1407,20 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>entity.name.function.jade</string>
+					<string>entity.name.function.pug</string>
 				</dict>
 			</dict>
 			<key>end</key>
 			<string>(\))</string>
 			<key>name</key>
-			<string>attributes.tag.jade</string>
+			<string>attributes.tag.pug</string>
 			<key>patterns</key>
 			<array>
 				<dict>
 					<key>match</key>
 					<string>attributes(?=\))</string>
 					<key>name</key>
-					<string>storage.type.keyword.jade</string>
+					<string>storage.type.keyword.pug</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -1435,7 +1435,7 @@
 			<key>end</key>
 			<string>(\G(?&lt;!\5[^\w-]))|\}|$</string>
 			<key>name</key>
-			<string>entity.name.tag.jade</string>
+			<string>entity.name.tag.pug</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -1444,14 +1444,14 @@
 					<key>end</key>
 					<string>(?=\})</string>
 					<key>name</key>
-					<string>entity.name.tag.jade</string>
+					<string>entity.name.tag.pug</string>
 					<key>patterns</key>
 					<array>
 						<dict>
 							<key>match</key>
 							<string>{</string>
 							<key>name</key>
-							<string>invalid.illegal.tag.jade</string>
+							<string>invalid.illegal.tag.pug</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -1468,12 +1468,12 @@
 			<key>end</key>
 			<string>$</string>
 			<key>name</key>
-			<string>text.jade</string>
+			<string>text.pug</string>
 			<key>patterns</key>
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#inline_jade</string>
+					<string>#inline_pug</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -1502,7 +1502,7 @@
 				<key>3</key>
 				<dict>
 					<key>name</key>
-					<string>variable.parameter.javascript.embedded.jade</string>
+					<string>variable.parameter.javascript.embedded.pug</string>
 				</dict>
 			</dict>
 			<key>comment</key>
@@ -1510,7 +1510,7 @@
 			<key>end</key>
 			<string>(?=\])|$</string>
 			<key>name</key>
-			<string>javascript.embedded.jade</string>
+			<string>javascript.embedded.pug</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -1525,7 +1525,7 @@
 		</dict>
 	</dict>
 	<key>scopeName</key>
-	<string>source.pyjade</string>
+	<string>source.pypug</string>
 	<key>uuid</key>
 	<string>2af009be-05cb-4536-812d-0d6a3f517e31</string>
 </dict>
