@@ -1,0 +1,6 @@
+{
+	"cmd": ["pug", "$file", "--pretty"],
+	"selector": "text.pug",
+	"osx": {"path": "/usr/local/bin:$PATH"},
+	"windows": {"shell": "true"}
+}
