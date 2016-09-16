@@ -28,6 +28,17 @@
       ]
     },
     {
+      "begin": "<!--",
+      "end": "--\\s*>",
+      "name": "comment.unbuffered.block.pug",
+      "patterns": [
+        {
+          "match": "--",
+          "name": "invalid.illegal.comment.comment.block.pug"
+        }
+      ]
+    },
+    {
       "begin": "^(\\s*)-$",
       "end": "^(?!(\\1\\s)|\\s*$)",
       "name": "source.js",
@@ -37,8 +48,8 @@
       ]
     },
     {
-      "begin": "^(\\s*)(script)(?=[.#(\\s])((?![^\\n]*type=)|(?=[^\\n]*(text|application)/javascript))",
-      "beginCaptures": { "2": { "name": "entity.name.tag.script.pug" } },
+      "begin": "^(\\s*)(script)((\\.$)|(?=[^\\n]*(text|application)/javascript.*\\.$))",
+      "beginCaptures": { "2": { "name": "entity.name.tag.pug" } },
       "end": "^(?!(\\1\\s)|\\s*$)",
       "name": "meta.tag.other",
       "comment": "Script tag with JavaScript code.",
@@ -46,13 +57,11 @@
         {
           "begin": "\\G(?=\\()",
           "end": "$",
-          "name": "stuff.tag.script.pug",
           "patterns": [{ "include": "#tag_attributes" }]
         },
         {
           "begin": "\\G(?=[.#])",
           "end": "$",
-          "name": "stuff.tag.script.pug",
           "patterns": [{ "include": "#complete_tag" }]
         },
         { "include": "source.js" }
@@ -60,7 +69,7 @@
     },
     {
       "begin": "^(\\s*)(style)((\\.$)|(?=[.#(].*\\.$))",
-      "beginCaptures": { "2": { "name": "entity.name.tag.script.pug" } },
+      "beginCaptures": { "2": { "name": "entity.name.tag.pug" } },
       "end": "^(?!(\\1\\s)|\\s*$)",
       "name": "meta.tag.other",
       "comment": "Style tag with CSS code.",
@@ -68,13 +77,11 @@
         {
           "begin": "\\G(?=\\()",
           "end": "$",
-          "name": "stuff.tag.style.pug",
           "patterns": [{ "include": "#tag_attributes" }]
         },
         {
           "begin": "\\G(?=[.#])",
           "end": "$",
-          "name": "stuff.tag.style.pug",
           "patterns": [{ "include": "#complete_tag" }]
         },
         { "include": "source.css" }
@@ -150,8 +157,8 @@
     {
       "begin": "^(\\s*)(?=[\\w.#].*?\\.$)(?=(?:(?:(?:(?:(?:#[\\w-]+)|(?:\\.[\\w-]+))|(?:(?:[#!]\\{[^}]*\\})|(?:\\w(?:(?:[\\w:-]+[\\w-])|(?:[\\w-]*)))))(?:(?:#[\\w-]+)|(?:\\.[\\w-]+)|(?:\\((?:[^()\\'\\\"]*(?:(?:\\'(?:[^\\']|(?:(?<!\\\\)\\\\\\'))*\\')|(?:\\\"(?:[^\\\"]|(?:(?<!\\\\)\\\\\\\"))*\\\")))*[^()]*\\))*)*)(?:(?:(?::\\s+)|(?<=\\)))(?:(?:(?:(?:#[\\w-]+)|(?:\\.[\\w-]+))|(?:(?:[#!]\\{[^}]*\\})|(?:\\w(?:(?:[\\w:-]+[\\w-])|(?:[\\w-]*)))))(?:(?:#[\\w-]+)|(?:\\.[\\w-]+)|(?:\\((?:[^()\\'\\\"]*(?:(?:\\'(?:[^\\']|(?:(?<!\\\\)\\\\\\'))*\\')|(?:\\\"(?:[^\\\"]|(?:(?<!\\\\)\\\\\\\"))*\\\")))*[^()]*\\))*)*))*)\\.$)(?:(?:(#[\\w-]+)|(\\.[\\w-]+))|((?:[#!]\\{[^}]*\\})|(?:\\w(?:(?:[\\w:-]+[\\w-])|(?:[\\w-]*)))))",
       "beginCaptures": {
-        "2": { "name": "constant.id.tag.pug" },
-        "3": { "name": "constant.language.js" },
+        "2": { "name": "entity.other.attribute-name.id.pug" },
+        "3": { "name": "entity.other.attribute-name.class.pug" },
         "4": { "name": "meta.tag.other entity.name.tag.pug" }
       },
       "end": "^(?!(\\1\\s)|\\s*$)",
@@ -238,13 +245,14 @@
     "unbuffered_code": {
       "begin": "(-|(([a-zA-Z0-9_]+)\\s+=))",
       "beginCaptures": { "3": { "name": "variable.parameter.javascript.embedded.pug" } },
-      "end": "(?=\\])|$",
+      "end": "(?=\\])|(({\\s*)?$)",
       "name": "source.js",
       "comment": "Non-buffered executable code. Ex.:",
       "comment": "- var name = 'value';",
       "comment": "name = function() {}",
       "patterns": [
         { "include": "#js_brackets" },
+        { "include": "#babel_parens" },
         { "include": "source.js" }
       ]
     },
@@ -386,12 +394,12 @@
     },
     "tag_id": {
       "match": "#[\\w-]+",
-      "name": "constant.id.tag.pug"
+      "name": "entity.other.attribute-name.id.pug"
     },
     "tag_classes": {
       "match": "\\.([^\\w-])?[\\w-]*",
       "captures": { "1": { "name": "invalid.illegal.tag.pug" } },
-      "name": "constant.language.js"
+      "name": "entity.other.attribute-name.class.pug"
     },
     "tag_attributes": {
       "begin": "(\\(\\s*)",
@@ -603,6 +611,14 @@
       "end": "\\}",
       "patterns": [
         { "include": "#js_braces" },
+        { "include": "source.js" }
+      ]
+    },
+    "babel_parens": {
+      "begin": "\\(",
+      "end": "\\)|(({\\s*)?$)",
+      "patterns": [
+        { "include": "#babel_parens" },
         { "include": "source.js" }
       ]
     }

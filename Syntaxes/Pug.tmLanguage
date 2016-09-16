@@ -59,6 +59,23 @@
 		</dict>
 		<dict>
 			<key>begin</key>
+			<string>&lt;!--</string>
+			<key>end</key>
+			<string>--\s*&gt;</string>
+			<key>name</key>
+			<string>comment.unbuffered.block.pug</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>--</string>
+					<key>name</key>
+					<string>invalid.illegal.comment.comment.block.pug</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
 			<string>^(\s*)-$</string>
 			<key>comment</key>
 			<string>Unbuffered code block.</string>
@@ -76,13 +93,13 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^(\s*)(script)(?=[.#(\s])((?![^\n]*type=)|(?=[^\n]*(text|application)/javascript))</string>
+			<string>^(\s*)(script)((\.$)|(?=[^\n]*(text|application)/javascript.*\.$))</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>entity.name.tag.script.pug</string>
+					<string>entity.name.tag.pug</string>
 				</dict>
 			</dict>
 			<key>comment</key>
@@ -98,8 +115,6 @@
 					<string>\G(?=\()</string>
 					<key>end</key>
 					<string>$</string>
-					<key>name</key>
-					<string>stuff.tag.script.pug</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -113,8 +128,6 @@
 					<string>\G(?=[.#])</string>
 					<key>end</key>
 					<string>$</string>
-					<key>name</key>
-					<string>stuff.tag.script.pug</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -137,7 +150,7 @@
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>entity.name.tag.script.pug</string>
+					<string>entity.name.tag.pug</string>
 				</dict>
 			</dict>
 			<key>comment</key>
@@ -153,8 +166,6 @@
 					<string>\G(?=\()</string>
 					<key>end</key>
 					<string>$</string>
-					<key>name</key>
-					<string>stuff.tag.style.pug</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -168,8 +179,6 @@
 					<string>\G(?=[.#])</string>
 					<key>end</key>
 					<string>$</string>
-					<key>name</key>
-					<string>stuff.tag.style.pug</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -350,12 +359,12 @@
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>constant.id.tag.pug</string>
+					<string>entity.other.attribute-name.id.pug</string>
 				</dict>
 				<key>3</key>
 				<dict>
 					<key>name</key>
-					<string>constant.language.js</string>
+					<string>entity.other.attribute-name.class.pug</string>
 				</dict>
 				<key>4</key>
 				<dict>
@@ -545,6 +554,24 @@
 	</array>
 	<key>repository</key>
 	<dict>
+		<key>babel_parens</key>
+		<dict>
+			<key>begin</key>
+			<string>\(</string>
+			<key>end</key>
+			<string>\)|(({\s*)?$)</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#babel_parens</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>source.js</string>
+				</dict>
+			</array>
+		</dict>
 		<key>blocks_and_includes</key>
 		<dict>
 			<key>captures</key>
@@ -1314,14 +1341,14 @@
 			<key>match</key>
 			<string>\.([^\w-])?[\w-]*</string>
 			<key>name</key>
-			<string>constant.language.js</string>
+			<string>entity.other.attribute-name.class.pug</string>
 		</dict>
 		<key>tag_id</key>
 		<dict>
 			<key>match</key>
 			<string>#[\w-]+</string>
 			<key>name</key>
-			<string>constant.id.tag.pug</string>
+			<string>entity.other.attribute-name.id.pug</string>
 		</dict>
 		<key>tag_mixin_attributes</key>
 		<dict>
@@ -1431,7 +1458,7 @@
 			<key>comment</key>
 			<string>name = function() {}</string>
 			<key>end</key>
-			<string>(?=\])|$</string>
+			<string>(?=\])|(({\s*)?$)</string>
 			<key>name</key>
 			<string>source.js</string>
 			<key>patterns</key>
@@ -1439,6 +1466,10 @@
 				<dict>
 					<key>include</key>
 					<string>#js_brackets</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#babel_parens</string>
 				</dict>
 				<dict>
 					<key>include</key>
