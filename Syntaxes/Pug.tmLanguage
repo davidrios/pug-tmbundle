@@ -1176,7 +1176,7 @@
 		<key>string</key>
 		<dict>
 			<key>begin</key>
-			<string>(['"])</string>
+			<string>([`'"])</string>
 			<key>end</key>
 			<string>(?&lt;!\\)\1</string>
 			<key>name</key>
