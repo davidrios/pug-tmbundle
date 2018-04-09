@@ -364,7 +364,7 @@
 				<key>3</key>
 				<dict>
 					<key>name</key>
-					<string>entity.other.attribute-name.class.pug</string>
+					<string>entity.other.attribute-name.class.css.pug</string>
 				</dict>
 				<key>4</key>
 				<dict>
@@ -1341,7 +1341,7 @@
 			<key>match</key>
 			<string>\.([^\w-])?[\w-]*</string>
 			<key>name</key>
-			<string>entity.other.attribute-name.class.pug</string>
+			<string>entity.other.attribute-name.class.css.pug</string>
 		</dict>
 		<key>tag_id</key>
 		<dict>
