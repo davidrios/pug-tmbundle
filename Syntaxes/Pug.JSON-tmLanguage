@@ -98,6 +98,16 @@
       ]
     },
     {
+      "begin": "^(\\s*):(scss)(?=\\(|$)",
+      "beginCaptures": { "2": { "name": "constant.language.name.scss.filter.pug" } },
+      "end": "^(?!(\\1\\s)|\\s*$)",
+      "name": "source.scss.filter.pug",
+      "patterns": [
+        { "include": "#tag_attributes" },
+        { "include": "source.scss" }
+      ]
+    },
+    {
       "begin": "^(\\s*):(less)(?=\\(|$)",
       "beginCaptures": { "2": { "name": "constant.language.name.less.filter.pug" } },
       "end": "^(?!(\\1\\s)|\\s*$)",
@@ -124,6 +134,16 @@
       "patterns": [
         { "include": "#tag_attributes" },
         { "include": "source.coffee" }
+      ]
+    },
+    {
+      "begin": "^(\\s*):(markdown|md)?)(?=\\(|$)",
+      "beginCaptures": { "2": { "name": "constant.language.name.markdown.filter.pug" } },
+      "end": "^(?!(\\1\\s)|\\s*$)",
+      "name": "source.markdown.filter.pug",
+      "patterns": [
+        { "include": "#tag_attributes" },
+        { "include": "source.markdown" }
       ]
     },
     {
