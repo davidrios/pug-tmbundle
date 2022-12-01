@@ -54,8 +54,14 @@ dot_block_tag = r'''
 ''' % {'tag': tag.replace(':REP:', '?:')}
 
 dot_block_tag_capturing = r'''
-%(dot_block_tag)s
-%(pure_tag)s
+(?:
+  (?=\.$) # standalone dot
+  | # or
+  (?:
+    %(dot_block_tag)s
+    %(pure_tag)s
+  )
+)
 ''' % {'dot_block_tag': dot_block_tag, 'pure_tag': pure_tag.replace(':REP:', '')}
 
 dot_block_tag = collapse_re(dot_block_tag)
@@ -64,7 +70,6 @@ if __name__ == '__main__':
     r = re.compile(collapse_re(dot_block_tag_capturing))
     for i in [
         ': asdfsdf.',
-        '.',
         'atag',
         'atag.cls.cls#id',
         '.cls: atag.cls: #idtag',
@@ -77,6 +82,7 @@ if __name__ == '__main__':
         'atag(attr, attr2=abc, attr3="te(s"dfsd)st").',
         '#{null+123}}.',
         'atag:  :  asdfdsf.',
+        '.',
         'atag.cls.cls#id.',
         '.cls: atag.cls: #idtag.',
         'atag(attr, attr2=abc, attr3="te(sdfsd)st").',
@@ -87,9 +93,9 @@ if __name__ == '__main__':
         '#{null+123{}.',
         'abc(123)asd.'  # oddly this should match, despite an unexpected output
     ]:
-        print '"%s": %s' % (i, r.match(i) and r.match(i).groups())
+        print('"%s": %s' % (i, r.match(i) and r.match(i).groups()))
 
     # print "normal --------------"
     # print dot_block_tag.replace('\\', '\\\\').replace('"', '\\"')
     # print "capturing -----------"
-    print collapse_re(dot_block_tag_capturing).replace('\\', '\\\\').replace('"', '\\"')
+    print(collapse_re(dot_block_tag_capturing).replace('\\', '\\\\').replace('"', '\\"'))
