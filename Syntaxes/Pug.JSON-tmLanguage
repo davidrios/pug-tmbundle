@@ -48,7 +48,7 @@
       ]
     },
     {
-      "begin": "^(\\s*)(script)((\\.$)|(?=[^\\n]*(text|application)/javascript.*\\.$))",
+      "begin": "^(\\s*)(script)((\\.$)|(?=[^\\n]*((text|application)/javascript|module).*\\.$))",
       "beginCaptures": { "2": { "name": "entity.name.tag.pug" } },
       "end": "^(?!(\\1\\s)|\\s*$)",
       "name": "meta.tag.other",
