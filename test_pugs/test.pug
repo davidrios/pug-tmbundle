@@ -22,6 +22,9 @@ html
 
       var obj = {abc: 123};
 
+    script(type="module").
+      const body = document.querySelector('body')
+
     style(type="text/css").
       .test-cls {
         float: left;
@@ -74,6 +77,8 @@ html
       p.
         this is some text inside the p tag
         since it is only a html comment, pug will render it normally
+
+    a(href=`http://twitter.com/${twitter}`) @#{twitter}
 
     div
       p: iv:asd-_FD tag name weird &amp;characters
@@ -289,3 +294,20 @@ html
       <#{left_wrapper}.lol#dsfsdf class="group-left !{left_classes}">
       != left
       </!{left_wrapper}>
+
+    #vue-style
+      .foo(foo="foo" v-bind:bar="bar")
+      .foo(foo="foo" :bar="bar")
+      .foo(:foo="foo" bar="bar")
+
+      .foo(foo="foo" :[bar]="bar")
+      .foo(foo="foo" ?123 :undefined, :[bar]="bar")
+      .foo(foo="foo" ? 123 : undefined, :[bar]="bar")
+      .foo(:[foo]="foo" bar="bar")
+
+      .foo(foo="foo" v-on:bar="bar")
+      .foo(foo="foo" @bar="bar")
+      .foo(@foo="foo" bar="bar")
+
+      .foo(foo="foo" @[bar]="bar")
+      .foo(@[foo]="foo" bar="bar")
