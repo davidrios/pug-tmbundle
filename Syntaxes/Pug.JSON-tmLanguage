@@ -98,6 +98,16 @@
       ]
     },
     {
+      "begin": "^(\\s*):(scss)(?=\\(|$)",
+      "beginCaptures": { "2": { "name": "constant.language.name.scss.filter.pug" } },
+      "end": "^(?!(\\1\\s)|\\s*$)",
+      "name": "source.css.scss.filter.pug",
+      "patterns": [
+        { "include": "#tag_attributes" },
+        { "include": "source.css.scss" }
+      ]
+    },
+    {
       "begin": "^(\\s*):(less)(?=\\(|$)",
       "beginCaptures": { "2": { "name": "constant.language.name.less.filter.pug" } },
       "end": "^(?!(\\1\\s)|\\s*$)",
@@ -124,6 +134,16 @@
       "patterns": [
         { "include": "#tag_attributes" },
         { "include": "source.coffee" }
+      ]
+    },
+    {
+      "begin": "^(\\s*):(uglify-js)(?=\\(|$)",
+      "beginCaptures": { "2": { "name": "constant.language.name.js.filter.pug" } },
+      "end": "^(?!(\\1\\s)|\\s*$)",
+      "name": "source.js.filter.pug",
+      "patterns": [
+        { "include": "#tag_attributes" },
+        { "include": "source.js" }
       ]
     },
     {
