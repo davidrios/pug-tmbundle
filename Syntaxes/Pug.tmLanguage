@@ -93,7 +93,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^(\s*)(script)((\.$)|(?=[^\n]*(text|application)/javascript.*\.$))</string>
+			<string>^(\s*)(script)((\.$)|(?=[^\n]*((text|application)/javascript|module).*\.$))</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>2</key>
@@ -222,6 +222,33 @@
 		</dict>
 		<dict>
 			<key>begin</key>
+			<string>^(\s*):(scss)(?=\(|$)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>constant.language.name.scss.filter.pug</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>^(?!(\1\s)|\s*$)</string>
+			<key>name</key>
+			<string>source.css.scss.filter.pug</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#tag_attributes</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>source.css.scss</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
 			<string>^(\s*):(less)(?=\(|$)</string>
 			<key>beginCaptures</key>
 			<dict>
@@ -301,6 +328,33 @@
 		</dict>
 		<dict>
 			<key>begin</key>
+			<string>^(\s*):(uglify-js)(?=\(|$)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>constant.language.name.js.filter.pug</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>^(?!(\1\s)|\s*$)</string>
+			<key>name</key>
+			<string>source.js.filter.pug</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#tag_attributes</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>source.js</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
 			<string>^(\s*)((:(?=.))|(:$))</string>
 			<key>beginCaptures</key>
 			<dict>
@@ -353,7 +407,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^(\s*)(?=[\w.#].*?\.$)(?=(?:(?:(?:(?:(?:#[\w-]+)|(?:\.[\w-]+))|(?:(?:[#!]\{[^}]*\})|(?:\w(?:(?:[\w:-]+[\w-])|(?:[\w-]*)))))(?:(?:#[\w-]+)|(?:\.[\w-]+)|(?:\((?:[^()\'\"]*(?:(?:\'(?:[^\']|(?:(?&lt;!\\)\\\'))*\')|(?:\"(?:[^\"]|(?:(?&lt;!\\)\\\"))*\")))*[^()]*\))*)*)(?:(?:(?::\s+)|(?&lt;=\)))(?:(?:(?:(?:#[\w-]+)|(?:\.[\w-]+))|(?:(?:[#!]\{[^}]*\})|(?:\w(?:(?:[\w:-]+[\w-])|(?:[\w-]*)))))(?:(?:#[\w-]+)|(?:\.[\w-]+)|(?:\((?:[^()\'\"]*(?:(?:\'(?:[^\']|(?:(?&lt;!\\)\\\'))*\')|(?:\"(?:[^\"]|(?:(?&lt;!\\)\\\"))*\")))*[^()]*\))*)*))*)\.$)(?:(?:(#[\w-]+)|(\.[\w-]+))|((?:[#!]\{[^}]*\})|(?:\w(?:(?:[\w:-]+[\w-])|(?:[\w-]*)))))</string>
+			<string>^(\s*)(?:(?=\.$)|(?:(?=[\w.#].*?\.$)(?=(?:(?:(?:(?:(?:#[\w-]+)|(?:\.[\w-]+))|(?:(?:[#!]\{[^}]*\})|(?:\w(?:(?:[\w:-]+[\w-])|(?:[\w-]*)))))(?:(?:#[\w-]+)|(?:\.[\w-]+)|(?:\((?:[^()\'\"]*(?:(?:\'(?:[^\']|(?:(?&lt;!\\)\\\'))*\')|(?:\"(?:[^\"]|(?:(?&lt;!\\)\\\"))*\")))*[^()]*\))*)*)(?:(?:(?::\s+)|(?&lt;=\)))(?:(?:(?:(?:#[\w-]+)|(?:\.[\w-]+))|(?:(?:[#!]\{[^}]*\})|(?:\w(?:(?:[\w:-]+[\w-])|(?:[\w-]*)))))(?:(?:#[\w-]+)|(?:\.[\w-]+)|(?:\((?:[^()\'\"]*(?:(?:\'(?:[^\']|(?:(?&lt;!\\)\\\'))*\')|(?:\"(?:[^\"]|(?:(?&lt;!\\)\\\"))*\")))*[^()]*\))*)*))*)\.$)(?:(?:(#[\w-]+)|(\.[\w-]+))|((?:[#!]\{[^}]*\})|(?:\w(?:(?:[\w:-]+[\w-])|(?:[\w-]*)))))))</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>2</key>
@@ -378,6 +432,12 @@
 			<string>^(?!(\1\s)|\s*$)</string>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>match</key>
+					<string>\.$</string>
+					<key>name</key>
+					<string>storage.type.function.pug.dot-block-dot</string>
+				</dict>
 				<dict>
 					<key>include</key>
 					<string>#tag_attributes</string>
@@ -451,6 +511,10 @@
 				<dict>
 					<key>include</key>
 					<string>#flow_control</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#flow_control_each</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -682,6 +746,14 @@
 			<string>(?=[\w.#])|(:\s*)</string>
 			<key>end</key>
 			<string>(\.?$)|(?=:.)</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.function.pug.dot-block-dot</string>
+				</dict>
+			</dict>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -699,6 +771,10 @@
 				<dict>
 					<key>include</key>
 					<string>#flow_control</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#flow_control_each</string>
 				</dict>
 				<dict>
 					<key>match</key>
@@ -780,7 +856,7 @@
 		<key>flow_control</key>
 		<dict>
 			<key>begin</key>
-			<string>(for|if|else if|else|each|until|while|unless|case)(\s+|$)</string>
+			<string>(for|if|else if|else|until|while|unless|case)(\s+|$)</string>
 			<key>captures</key>
 			<dict>
 				<key>1</key>
@@ -797,6 +873,47 @@
 			<string>meta.control.flow.pug</string>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>begin</key>
+					<string></string>
+					<key>end</key>
+					<string>$</string>
+					<key>name</key>
+					<string>js.embedded.control.flow.pug</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>source.js</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
+		<key>flow_control_each</key>
+		<dict>
+			<key>begin</key>
+			<string>(each)(\s+|$)</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.function.pug</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>$</string>
+			<key>name</key>
+			<string>meta.control.flow.pug.each</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>([\w$_]+)(?:\s*,\s*([\w$_]+))?</string>
+					<key>name</key>
+					<string>variable.other.pug.each-var</string>
+				</dict>
 				<dict>
 					<key>begin</key>
 					<string></string>
@@ -1268,7 +1385,7 @@
 					<key>begin</key>
 					<string>=\s*</string>
 					<key>end</key>
-					<string>$|(?=,|(?:\s+[^!%&amp;*-+~|&lt;&gt;:?/])|\))</string>
+					<string>$|(?=,|(?:\s+[^!%&amp;*\-+~|&lt;&gt;?/])|\))</string>
 					<key>name</key>
 					<string>attribute_value</string>
 					<key>patterns</key>
@@ -1297,9 +1414,9 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>(?&lt;=[%&amp;*-+~|&lt;&gt;:?/])\s+</string>
+					<string>(?&lt;=[%&amp;*\-+~|&lt;&gt;:?/])\s+</string>
 					<key>end</key>
-					<string>$|(?=,|(?:\s+[^!%&amp;*-+~|&lt;&gt;:?/])|\))</string>
+					<string>$|(?=,|(?:\s+[^!%&amp;*\-+~|&lt;&gt;?/])|\))</string>
 					<key>name</key>
 					<string>attribute_value2</string>
 					<key>patterns</key>
