@@ -314,3 +314,23 @@ html
 
       .foo(foo="foo" @[bar]="bar")
       .foo(@[foo]="foo" bar="bar")
+
+    each markup, type in demoMarkup
+      if type === 'js'
+        .grid__cell(class=type)
+          each js, jsType in markup
+            if (jsType === 'es5')
+              details.o-demo__details.o-demo__es5
+                summary ES5 Syntax
+                .o-demo__markup
+                  pre
+                    code(class=type)= js
+            else
+              .o-demo__markup.o-demo__segment.js(class=jsType)
+                pre
+                  code(class=type)= js
+      else if (type === 'html' && spec.showHTML || type !== 'html')
+        - markup = type === 'html' ? html : markup;
+        .grid__cell.o-demo__markup.o-demo__segment(class=type)
+          pre
+            code(class=type)= markup

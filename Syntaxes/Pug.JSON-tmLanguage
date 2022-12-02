@@ -196,6 +196,7 @@
         { "include": "#mixin_definition" },
         { "include": "#mixin_call" },
         { "include": "#flow_control" },
+        { "include": "#flow_control_each" },
         { "include": "#case_conds" },
         {
           "begin": "\\|",
@@ -296,12 +297,30 @@
       ]
     },
     "flow_control": {
-      "begin": "(for|if|else if|else|each|until|while|unless|case)(\\s+|$)",
+      "begin": "(for|if|else if|else|until|while|unless|case)(\\s+|$)",
       "captures": { "1": { "name": "storage.type.function.pug" } },
       "end": "$",
       "name": "meta.control.flow.pug",
       "comment": "Pug control flow.",
       "patterns": [
+        {
+          "begin": "",
+          "end": "$",
+          "name": "js.embedded.control.flow.pug",
+          "patterns": [{ "include": "source.js" }]
+        }
+      ]
+    },
+    "flow_control_each": {
+      "begin": "(each)(\\s+|$)",
+      "captures": { "1": { "name": "storage.type.function.pug" } },
+      "end": "$",
+      "name": "meta.control.flow.pug.each",
+      "patterns": [
+        {
+          "match": "([\\w$_]+)(?:\\s*,\\s*([\\w$_]+))?",
+          "name": "variable.other.pug.each-var"
+        },
         {
           "begin": "",
           "end": "$",
@@ -360,6 +379,7 @@
         { "include": "#unbuffered_code" },
         { "include": "#mixin_call" },
         { "include": "#flow_control" },
+        { "include": "#flow_control_each" },
         {
           "match": "(?<=:)\\w.*$",
           "name": "invalid.illegal.name.tag.pug"
