@@ -177,8 +177,8 @@
     {
       "begin": "^(\\s*)(?:(?=\\.$)|(?:(?=[\\w.#].*?\\.$)(?=(?:(?:(?:(?:(?:#[\\w-]+)|(?:\\.[\\w-]+))|(?:(?:[#!]\\{[^}]*\\})|(?:\\w(?:(?:[\\w:-]+[\\w-])|(?:[\\w-]*)))))(?:(?:#[\\w-]+)|(?:\\.[\\w-]+)|(?:\\((?:[^()\\'\\\"]*(?:(?:\\'(?:[^\\']|(?:(?<!\\\\)\\\\\\'))*\\')|(?:\\\"(?:[^\\\"]|(?:(?<!\\\\)\\\\\\\"))*\\\")))*[^()]*\\))*)*)(?:(?:(?::\\s+)|(?<=\\)))(?:(?:(?:(?:#[\\w-]+)|(?:\\.[\\w-]+))|(?:(?:[#!]\\{[^}]*\\})|(?:\\w(?:(?:[\\w:-]+[\\w-])|(?:[\\w-]*)))))(?:(?:#[\\w-]+)|(?:\\.[\\w-]+)|(?:\\((?:[^()\\'\\\"]*(?:(?:\\'(?:[^\\']|(?:(?<!\\\\)\\\\\\'))*\\')|(?:\\\"(?:[^\\\"]|(?:(?<!\\\\)\\\\\\\"))*\\\")))*[^()]*\\))*)*))*)\\.$)(?:(?:(#[\\w-]+)|(\\.[\\w-]+))|((?:[#!]\\{[^}]*\\})|(?:\\w(?:(?:[\\w:-]+[\\w-])|(?:[\\w-]*)))))))",
       "beginCaptures": {
-        "2": { "name": "entity.other.attribute-name.id.pug" },
-        "3": { "name": "entity.other.attribute-name.class.pug" },
+        "2": { "name": "meta.selector.css entity.other.attribute-name.id.css.pug" },
+        "3": { "name": "meta.selector.css entity.other.attribute-name.class.css.pug" },
         "4": { "name": "meta.tag.other entity.name.tag.pug" }
       },
       "end": "^(?!(\\1\\s)|\\s*$)",
@@ -441,12 +441,12 @@
     },
     "tag_id": {
       "match": "#[\\w-]+",
-      "name": "entity.other.attribute-name.id.pug"
+      "name": "meta.selector.css entity.other.attribute-name.id.css.pug"
     },
     "tag_classes": {
       "match": "\\.([^\\w-])?[\\w-]*",
       "captures": { "1": { "name": "invalid.illegal.tag.pug" } },
-      "name": "entity.other.attribute-name.class.pug"
+      "name": "meta.selector.css entity.other.attribute-name.class.css.pug"
     },
     "tag_attributes": {
       "begin": "(\\(\\s*)",
