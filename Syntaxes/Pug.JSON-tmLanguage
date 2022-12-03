@@ -305,7 +305,6 @@
           "name": "args.mixin.pug",
           "patterns": [
             { "include": "#js_parens" },
-            { "include": "#string" },
             {
               "match": "([^\\s(),=/]+)\\s*=\\s*",
               "captures": { "1": { "name": "meta.tag.other entity.other.attribute-name.tag.pug" } }
@@ -465,7 +464,6 @@
           "end": "$|(?=,|(?:\\s+[^!%&*\\-+~|<>?/])|\\))",
           "name": "attribute_value",
           "patterns": [
-            { "include": "#string" },
             { "include": "#js_parens" },
             { "include": "#js_brackets" },
             { "include": "#js_braces" },
@@ -477,7 +475,6 @@
           "end": "$|(?=,|(?:\\s+[^!%&*\\-+~|<>?/])|\\))",
           "name": "attribute_value2",
           "patterns": [
-            { "include": "#string" },
             { "include": "#js_parens" },
             { "include": "#js_brackets" },
             { "include": "#js_braces" },
@@ -612,19 +609,6 @@
       "patterns": [
         { "include": "#js_brackets" },
         { "include": "source.js" }
-      ]
-    },
-    "string": {
-      "begin": "(['\"])",
-      "end": "(?<!\\\\)\\1",
-      "name": "string.quoted.pug",
-      "patterns": [
-        {
-          "match": "\\\\((x[0-9a-fA-F]{2})|(u[0-9]{4})|.)",
-          "name": "constant.character.quoted.pug"
-        },
-        { "include": "#interpolated_value" },
-        { "include": "#interpolated_error" }
       ]
     },
     "embedded_html": {
