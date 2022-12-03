@@ -1202,10 +1202,6 @@
 							<string>#js_parens</string>
 						</dict>
 						<dict>
-							<key>include</key>
-							<string>#string</string>
-						</dict>
-						<dict>
 							<key>captures</key>
 							<dict>
 								<key>1</key>
@@ -1290,32 +1286,6 @@
 				</dict>
 			</array>
 		</dict>
-		<key>string</key>
-		<dict>
-			<key>begin</key>
-			<string>(['"])</string>
-			<key>end</key>
-			<string>(?&lt;!\\)\1</string>
-			<key>name</key>
-			<string>string.quoted.pug</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>match</key>
-					<string>\\((x[0-9a-fA-F]{2})|(u[0-9]{4})|.)</string>
-					<key>name</key>
-					<string>constant.character.quoted.pug</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#interpolated_value</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#interpolated_error</string>
-				</dict>
-			</array>
-		</dict>
 		<key>tag_attribute_name</key>
 		<dict>
 			<key>captures</key>
@@ -1392,10 +1362,6 @@
 					<array>
 						<dict>
 							<key>include</key>
-							<string>#string</string>
-						</dict>
-						<dict>
-							<key>include</key>
 							<string>#js_parens</string>
 						</dict>
 						<dict>
@@ -1421,10 +1387,6 @@
 					<string>attribute_value2</string>
 					<key>patterns</key>
 					<array>
-						<dict>
-							<key>include</key>
-							<string>#string</string>
-						</dict>
 						<dict>
 							<key>include</key>
 							<string>#js_parens</string>
